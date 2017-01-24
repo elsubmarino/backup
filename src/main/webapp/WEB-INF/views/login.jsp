@@ -55,7 +55,7 @@
 				<div class="row">
 					<div class="col-xs-8">
 						<div class="checkbox icheck">
-							<label> <input type="checkbox"><small>&nbsp;아이디
+							<label> <input type="checkbox" id="checkForId"><small>&nbsp;아이디
 									기억</small>
 							</label>
 						</div>
@@ -81,6 +81,14 @@
 	<script src="/resources/plugins/iCheck/icheck.min.js"></script>
 	<script>
 		$(function() {
+			$("#loginForm #id").focus();
+			var id="${id}";
+			if(id){
+				$("#loginForm #id").val(id);
+				$("#loginForm #apssword").focus();
+				$("#loginForm #checkForId").prop("checked",true);
+			}
+			
 			$('input').iCheck({
 				checkboxClass : 'icheckbox_square-blue',
 				radioClass : 'iradio_square-blue',
@@ -89,7 +97,8 @@
 			$("#enterLogin").click(function() {
 				var id = $("#id").val();
 				var password = $("#password").val();
-				var params = "id=" + id + "&password=" + password;
+				var checkForId=$("#checkForId").prop('checked');
+				var params = "id=" + id + "&password=" + password+"&checkForId="+checkForId;
 				if (!id) {
 					alert("아이디를 입력하지 않았습니다!");
 					$("#loginForm #id").focus();
@@ -105,11 +114,15 @@
 					type : "POST",
 					data : params,
 					success : function(result) {
-						if (result == "fail") {f
+						if (result == "fail") {
 							alert("이메일 주소 혹은 아이디를 제대로 입력하세요!");
-							$("#loginForm #id").val('');
 							$("#loginForm #password").val('');
-							$("#loginForm #id").focus();
+							if(!$("#loginForm #checkForId").is(":checked")){
+								$("#loginForm #id").val('');
+								$("#loginForm #id").focus();
+							}else{
+								$("#loginForm #password").focus();
+							}
 							return;
 						} else if (result == "success") {
 							location.replace("/");
