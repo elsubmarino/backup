@@ -3,13 +3,14 @@ package com.coresec.admin.persistence;
 import java.util.List;
 
 import com.coresec.admin.domain.Popup;
+import com.coresec.admin.domain.SearchCriteria;
 
 public interface PopupDo {
 	//selectOne
 	public Popup selectOnePopup(int f_id);
 	
 	//selectList
-	public List<Popup> selectListPopup();
+	public List<Popup> selectListPopup(SearchCriteria cri);
 	
 	
 	//delete

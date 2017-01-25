@@ -27,63 +27,83 @@
 					<div class="well text-center">팝업 등록 / 수정하기</div>
 				</div>
 				<div class="box-body">
-
-					<div class="col-md-12">
-						<table class="table table-bordered table-hover">
-							<tbody>
-								<tr>
-									<th>팝업 제목</th>
-									<td colspan="3"><input type="text" class="form-control"></td>
-								</tr>
-								<tr>
-									<th>사용 여부</th>
-									<td colspan="3"><label class="checkbox-inline"><input
-											type="checkbox">체크시 팝업 사용</label></td>
-								</tr>
-								<tr>
-									<th>사용 기간</th>
-									<td colspan="3"><input type="text" >~<input
-										type="text"></td>
-								</tr>
-								<tr>
-									<th>창위치 왼쪽</th>
-									<td><input type="text" class="form-control"><label>*
-											화면 왼쪽으로부터 px 단위</label>
-									</div></td>
-									<th>창위치 왼쪽</th>
-									<td><input type="text" class="form-control"><label>*
-											화면 위로부터 px 단위</label></td>
-								</tr>
-								<tr>
-									<th>창크기 가로</th>
-									<td><input type="text" class="form-control"><label>*
-											px 단위</label></td>
-									<th>창크기 세로</th>
-									<td><input type="text" class="form-control"><label>*
-											px 단위</label></td>
-								</tr>
-								<tr>
-									<th>내용</th>
-									<td colspan="3">
-										<div class="box box-info">
-									
-											<!-- /.box-header -->
-											<div class="box-body pad">
-												<form>
-													<textarea class="ckeditor" id="editor1" name="editor1" rows="10" cols="80">
-                    </textarea>
-												</form>
+					<form id="popupCreateForm" method="POST">
+					<input type="hidden" name="f_use" id="f_use">
+						<div class="col-md-12">
+							<table class="table table-bordered table-hover">
+								<tbody>
+									<tr>
+										<th>팝업 제목</th>
+										<td colspan="3"><input type="text" class="form-control"
+											name="f_subject"></td>
+									</tr>
+									<tr>
+										<th>사용 여부</th>
+										<td colspan="3"><label class="checkbox-inline"><input
+												type="checkbox" name="use" id="use">체크시 팝업 사용</label></td>
+									</tr>
+									<tr>
+										<th>사용 기간</th>
+										<td colspan="3">
+											<div class="input-group date">
+												<div class="input-group-addon">
+													<i class="fa fa-calendar"></i>
+												</div>
+												<input type="text" name="f_start"
+													class="form-control pull-right">
+											</div> ~
+											<div class="input-group date">
+												<div class="input-group-addon">
+													<i class="fa fa-calendar"></i>
+												</div>
+												<input type="text" class="form-control pull-right"
+													name="f_end">
 											</div>
-										</div>
-									</td>
-								</tr>
-							</tbody>
-						</table>
+										</td>
+									</tr>
+									<tr>
+										<th>창위치 왼쪽</th>
+										<td><input type="text" class="form-control"
+											name="f_w_left"><label>* 화면 왼쪽으로부터 px 단위</label>
+											</div></td>
+										<th>창위치 왼쪽</th>
+										<td><input type="text" class="form-control"
+											name="f_w_top"><label>* 화면 위로부터 px 단위</label></td>
+									</tr>
+									<tr>
+										<th>창크기 가로</th>
+										<td><input type="text" class="form-control"
+											name="f_width"><label>* px 단위</label></td>
+										<th>창크기 세로</th>
+										<td><input type="text" class="form-control"
+											name="f_height"><label>* px 단위</label></td>
+									</tr>
+									<tr>
+										<th>내용</th>
+										<td colspan="3">
+											<div class="box box-info">
+
+												<!-- /.box-header -->
+												<div class="box-body pad">
+													<form>
+														<textarea class="ckeditor" id="editor1" name="f_comment"
+															rows="10" cols="80" name="f_comment">
+                    </textarea>
+													</form>
+												</div>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</form>
+					<div class="col-md-12 text-center">
+						<button type="button" class="btn btn-default" id="popupCreate">등록</button>
+						<a class="btn btn-default"
+							href="list?${pageMaker.makeSearch(pageMaker.cri.getPage()) }">목록</a>
 					</div>
-					<div class="col-md-12 text-center"><button type="button" class="btn btn-default" id="popupCreate">등록</button>
-					<button type="button" class="btn btn-default" id="popupList">목록</button>
-					</div>
-		
+
 				</div>
 			</div>
 		</div>
@@ -92,6 +112,15 @@
 </div>
 <!-- /.content-wrapper -->
 <!-- CK Editor -->
+
 <%@include file="../include/footer.jsp"%>
 
-
+<script src="/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script>
+	$(function() {
+		$("[name='f_start'], [name='f_end']").datepicker({
+			format : 'yyyy-mm-dd',
+			autoclose : true
+		});
+	});
+</script>

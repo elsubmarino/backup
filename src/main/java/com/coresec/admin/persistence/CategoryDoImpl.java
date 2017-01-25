@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.coresec.admin.domain.Category;
+import com.coresec.admin.domain.SearchCriteria;
 
 @Repository
 public class CategoryDoImpl implements CategoryDo {
@@ -18,8 +19,8 @@ public class CategoryDoImpl implements CategoryDo {
 		return sqlSession.selectOne(namespace+".selectOneCategory",f_id);
 	}
 	@Override
-	public List<Category> selectListCategopry() {
-		return sqlSession.selectList(namespace+".selectListCategory");
+	public List<Category> selectListCategory(SearchCriteria cri) {
+		return sqlSession.selectList(namespace+".selectListCategory",cri);
 	}
 	@Override
 	public void insertCategory(Category category) {

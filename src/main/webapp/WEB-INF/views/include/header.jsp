@@ -13,7 +13,8 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <!-- Bootstrap 3.3.6 -->
-<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/resources/bootstrap/css/bootstrap.css?ver=1">
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -29,6 +30,7 @@
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="/resources/dist/css/skins/_all-skins.min.css">
+<link rel="stylesheet" href="/resources/dist/css/main.css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,7 +40,7 @@
   <![endif]-->
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-light-green sidebar-mini">
 	<div class="wrapper">
 
 		<header class="main-header">
@@ -59,40 +61,18 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- User Account: style can be found in dropdown.less -->
-						<li class="dropdown user user-menu"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown"> <img
+						<li class="dropdown user user-menu"><a> <img
 								src="/resources/dist/img/user2-160x160.png" class="user-image"
 								alt="User Image"> <span class="hidden-xs">${sessionScope.admin.f_name}</span>
-						</a>
-							<ul class="dropdown-menu">
-								<!-- User image -->
-								<li class="user-header"><img
-									src="/resources/dist/img/user2-160x160.png" class="img-circle"
-									alt="User Image">
-
-									<p>
-										코어 시큐리티<small>Since 2011</small>
-									</p></li>
-								<!-- Menu Body -->
-
-								<!-- Menu Footer-->
-								<li class="user-footer">
-									<div class="pull-left">
-										<a href="#" class="btn btn-default btn-flat">비밀번호 변경</a>
-									</div>
-									<div class="pull-right">
-										<a href="/logout" class="btn btn-default btn-flat">로그아웃</a>
-									</div>
-								</li>
-							</ul></li>
+						</a></li>
 						<!-- 비밀번호 변경, 로그아웃 -->
-						<ul>
-							<li><a class="btn btn-danger">로그아웃</a></li>
-							<li><a class="btn btn-danger" id="logout">로그아웃</a></li>
-							<!-- Control Sidebar Toggle Button -->
-							<li><a href="#" data-toggle="control-sidebar"><i
-									class="fa fa-gears"></i></a></li>
-						</ul>7
+						<li><a class="btn btn-success" data-toggle="modal"
+							data-target="#passwordChange" style="border: 0;">비밀번호 변경</a></li>
+						<li><a class="btn btn-success" href="/logout"
+							style="border: 0;">로그아웃</a></li>
+						<!-- Control Sidebar Toggle Button -->
+						<li><a href="#" data-toggle="control-sidebar"><i
+								class="fa fa-gears"></i></a></li>
 					</ul>
 				</div>
 
@@ -147,3 +127,35 @@
 			</section>
 			<!-- /.sidebar -->
 		</aside>
+		<!-- 패스워드 변경 모달 -->
+		<div id="passwordChange" role="dialog" class="modal fade" >
+			<div class="modal-dialog" style="width:300px;">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">비밀번호 변경</h4>
+					</div>
+					<div class="modal-body">
+						<form method="POST" id="passwordChangeForm">
+							<div class="form-group has-feedback">
+								<input type="password" class="form-control" id="password1" name="password1"><span
+									class="form-control-feedback"><i
+									class="glyphicon glyphicon-lock"></i></span>
+							</div>
+							<div class="form-group has-feedback">
+								<input type="password" class="form-control" id="password2" name="password2"><span
+									class="form-control-feedback"><i
+									class="glyphicon glyphicon-lock"></i></span>
+							</div>
+							<input type="hidden" name="f_idno" value="${sessionScope.admin.f_idno}"/>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" id="acceptPasswordChange">확인</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+					</div>
+				</div>
+
+			</div>
+		</div>

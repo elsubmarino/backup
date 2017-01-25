@@ -1,6 +1,8 @@
 package com.coresec.admin.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
@@ -67,5 +69,13 @@ public class LoginController {
 		HttpSession sess=request.getSession(false);
 		sess.invalidate();
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/passwordch",method=RequestMethod.POST)
+	public void passwordch(HttpServletResponse response,@RequestParam(value="password1") String password1,@RequestParam(value="f_idno") String f_idno){
+		Map<String,Object> temp=new HashMap<>();
+		temp.put("f_passwd",password1);
+		temp.put("f_idno", f_idno);
+		memberDo.changePassword(temp);
 	}
 }

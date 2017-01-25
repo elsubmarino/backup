@@ -7,7 +7,7 @@
 		select * from tbl_admin where f_idno=#{f_idno} and f_passwd=password(#{f_passwd})
 	</select>
 	
-	<update id="updateAdmin">
-		update tbl_admin set password=password(#{f_passwd}) where id=#{f_idno}
+	<update id="changePassword">
+		update tbl_admin set f_passwd=password(#{f_passwd}) where f_idno=#{f_idno}
 	</update>
 </mapper>

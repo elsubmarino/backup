@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.coresec.admin.domain.Popup;
+import com.coresec.admin.domain.SearchCriteria;
 
 @Repository
 public class PopupDoImpl implements PopupDo{
@@ -18,8 +19,8 @@ public class PopupDoImpl implements PopupDo{
 		return sqlSession.selectOne(namespace+".selectOnePopup",f_id);
 	}
 	@Override
-	public List<Popup> selectListPopup() {
-		return sqlSession.selectList(namespace+".selectListPopup");
+	public List<Popup> selectListPopup(SearchCriteria cri) {
+		return sqlSession.selectList(namespace+".selectListPopup",cri);
 	}
 	@Override
 	public void deletePopup(int f_id) {

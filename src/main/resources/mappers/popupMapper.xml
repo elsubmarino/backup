@@ -5,22 +5,27 @@
 <mapper namespace="com.coresec.admin.mapper.popupMapper">
 	<select id="selectListPopup" resultType="Popup">
 		select f_id, f_subject,
-		f_start, f_end,f_wdate from tbl_popup order by f_id desc
+		f_start, f_end,f_use,f_wdate from tbl_popup
+		<if test="keyword != null">
+			where f_subject like CONCAT ('%',#{keyword},'%')
+		</if>
+		order by f_id desc limit #{pageStart}, #{perPageNum}
 	</select>
 
 	<select id="selectOnePopup" resultType="Popup">
 		select f_id, f_subject,
-		f_start, f_end,f_wdate from tbl_popup where f_id=#{f_id} order by f_id desc
+		f_start, f_end,f_use,f_w_left,f_w_top,f_width,f_height,f_comment from tbl_popup where f_id=#{f_id} order by f_id
+		desc
 	</select>
 
 
 	<insert id="insertPopup">
 		insert into
-		tbl_popup(f_subject,f_use,f_start,f_end,f_w_left,f_w_top,f_width,f_height,f_comment)
-		values(#{f_subject},#{f_use},#{f_start},#{f_end},#{f_w_left},#{f_w_top},#{f_width},#{f_height},#{f_comment})
+		tbl_popup(f_subject,f_use,f_start,f_end,f_w_left,f_w_top,f_width,f_height,f_comment,f_wdate)
+		values(#{f_subject},#{f_use},#{f_start},#{f_end},#{f_w_left},#{f_w_top},#{f_width},#{f_height},#{f_comment},now())
 	</insert>
 
-	<update id="updatePopup" parameterType="Integer">
+	<update id="updatePopup">
 		update tbl_popup set
 		f_subject=#{f_subject}, f_use=#{f_use}, f_start=#{f_start},
 		f_end=#{f_end},f_w_left=#{f_w_left},f_w_top=#{f_w_top},f_width=#{f_width},f_height=#{f_height},f_comment=#{f_comment}
@@ -31,8 +36,9 @@
 		delete from tbl_popup
 		where f_id=#{f_id}
 	</delete>
-	
+
 	<select id="countsPopup" resultType="Integer">
-		select count(*) from tbl_board;
+		select count(*) from
+		tbl_popup;
 	</select>
 </mapper>

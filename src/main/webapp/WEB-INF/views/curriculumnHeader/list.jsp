@@ -25,18 +25,20 @@
 				<div class="box-header">
 					<form class="form-horizontal">
 						<div class="form-group">
-							<label class="col-sm-1 control-label" for="title" style="width:66px;text-align:right;padding-left:0;padding-right:0;">제목</label>
+							<label class="col-sm-1 control-label" for="title"
+								style="width: 66px; text-align: right; padding-left: 0; padding-right: 0;">제목</label>
 							<div class="col-md-2">
 								<input type="text" class="form-control" id="title">
 							</div>
 							<button type="button" class="btn btn-success">검색</button>
-							&nbsp;총 : ${count }
+							&nbsp;총 : ${pageMaker.totalCount }
 						</div>
 					</form>
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
-					<button type="button" class="btn btn-warning" style="margin-bottom:20px;" id="firstStep">1단계 분류 추가</button>
+						<button type="button" class="btn btn-warning"
+							style="margin-bottom: 20px;" id="firstStep">1단계 분류 추가</button>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
@@ -48,26 +50,47 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td></td>
-									<td></td>
-									<td><button type="button" class="btn btn-info" id="secondStep">추가</button>
-										<button type="button" class="btn btn-info" id="categoryModify">수정</button>
-										<button type="button" class="btn btn-info" id="categoryDelete">삭제</button>										
-										</td>
+								<c:forEach items="${list }" var="item">
 
-								</tr>
+									<tr>
+										<td>${item.f_ca_id }</td>
+										<td>${item.f_ca_name }</td>
+										<td><button type="button" class="btn btn-info"
+												id="secondStep">추가</button>
+											<button type="button" class="btn btn-info"
+												id="categoryModify">수정</button>
+											<button type="button" class="btn btn-info"
+												id="categoryDelete">삭제</button></td>
+
+									</tr>
+								</c:forEach>
+
 							</tbody>
 						</table>
 					</div>
 					<div class="col-md-12 text-right">
 						<ul class="pagination">
-							<li><a href="#">이전</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">이후</a></li>
+							<c:if test="${pageMaker.prev }">
+								<li><a
+									href="list${pageMaker.makeSearch(pageMaker.startPage -1) }">&laquo;</a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage }"
+								end="${pageMaker.endPage }" var="idx">
+								<li
+									<c:out value="${pageMaker.cri.page == idx?'class =active':'' }"/>>
+									<a href="list${pageMaker.makeSearch(idx) }">${idx }</a>
+								</li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0 }">
+								<li><a
+									href="list${pageMaker.makeSearch(pageMaker.endPage+1) }">&raquo;</a></li>
+							</c:if>
 						</ul>
 					</div>
+
+
 				</div>
 			</div>
 		</div>

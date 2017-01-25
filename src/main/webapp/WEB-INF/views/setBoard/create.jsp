@@ -30,7 +30,7 @@
 							<tbody>
 								<tr>
 									<th>타입</th>
-									<td colspan="2"><select><option>일반게시판</option>
+									<td colspan="2"><select name=""><option>일반게시판</option>
 											<option>포토게시판</option>
 									</select></td>
 								</tr>

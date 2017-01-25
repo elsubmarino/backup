@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.coresec.admin.domain.Popup;
+import com.coresec.admin.domain.SearchCriteria;
 import com.coresec.admin.domain.SetBoard;
 
 @Repository
@@ -22,8 +23,8 @@ public class SetBoardDoImpl implements SetBoardDo {
 	}
 
 	@Override
-	public List<SetBoard> selectListSetBoard() {
-		return sqlSession.selectList(namespace + ".selectListSetBoard");
+	public List<SetBoard> selectListSetBoard(SearchCriteria cri) {
+		return sqlSession.selectList(namespace + ".selectListSetBoard",cri);
 	}
 
 	@Override
