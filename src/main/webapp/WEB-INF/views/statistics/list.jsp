@@ -11,8 +11,8 @@
 	<section class="content-header">
 		<h1>접속 통계</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">접속 통계</li>
 		</ol>
 	</section>
 

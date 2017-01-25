@@ -47,14 +47,7 @@
 					<button type="button" class="btn btn-default">등록</button>
 					<button type="button" class="btn btn-default">목록</button>
 					</div>
-					<div class="col-md-12 text-right">
-						<ul class="pagination">
-							<li><a href="#">이전</a></li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">이후</a></li>
-						</ul>
-					</div>
+			
 				</div>
 			</div>
 		</div>

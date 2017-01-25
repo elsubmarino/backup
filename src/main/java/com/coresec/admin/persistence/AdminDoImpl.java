@@ -5,19 +5,18 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.coresec.admin.domain.Member;
+import com.coresec.admin.domain.Admin;
 
 @Repository
-public class MemberDoImpl implements MemberDo{
+public class AdminDoImpl implements AdminDo{
 	
 	@Inject 
 	SqlSession sqlSession;
 	
-	private final String namespace="com.coresec.admin.mapper.memberMapper";
+	private final String namespace="com.coresec.admin.mapper.adminMapper";
 
 	@Override
-	public Member auth(Member member) {
-		System.out.println(member.getId()+" "+member.getPassword());
+	public Admin auth(Admin member) {
 		return sqlSession.selectOne(namespace+".auth",member);
 	}
 

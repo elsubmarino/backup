@@ -11,8 +11,8 @@
 	<section class="content-header">
 		<h1>팝업 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">팝업 관리</li>
 		</ol>
 	</section>
 
@@ -31,14 +31,14 @@
 								<input type="text" class="form-control" id="title">
 							</div>
 							<button type="button" class="btn btn-success">검색</button>
-							&nbsp;총 : 6건
+							&nbsp;총 : ${count }
 						</div>
 					</form>
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
 						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;" id="pollRegister">등록하기</button>
+							style="margin-bottom: 20px;" id="popupRegister">등록하기</button>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
@@ -61,8 +61,8 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td><button type="button" class="btn btn-info">수정</button>
-										<button type="button" class="btn btn-info">삭제</button></td>
+									<td><button type="button" class="btn btn-info" id="popupModify">수정</button>
+										<button type="button" class="btn btn-info" id="popupDelete">삭제</button></td>
 
 								</tr>
 							</tbody>

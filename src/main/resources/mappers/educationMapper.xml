@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//Mybatis 3.0 Mapper//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coresec.admin.mapper.educationMapper">
+	<select id="selectListEducation" resultType="Education">
+		select
+	</select>
+
+	<select id="countsEducation" resultType="Integer">
+		select count(*) from
+		tbl_education;
+	</select>
+	
+</mapper>

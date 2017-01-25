@@ -140,6 +140,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- AdminLTE for demo purposes -->
 <script src="/resources/dist/js/demo.js"></script>
-<script src="/resources/dist/js/main.js"></script>
+<script src="/resources/dist/js/main.js?ver=2"></script>
 </body>
 </html>

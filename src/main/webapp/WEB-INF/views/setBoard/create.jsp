@@ -135,8 +135,8 @@
 
 					</div>
 					<div class="col-md-12 text-center">
-						<button type="button" class="btn btn-default">등록</button>
-						<button type="button" class="btn btn-default">취소</button>
+						<button type="button" class="btn btn-default" id="setBoardCreate">등록</button>
+						<button type="button" class="btn btn-default" id="setBoardCancel">취소</button>
 
 					</div>
 

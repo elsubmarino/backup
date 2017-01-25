@@ -6,6 +6,7 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,36 +14,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.coresec.admin.domain.Member;
-import com.coresec.admin.persistence.MemberDo;
+import com.coresec.admin.domain.Admin;
+import com.coresec.admin.persistence.AdminDo;
 
 @Controller
 public class LoginController {
 	@Inject
-	MemberDo memberDo;
+	AdminDo memberDo;
 
 	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest request, Model model, HttpServletResponse response) {
 		Cookie[] id = request.getCookies();
-		for (Cookie temp : id) {
-			if (temp.getName().equals("id")) {
-				model.addAttribute("id", temp.getValue());
+		if (id != null) {
+			for (Cookie temp : id) {
+				if (temp.getName().equals("id")) {
+					model.addAttribute("id", temp.getValue());
+				}
 			}
 		}
 		return "login";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void loginPOST(Member member, HttpServletResponse response,
+	public void loginPOST(Admin member, HttpServletResponse response, HttpServletRequest request,
 			@RequestParam(value = "checkForId") String checkForId) throws IOException {
-		Member me = memberDo.auth(member);
+		Admin me = memberDo.auth(member);
+
 		if (checkForId.equals("true")) {
-			System.out.println("asfsdf");
-			Cookie id = new Cookie("id", member.getId());
+			Cookie id = new Cookie("id", member.getF_idno());
 			id.setMaxAge(999999999);
 			response.addCookie(id);
-		}else if(checkForId.equals("false")){
-			Cookie id = new Cookie("id", member.getId());
+		} else if (checkForId.equals("false")) {
+			Cookie id = new Cookie("id", member.getF_idno());
 			id.setMaxAge(0);
 			response.addCookie(id);
 		}
@@ -50,9 +53,19 @@ public class LoginController {
 		if (me != null) {
 
 			response.getWriter().print("success");
+			HttpSession sess = request.getSession();
+			sess.setAttribute("admin", me);
+			sess.setMaxInactiveInterval(3600);
 			return;
 		}
 		response.getWriter().print("fail");
 		;
+	}
+
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request) {
+		HttpSession sess=request.getSession(false);
+		sess.invalidate();
+		return "redirect:/";
 	}
 }

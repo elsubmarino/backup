@@ -11,8 +11,8 @@
 	<section class="content-header">
 		<h1>교육과정 과목구분 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li class="active">교육과정 과목구분 관리</li>
 		</ol>
 	</section>
 
@@ -30,13 +30,13 @@
 								<input type="text" class="form-control" id="title">
 							</div>
 							<button type="button" class="btn btn-success">검색</button>
-							&nbsp;총 : 6건
+							&nbsp;총 : ${count }
 						</div>
 					</form>
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
-					<button type="button" class="btn btn-warning" style="margin-bottom:20px;">1단계 분류 추가</button>
+					<button type="button" class="btn btn-warning" style="margin-bottom:20px;" id="firstStep">1단계 분류 추가</button>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
@@ -51,9 +51,9 @@
 								<tr>
 									<td></td>
 									<td></td>
-									<td><button type="button" class="btn btn-info">추가</button>
-										<button type="button" class="btn btn-info">수정</button>
-										<button type="button" class="btn btn-info">삭제</button>										
+									<td><button type="button" class="btn btn-info" id="secondStep">추가</button>
+										<button type="button" class="btn btn-info" id="categoryModify">수정</button>
+										<button type="button" class="btn btn-info" id="categoryDelete">삭제</button>										
 										</td>
 
 								</tr>

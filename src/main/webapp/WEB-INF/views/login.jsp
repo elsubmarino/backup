@@ -44,12 +44,12 @@
 			<form action="/login" method="post" id="loginForm">
 				<div class="form-group has-feedback">
 					<input type="text" class="form-control" placeholder="아이디"
-						maxlength="20" id="id" value=""> <span
+						maxlength="20" id="f_idno" value=""> <span
 						class="glyphicon glyphicon-user form-control-feedback"></span>
 				</div>
 				<div class="form-group has-feedback">
 					<input type="password" class="form-control" placeholder="패스워드"
-						maxlength="20" id="password" value=""> <span
+						maxlength="20" id="f_passwd" value=""> <span
 						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
 				<div class="row">
@@ -81,11 +81,11 @@
 	<script src="/resources/plugins/iCheck/icheck.min.js"></script>
 	<script>
 		$(function() {
-			$("#loginForm #id").focus();
+			$("#loginForm #f_idno").focus();
 			var id="${id}";
 			if(id){
-				$("#loginForm #id").val(id);
-				$("#loginForm #apssword").focus();
+				$("#loginForm #f_idno").val(id);
+				$("#loginForm #f_passwd").focus();
 				$("#loginForm #checkForId").prop("checked",true);
 			}
 			
@@ -95,10 +95,10 @@
 				increaseArea : '20%' // optional
 			});
 			$("#enterLogin").click(function() {
-				var id = $("#id").val();
-				var password = $("#password").val();
+				var id = $("#f_idno").val();
+				var password = $("#f_passwd").val();
 				var checkForId=$("#checkForId").prop('checked');
-				var params = "id=" + id + "&password=" + password+"&checkForId="+checkForId;
+				var params = "f_idno=" + id + "&f_passwd=" + password+"&checkForId="+checkForId;
 				if (!id) {
 					alert("아이디를 입력하지 않았습니다!");
 					$("#loginForm #id").focus();
@@ -106,7 +106,7 @@
 				}
 				if (!password) {
 					alert("패스워드를 입력하지 않았습니다!");
-					$("#loginForm #password").focus();
+					$("#loginForm #f_passwd").focus();
 					return;
 				}
 				$.ajax({
@@ -116,10 +116,10 @@
 					success : function(result) {
 						if (result == "fail") {
 							alert("이메일 주소 혹은 아이디를 제대로 입력하세요!");
-							$("#loginForm #password").val('');
+							$("#loginForm #f_passwd").val('');
 							if(!$("#loginForm #checkForId").is(":checked")){
-								$("#loginForm #id").val('');
-								$("#loginForm #id").focus();
+								$("#loginForm #f_idno").val('');
+								$("#loginForm #f_idno").focus();
 							}else{
 								$("#loginForm #password").focus();
 							}

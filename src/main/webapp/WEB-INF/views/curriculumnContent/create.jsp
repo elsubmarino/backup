@@ -81,8 +81,8 @@
 						</table>
 					</div>
 					<div class="col-md-12 text-center">
-						<button type="button" class="btn btn-default">등록</button>
-						<button type="button" class="btn btn-default">목록</button>
+						<button type="button" class="btn btn-default" id="educationCreate">등록</button>
+						<button type="button" class="btn btn-default" id="educationList">목록</button>
 					</div>
 
 				</div>
