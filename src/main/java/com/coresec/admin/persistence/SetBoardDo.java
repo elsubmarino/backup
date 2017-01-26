@@ -14,13 +14,13 @@ public interface SetBoardDo {
 	public List<SetBoard> selectListSetBoard(SearchCriteria cri);
 	
 	//modify
-	public void updateSetBoard(int f_id);
+	public void updateSetBoard(SetBoard setBoard);
 	
 	//delete
 	public void deleteSetBoard(int f_id);
 	
 	//insert
-	public void insertSetBoard(Popup popup);	
+	public void insertSetBoard(SetBoard setBoard);	
 	
 	//counts
 	public int countsSetBoard();

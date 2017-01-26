@@ -40,7 +40,7 @@
   <![endif]-->
 </head>
 
-<body class="hold-transition skin-light-green sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
 		<header class="main-header">
@@ -66,9 +66,9 @@
 								alt="User Image"> <span class="hidden-xs">${sessionScope.admin.f_name}</span>
 						</a></li>
 						<!-- 비밀번호 변경, 로그아웃 -->
-						<li><a class="btn btn-success" data-toggle="modal"
+						<li><a class="btn btn-primary" data-toggle="modal"
 							data-target="#passwordChange" style="border: 0;">비밀번호 변경</a></li>
-						<li><a class="btn btn-success" href="/logout"
+						<li><a class="btn btn-primary" href="/logout"
 							style="border: 0;">로그아웃</a></li>
 						<!-- Control Sidebar Toggle Button -->
 						<li><a href="#" data-toggle="control-sidebar"><i

@@ -62,10 +62,11 @@
 										<td>${item.f_link }</td>
 										<td>${item.f_file_use }</td>
 										<td></td>
-										<td><button type="button" class="btn btn-info"
-												id="setBoardModify">수정</button>
-											<button type="button" class="btn btn-info"
-												id="setBoardDelete">삭제</button></td>
+										<td><a href="/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}"
+										 class="btn btn-info"
+												id="setBoardModify">수정</a>
+											<a type="button" class="btn btn-info"
+												id="setBoardDelete" href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">삭제</a></td>
 
 									</tr>
 								</c:forEach>
@@ -103,4 +104,6 @@
 
 <%@include file="../include/footer.jsp"%>
 
+<script>
 
+</script>

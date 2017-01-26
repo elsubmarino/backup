@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.coresec.admin.domain.Popup;
 import com.coresec.admin.domain.SearchCriteria;
 import com.coresec.admin.domain.SetBoard;
 
@@ -28,8 +27,8 @@ public class SetBoardDoImpl implements SetBoardDo {
 	}
 
 	@Override
-	public void updateSetBoard(int f_id) {
-		sqlSession.update(namespace + ".updateSetBoard", f_id);
+	public void updateSetBoard(SetBoard setBoard) {
+		sqlSession.update(namespace + ".updateSetBoard", setBoard);
 	}
 
 	@Override
@@ -39,8 +38,8 @@ public class SetBoardDoImpl implements SetBoardDo {
 	}
 
 	@Override
-	public void insertSetBoard(Popup popup) {
-		sqlSession.insert(namespace + ".insertSetBoard", popup);
+	public void insertSetBoard(SetBoard setBoard) {
+		sqlSession.insert(namespace + ".insertSetBoard", setBoard);
 	}
 
 	@Override

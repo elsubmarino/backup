@@ -24,5 +24,8 @@ public interface PopupDo {
 	
 	//selectCounting
 	int countsPopup();
+	
+	//apply
+	List<Popup> applyForPopups();
 
 }

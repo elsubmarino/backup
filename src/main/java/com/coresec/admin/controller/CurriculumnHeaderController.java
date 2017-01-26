@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coresec.admin.domain.Category;
 import com.coresec.admin.domain.PageMaker;
@@ -39,13 +41,45 @@ public class CurriculumnHeaderController {
 		return "/curriculumnHeader/create";
 	}
 
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String createPOST(SearchCriteria cri, Category category) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		category.setF_upfile_name("");
+		categoryDo.insertCategory(category);
+		return "redirect:/category/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
+	}
+
 	@RequestMapping(value = "/subCreate")
 	public String subCreate() {
 		return "/curriculumnHeader/subCreate";
 	}
 
 	@RequestMapping(value = "/modify")
-	public String modify() {
-		return "/curriculmnHeader/modify";
+	public String modify(@RequestParam(value = "f_id") int f_id, Model model, SearchCriteria cri) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		;
+		Category item = categoryDo.selectOneCategory(f_id);
+		model.addAttribute("item", item);
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "/curriculumnHeader/modify";
+	}
+
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modifyPOST(SearchCriteria cri, Category category) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		categoryDo.updateCaetgory(category);
+		return "redirect:/category/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
+	}
+
+	@RequestMapping(value = "/delete")
+	public String delete(SearchCriteria cri,@RequestParam(value="f_id") int f_id) {
+		PageMaker pageMaker=new PageMaker();
+		pageMaker.setCri(cri);
+		categoryDo.deleteCategory(f_id);
+		return "redirect:/category/list"+pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 }

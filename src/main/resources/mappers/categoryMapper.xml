@@ -5,7 +5,7 @@
 <mapper namespace="com.coresec.admin.mapper.categoryMapper">
 	<select id="selectListCategory" resultType="Category">
 		select
-		f_ca_id,f_ca_name from tbl_category
+		f_id,f_ca_id,f_ca_name from tbl_category
 		<if test="keyword !=null">
 		where f_ca_name=#{keyword}
 		</if>
@@ -18,19 +18,18 @@
 	</select>
 
 	<insert id="insertCategory">
-		insert into tbl_category(f_ca_id,f_ca_name,f_comment)
-		values(#{f_ca_id},#{f_ca_name},#{f_comment})
+		insert into tbl_category(f_ca_id,f_ca_name,f_comment,f_upfile_name)
+		values(#{f_ca_id},#{f_ca_name},#{f_comment},#{f_upfile_name})
 	</insert>
 
 	<update id="updateCategory">
 		update tbl_category set
-		f_ca_name=#{f_ca_name},f_comment=#{f_comment} where f_id=#{f_id} where
-		f_id=#{f_id}
+		f_ca_id=#{f_ca_id},f_ca_name=#{f_ca_name},f_comment=#{f_comment} where f_id=#{f_id}
 	</update>
 
 	<delete id="deleteCategory" parameterType="Integer">
 		delete from
-		tbl_category f_id=#{f_id}
+		tbl_category where f_id=#{f_id}
 	</delete>
 
 	<select id="countsCategory" resultType="Integer">

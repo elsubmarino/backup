@@ -37,8 +37,8 @@
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
-						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;" id="firstStep">1단계 분류 추가</button>
+						<a class="btn btn-warning"
+							style="margin-bottom: 20px;" href="create${pageMaker.makeSearch(pageMaker.cri.getPage()) }">1단계 분류 추가</a>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
@@ -57,10 +57,10 @@
 										<td>${item.f_ca_name }</td>
 										<td><button type="button" class="btn btn-info"
 												id="secondStep">추가</button>
-											<button type="button" class="btn btn-info"
-												id="categoryModify">수정</button>
-											<button type="button" class="btn btn-info"
-												id="categoryDelete">삭제</button></td>
+											<a type="button" class="btn btn-info"
+												id="categoryModify" href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">수정</a>
+											<a class="btn btn-info"
+												id="categoryDelete" href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">삭제</a></td>
 
 									</tr>
 								</c:forEach>

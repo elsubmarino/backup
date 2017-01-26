@@ -62,10 +62,9 @@ $(function() {
 	$("#setBoardCreate").click(function() {
 		location.replace("/setBoard/create");
 	});
+	
 
-	$("#setBoardModify").click(function() {
-		location.replace("/setBoard/modify");
-	});
+
 
 	$("#setBoardDelete").click(function() {
 		location.replace("/setBoard/delete")

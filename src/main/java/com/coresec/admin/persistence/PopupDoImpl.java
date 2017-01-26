@@ -39,5 +39,9 @@ public class PopupDoImpl implements PopupDo{
 	public int countsPopup() {
 		return sqlSession.selectOne(namespace+".countsPopup");
 	}
+	@Override
+	public List<Popup> applyForPopups() {
+		return sqlSession.selectList(namespace+".applyForPopups"); 
+	}
 
 }

@@ -20,6 +20,7 @@
 	<section class="content">
 		<!-- Info boxes -->
 		<div class="row">
+			s
 
 			<div class="box">
 				<div class="box-header">
@@ -27,25 +28,27 @@
 				</div>
 				<div class="box-body">
 					<div class="col-md-12">
-						<table class="table table-bordered table-hover">
-							<tbody>
-								<tr>
-									<th>분류코드</th>
-									<td><input type="text"></td>
-								</tr>
-								<tr>
-									<th>분류명</th>
-									<td><input type="text"></td>
-								</tr>
-								<tr>
-									<th>내용</th>
-									<td><textarea></textarea></td>
-							</tbody>
-						</table>
+						<form id="categoryForm" method="POST">
+							<table class="table table-bordered table-hover">
+								<tbody>
+									<tr>
+										<th>분류코드</th>
+										<td><input type="text" name="f_ca_id"></td>
+									</tr>
+									<tr>
+										<th>분류명</th>
+										<td><input type="text" name="f_ca_name"></td>
+									</tr>
+									<tr>
+										<th>내용</th>
+										<td><textarea name="f_comment"></textarea></td>
+								</tbody>
+							</table>
+						</form>
 					</div>
 					<div class="col-md-12 text-center">
 						<button type="button" class="btn btn-default" id="categoryCreate">등록</button>
-						<button type="button" class="btn btn-default" id="categoryList">목록</button>
+						<a class="btn btn-default" id="categoryList" href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }">목록</a>
 					</div>
 
 				</div>
@@ -57,5 +60,12 @@
 <!-- /.content-wrapper -->
 
 <%@include file="../include/footer.jsp"%>
+<script>
+	$(function() {
+		$("#categoryCreate").click(function() {
+			$("#categoryForm").submit();
+		});
+	});
+</script>
 
 

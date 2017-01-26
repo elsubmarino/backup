@@ -27,7 +27,7 @@ public class SetBoard {
 	private int f_one_page_num;
 	private int f_upload_size;
 	private int f_upload_num;
-	private char f_ip_view;
+	private String f_ip_view;
 	private String f_allow_file;
 	private String f_board_admin;
 	private String f_board_tmp;
@@ -35,8 +35,8 @@ public class SetBoard {
 	private String f_comment_img_width;
 	private String f_top_comment;
 	private String f_bottom_comment;
-	private char f_top_comment_html;
-	private char f_bottom_comment_html;
+	private String f_top_comment_html;
+	private String f_bottom_comment_html;
 
 	public int getF_id() {
 		return f_id;
@@ -238,11 +238,11 @@ public class SetBoard {
 		this.f_upload_num = f_upload_num;
 	}
 
-	public char getF_ip_view() {
+	public String getF_ip_view() {
 		return f_ip_view;
 	}
 
-	public void setF_ip_view(char f_ip_view) {
+	public void setF_ip_view(String f_ip_view) {
 		this.f_ip_view = f_ip_view;
 	}
 
@@ -302,19 +302,19 @@ public class SetBoard {
 		this.f_bottom_comment = f_bottom_comment;
 	}
 
-	public char getF_top_comment_html() {
+	public String getF_top_comment_html() {
 		return f_top_comment_html;
 	}
 
-	public void setF_top_comment_html(char f_top_comment_html) {
+	public void setF_top_comment_html(String f_top_comment_html) {
 		this.f_top_comment_html = f_top_comment_html;
 	}
 
-	public char getF_bottom_comment_html() {
+	public String getF_bottom_comment_html() {
 		return f_bottom_comment_html;
 	}
 
-	public void setF_bottom_comment_html(char f_bottom_comment_html) {
+	public void setF_bottom_comment_html(String f_bottom_comment_html) {
 		this.f_bottom_comment_html = f_bottom_comment_html;
 	}
 

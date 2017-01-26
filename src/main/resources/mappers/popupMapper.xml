@@ -41,4 +41,11 @@
 		select count(*) from
 		tbl_popup;
 	</select>
+	
+	<select id="applyForPopups" resultType="Popup">
+	<![CDATA[
+		select * from tbl_popup where f_start <= (select now()) and f_end >= (select now())
+	]]>
+	</select>
+	
 </mapper>
