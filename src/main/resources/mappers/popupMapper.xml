@@ -3,18 +3,26 @@
 	PUBLIC "-//Mybatis 3.0 Mapper//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coresec.admin.mapper.popupMapper">
-	<select id="selectListPopup" resultType="Popup">
-		select f_id, f_subject,
-		f_start, f_end,f_use,f_wdate from tbl_popup
+	<sql id="search">
 		<if test="keyword != null">
 			where f_subject like CONCAT ('%',#{keyword},'%')
 		</if>
+	</sql>
+	<select id="selectListPopup" resultType="Popup">
+		select f_id, f_subject,
+		f_start, f_end,f_use,f_wdate from tbl_popup
+
+		<include refid="search"></include>
+
 		order by f_id desc limit #{pageStart}, #{perPageNum}
 	</select>
 
+
+
 	<select id="selectOnePopup" resultType="Popup">
 		select f_id, f_subject,
-		f_start, f_end,f_use,f_w_left,f_w_top,f_width,f_height,f_comment from tbl_popup where f_id=#{f_id} order by f_id
+		f_start, f_end,f_use,f_w_left,f_w_top,f_width,f_height,f_comment from
+		tbl_popup where f_id=#{f_id} order by f_id
 		desc
 	</select>
 
@@ -27,7 +35,8 @@
 
 	<update id="updatePopup">
 		update tbl_popup set
-		f_subject=#{f_subject}, f_use=#{f_use}, f_start=#{f_start},
+		f_subject=#{f_subject},
+		f_use=#{f_use}, f_start=#{f_start},
 		f_end=#{f_end},f_w_left=#{f_w_left},f_w_top=#{f_w_top},f_width=#{f_width},f_height=#{f_height},f_comment=#{f_comment}
 		where f_id=#{f_id}
 	</update>
@@ -39,13 +48,14 @@
 
 	<select id="countsPopup" resultType="Integer">
 		select count(*) from
-		tbl_popup;
+		tbl_popup
+		<include refid="search"></include>
 	</select>
-	
+
 	<select id="applyForPopups" resultType="Popup">
 	<![CDATA[
-		select * from tbl_popup where f_start <= (select now()) and f_end >= (select now())
+		select * from tbl_popup where f_start <= (select now()) and f_end >= (select now()) order by f_id asc
 	]]>
 	</select>
-	
+
 </mapper>

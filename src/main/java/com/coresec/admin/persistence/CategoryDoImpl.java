@@ -38,8 +38,8 @@ public class CategoryDoImpl implements CategoryDo {
 		
 	}
 	@Override
-	public int countsCategory() {
-		return sqlSession.selectOne(namespace+".countsCategory");
+	public int countsCategory(SearchCriteria cri) {
+		return sqlSession.selectOne(namespace+".countsCategory",cri);
 	}
 
 }

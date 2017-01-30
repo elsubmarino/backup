@@ -43,8 +43,8 @@ public class SetBoardDoImpl implements SetBoardDo {
 	}
 
 	@Override
-	public int countsSetBoard() {
-		return sqlSession.selectOne(namespace+".countsSetBoard");
+	public int countsSetBoard(SearchCriteria cri) {
+		return sqlSession.selectOne(namespace+".countsSetBoard",cri);
 	}
 
 }

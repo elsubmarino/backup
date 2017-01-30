@@ -1,5 +1,6 @@
 package com.coresec.admin.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -22,11 +23,11 @@ public class BoardController {
 	SetBoardDo setBoardDo;
 
 	@RequestMapping(value = "/list")
-	public String list(Model model, SearchCriteria cri) {
+	public String list(Model model, SearchCriteria cri) throws UnsupportedEncodingException {
 		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
 			cri.setKeyword(null);
 		}
-		int count = setBoardDo.countsSetBoard();
+		int count = setBoardDo.countsSetBoard(cri);
 		List<SetBoard> list = setBoardDo.selectListSetBoard(cri);
 		PageMaker pageMaker = new PageMaker();
 		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
@@ -35,7 +36,7 @@ public class BoardController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(count);
 		model.addAttribute("list", list);
-
+		
 		model.addAttribute("pageMaker", pageMaker);
 		return "/setBoard/list";
 	}

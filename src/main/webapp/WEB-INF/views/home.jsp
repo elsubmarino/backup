@@ -4,30 +4,27 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="include/header.jsp"%>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-	<!-- Content Header (Page header) -->
-	<c:forEach var="item" items="${list }">
+	<c:forEach items="${list }" var="item">
 		<script>
-			alert(${item.f_id});
+		var myRegex = /<img[^>]+src="([^">]+)"/g;
+		var test = '${item.f_comment}';
+		window.open(myRegex.exec(test)[1],"${item.f_subject}","width=${item.f_width},height=${item.f_height},left=${item.f_w_left},top=${item.f_w_top}");	
 		</script>
 	</c:forEach>
-	<script>
-	alert("${list}");
-	</script>
+	<!-- Content Header (Page header) -->
+
 	<section class="content-header">
-		<h1>대쉬보드</h1>
-		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-			<li class="active">Dashboard</li>
-		</ol>
+		<h1>홈</h1>
+
 	</section>
 
 	<!-- Main content -->
 	<section class="content">
 		<!-- Info boxes -->
 		<div class="row">
+
 			<div class="col-md-3 col-sm-6 col-xs-12">
 				<div class="info-box">
 					<span class="info-box-icon bg-aqua"><i

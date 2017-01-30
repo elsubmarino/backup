@@ -22,5 +22,5 @@ public interface CategoryDo {
 	public void deleteCategory(int f_id);
 	
 	//counts
-	public int countsCategory();
+	public int countsCategory(SearchCriteria cri);
 }

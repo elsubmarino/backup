@@ -1,10 +1,50 @@
 var passwordRules = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,20}$/
 
 $(function() {
-
+	//비밀번호 변경시 엔터키
+	$("#passwordChange").keydown(function(key){
+		if(key.keyCode==13){
+			$("#acceptPasswordChange").trigger("click");
+		}
+	});
 	
-	$(".pagination li a").click(function(event){
-		self.location="?page="+$(this).text();
+	
+	// 총 :~ 수직정렬
+	var search = document.getElementById("search");
+	var count = document.getElementById("count");
+	if (search!=null && count != null) {
+		search=search.offsetHeight;
+		count.style.lineHeight = search + "px";
+	}
+
+	var pathName = location.pathname;
+	if (pathName.indexOf("popup") == 1) {
+		$(".treeview").removeClass("active");
+		$(".treeview").eq(1).addClass("active");
+	} else if (pathName.indexOf("setBoard") == 1) {
+		$(".treeview").removeClass("active");
+		$(".treeview").eq(2).addClass("active");
+	} else if (pathName.indexOf("category") == 1) {
+		$(".treeview").removeClass("active");
+		$(".treeview").eq(3).addClass("active");
+	} else if (pathName.indexOf("education") == 1) {
+		$(".treeview").removeClass("active");
+		$(".treeview").eq(4).addClass("active");
+	} else if (pathName.indexOf("statistics") == 1) {
+		$(".treeview").removeClass("active");
+		$(".treeview").eq(5).addClass("active");
+	} else {
+		$(".treeview").children().removeClass("active");
+		$(".treeview").eq(0).addClass("active");
+	}
+
+	$("#search").click(function() {
+		var temp = $("[name='keyword']").val().trim();
+		$("[name='keyword']").val(temp);
+		$("#searchForm").submit();
+	});
+	$(".pagination li a").click(function(event) {
+		self.location = "?page=" + $(this).text();
 	})
 
 	$(".contentTitle").click(function() {
@@ -16,16 +56,15 @@ $(function() {
 	$("#popupRegister").click(function() {
 		location.replace("/popup/register");
 	});
-	$("#popupCreate").click(function(){
-		var checked=$("#use").is(":checked");
-		if(checked){
+	$("#popupCreate").click(function() {
+		var checked = $("#use").is(":checked");
+		if (checked) {
 			$("#f_use").val('Y');
-		}else{
+		} else {
 			$("#f_use").val('N');
 		}
 		$("#popupCreateForm").submit();
 	});
-	
 
 	$("#popupDelete").click(function() {
 		location.replace("/popup/delete");
@@ -55,16 +94,9 @@ $(function() {
 		location.replace("/education/delete");
 	});
 
-	$("#educationCreate").click(function() {
-		location.replace("/education/create");
-	});
-
 	$("#setBoardCreate").click(function() {
 		location.replace("/setBoard/create");
 	});
-	
-
-
 
 	$("#setBoardDelete").click(function() {
 		location.replace("/setBoard/delete")
@@ -95,7 +127,7 @@ $(function() {
 		} else if (pwd1 != pwd2) {
 			alert("패스워드가 일치하지 않습니다!");
 			return;
-		}else if(!pwd1.match(passwordRules)){
+		} else if (!pwd1.match(passwordRules)) {
 			alert("최소 1개의 숫자 혹은 특수 문자를 포함해야 하고\n6 자리에서 20 자리내의 영문 대소문자여야 합니다.")
 			return;
 		}

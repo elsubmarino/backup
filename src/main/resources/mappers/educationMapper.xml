@@ -3,13 +3,50 @@
 	PUBLIC "-//Mybatis 3.0 Mapper//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coresec.admin.mapper.educationMapper">
+	<sql id="search">
+		<if test="keyword !=null">
+			<if test="searchType == 'f_subject'.toString()">
+				where f_subject like CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType == 'f_note1'.toString()">
+				where f_note1 like CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType == 'f_note2'.toString()">
+				where f_note2 like CONCAT('%',#{keyword},'%')
+			</if>
+		</if>
+	</sql>
 	<select id="selectListEducation" resultType="Education">
-		select
+		select * from
+		tbl_education
+		<include refid="search"></include>
+
+		order by f_id desc limit #{pageStart}, #{perPageNum}
 	</select>
 
 	<select id="countsEducation" resultType="Integer">
 		select count(*) from
-		tbl_education;
+		tbl_education
+		
+		<include refid="search"></include>
+		
 	</select>
-	
+
+	<insert id="insertEducation">
+		insert into
+		tbl_education(f_ca_id,f_code,f_subject,f_elevel,f_target,f_type1_1,f_type1_2,f_type2,f_note1,f_note2,f_money,f_day,f_wdate)
+		values(#{f_ca_id},#{f_code},#{f_subject},#{f_elevel},#{f_target},#{f_type1_1},#{f_type1_2},#{f_type2},#{f_note1},#{f_note2},0,0,now())
+	</insert>
+
+	<delete id="deleteEducation">
+		delete from tbl_education where f_id=#{f_id}
+	</delete>
+
+	<select id="selectOneEducation" resultType="Education">
+		select * from
+		tbl_education where f_id=#{f_id}
+	</select>
+
+
+
 </mapper>

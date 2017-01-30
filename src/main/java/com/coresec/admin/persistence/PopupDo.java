@@ -23,7 +23,7 @@ public interface PopupDo {
 	void insertPopup(Popup popup);
 	
 	//selectCounting
-	int countsPopup();
+	int countsPopup(SearchCriteria Cri);
 	
 	//apply
 	List<Popup> applyForPopups();

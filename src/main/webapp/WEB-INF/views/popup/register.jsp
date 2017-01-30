@@ -4,15 +4,14 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../include/header.jsp"%>
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-
+<script src="/resources/plugins/ckeditor/ckeditor.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>팝업 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
 			<li class="active">Dashboard</li>
 		</ol>
 	</section>
@@ -28,7 +27,7 @@
 				</div>
 				<div class="box-body">
 					<form id="popupCreateForm" method="POST">
-					<input type="hidden" name="f_use" id="f_use">
+						<input type="hidden" name="f_use" id="f_use">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
 								<tbody>
@@ -84,13 +83,37 @@
 											<div class="box box-info">
 
 												<!-- /.box-header -->
-												<div class="box-body pad">
-													<form>
+												<form>
+
+													<div class="box-body pad">
 														<textarea class="ckeditor" id="editor1" name="f_comment"
 															rows="10" cols="80" name="f_comment">
                     </textarea>
-													</form>
-												</div>
+														<script type="text/javascript">
+															//<![CDATA[
+															CKEDITOR.replace('editor1',{
+																  'filebrowserImageUploadUrl':'/popup/fileupload',
+											
+															});
+															
+														     CKEDITOR.on('dialogDefinition', function( ev ){
+														            var dialogName = ev.data.name;
+														            var dialogDefinition = ev.data.definition;
+														          
+														            switch (dialogName) {
+														                case 'image': //Image Properties dialog
+														                    //dialogDefinition.removeContents('info');
+														                    dialogDefinition.removeContents('Link');
+														                    dialogDefinition.removeContents('advanced');
+														                    break;
+														            }
+														     });
+															
+															//]]>
+														</script>
+													</div>
+												</form>
+
 											</div>
 										</td>
 									</tr>
@@ -122,5 +145,6 @@
 			format : 'yyyy-mm-dd',
 			autoclose : true
 		});
+
 	});
 </script>

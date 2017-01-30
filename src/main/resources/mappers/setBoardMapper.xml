@@ -3,20 +3,25 @@
 	PUBLIC "-//Mybatis 3.0 Mapper//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coresec.admin.mapper.setBoardMapper">
+	<sql id="search">
+		<if test="keyword != null">
+			where f_board_name like CONCAT('%',#{keyword},'%')
+		</if>
+	</sql>
 	<select id="selectListSetBoard" resultType="SetBoard">
 		select
-		f_id,f_board_name,f_skin,f_link,f_file_use from tbl_set_board 
-		<if test="keyword != null">
-			where t_board_name=#{keyword}
-		</if>
+		f_id,f_board_name,f_skin,f_link,f_file_use from tbl_set_board
 		
+		<include refid="search"></include>
+
 		order by
 		f_id desc limit #{pageStart}, #{perPageNum}
 	</select>
 
 	<select id="selectOneSetBoard" resultType="SetBoard">
 		select
-		f_id,f_board_name,f_skin,f_category,f_comment_img_width,f_one_page_num,f_ip_view,f_upload_num,f_comment_use,f_file_use,f_hidden_use,f_write,f_read,f_edit,f_delete,f_reply,f_comment,f_comment_del,f_link,f_top_comment,f_bottom_comment from tbl_set_board where
+		f_id,f_board_name,f_skin,f_category,f_comment_img_width,f_one_page_num,f_ip_view,f_upload_num,f_comment_use,f_file_use,f_hidden_use,f_write,f_read,f_edit,f_delete,f_reply,f_comment,f_comment_del,f_link,f_top_comment,f_bottom_comment
+		from tbl_set_board where
 		f_id=#{f_id} order by
 		f_id desc
 	</select>
@@ -39,7 +44,9 @@
 
 	<select id="countsSetBoard" resultType="Integer">
 		select count(*) from
-		tbl_set_board;
+		tbl_set_board
+		
+		<include refid="search"></include>
 	</select>
 
 </mapper>

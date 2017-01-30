@@ -9,9 +9,9 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>교육과정 관리</h1>
+		<h1>교육과정 과목구분 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
 			<li class="active">Dashboard</li>
 		</ol>
 	</section>
@@ -23,40 +23,36 @@
 
 			<div class="box">
 				<div class="box-header">
-					<div class="well">여기다!</div>
+					<div class="well">정보 추가</div>
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
 						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;">등록하기</button>
+							style="margin-bottom: 20px;">1단계 분류 추가</button>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>교육 일정</th>
-									<th>교육 일수</th>
-									<th>교육 비용</th>
-									<th>접수 상태</th>
-									<th>수정/삭제</th>
-								</tr>
-							</thead>
 							<tbody>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<th>접수 상태</th>
+									<td><input type="checkbox">접수중<input
+										type="checkbox">접수 완료</td>
+								</tr>
+								<tr>
+									<th>교육 일정</th>
+									<td><input type="text"> ~ <input type="text">
+								</tr>
+								<tr>
+									<th>교육 일수</th>
+									<td><input type="text"> 숫자만 입력</td>
+								</tr>
+								<tr>
+									<th>교육 비용</th>
+									<td><input type="text"> 숫자만 입력
 								</tr>
 							</tbody>
 						</table>
 					</div>
-					<div class="col-md-12 text-center">
-						<button type="button" class="btn btn-default">정보 추가</button>
-						<button type="button" class="btn btn-default">교육과목 목록</button>
-					</div>
-		
 				</div>
 			</div>
 		</div>

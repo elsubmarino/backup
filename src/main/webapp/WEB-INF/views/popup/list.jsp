@@ -12,7 +12,7 @@
 	<section class="content-header">
 		<h1>팝업 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
 			<li class="active">팝업 관리</li>
 		</ol>
 	</section>
@@ -23,18 +23,24 @@
 		<div class="row">
 
 			<div class="box">
-				<div class="box-header">
-					<form class="form-horizontal">
-						<div class="form-group">
+				<div class="box-header"  style="padding-bottom:0;">
+					<form class="form-horizontal" id="searchForm" method="GET">
+						<div class="form-group col-md-3">
 							<label class="col-sm-1 control-label" for="title"
-								style="width: 66px; text-align: right; padding-left: 0; padding-right: 0;">제목</label>
-							<div class="col-md-2">
-								<input type="text" class="form-control" id="title">
+								style="width: 55px; text-align: left; padding-right: 0;">제목</label>
+							<div class="input-group">
+								<input type="text" class="form-control" id="title"
+									name="keyword">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-success" id="search">검색</button>
+								</div>
+								
 							</div>
-							<button type="button" class="btn btn-success">검색</button>
-							&nbsp;총 : ${pageMaker.totalCount }
 						</div>
+					
 					</form>
+					<div id="count">&nbsp;총 : ${pageMaker.totalCount } 개</div>
+
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
@@ -43,10 +49,19 @@
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
+							<colgroup>
+								<col width="3%">
+								<col>
+								<col width="6%">
+								<col width="6%">
+								<col width="5%">
+								<col width="9%">
+								<col width="8%">
+							</colgroup>
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>팝업제목</th>
+									<th>팝업 제목</th>
 									<th>시작일시</th>
 									<th>종료일시</th>
 									<th>사용여부</th>
@@ -57,23 +72,24 @@
 							<tbody>
 								<c:forEach items="${list }" var="popup">
 									<tr>
-										<td>${popup.f_id }</td>
-										<td>${popup.f_subject }</td>
-										<td>${popup.f_start }</td>
-										<td>${popup.f_end }</td>
-										<td>${popup.f_use }</td>
-										<td><fmt:formatDate value="${popup.f_wdate  }"
-												pattern="yyyy-MM-dd hh:mm:ss" /></td>
-										<td><a class="btn btn-info"
-												href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
-											<a class="btn btn-info" id="popupDelete" href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a></td>
+										<td class="text-center">${popup.f_id }</td>
+										<td style="text-indent: 5px;">${popup.f_subject }</td>
+										<td class="text-center">${popup.f_start }</td>
+										<td class="text-center">${popup.f_end }</td>
+										<td class="text-center">${popup.f_use }</td>
+										<td class="text-center"><fmt:formatDate
+												value="${popup.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+										<td class="text-center"><a class="btn btn-info"
+											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
+											<a class="btn btn-info" id="popupDelete"
+											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a></td>
 
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
-					<div class="col-md-12 text-right">
+					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">
 								<li><a
@@ -103,5 +119,4 @@
 <!-- /.content-wrapper -->
 
 <%@include file="../include/footer.jsp"%>
-
 

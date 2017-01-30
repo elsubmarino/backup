@@ -1,5 +1,6 @@
 package com.coresec.admin.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,14 +18,14 @@ import com.coresec.admin.persistence.CategoryDo;
 
 @Controller
 @RequestMapping(value = "/category/*")
-public class CurriculumnHeaderController {
+public class CategoryControl {
 	@Inject
 	CategoryDo categoryDo;
 
 	@RequestMapping(value = "/list")
-	public String list(Model model, SearchCriteria cri) {
+	public String list(Model model, SearchCriteria cri) throws UnsupportedEncodingException {
 		PageMaker pageMaker = new PageMaker();
-		int count = categoryDo.countsCategory();
+		int count = categoryDo.countsCategory(cri);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(count);
 		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
@@ -33,12 +34,12 @@ public class CurriculumnHeaderController {
 		List<Category> list = categoryDo.selectListCategory(cri);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", list);
-		return "/curriculumnHeader/list";
+		return "/category/list";
 	}
 
 	@RequestMapping(value = "/create")
 	public String create() {
-		return "/curriculumnHeader/create";
+		return "/category/create";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -52,19 +53,18 @@ public class CurriculumnHeaderController {
 
 	@RequestMapping(value = "/subCreate")
 	public String subCreate() {
-		return "/curriculumnHeader/subCreate";
+		return "/category/subCreate";
 	}
 
 	@RequestMapping(value = "/modify")
 	public String modify(@RequestParam(value = "f_id") int f_id, Model model, SearchCriteria cri) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		;
 		Category item = categoryDo.selectOneCategory(f_id);
 		model.addAttribute("item", item);
 		model.addAttribute("pageMaker", pageMaker);
 
-		return "/curriculumnHeader/modify";
+		return "/category/modify";
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
@@ -76,10 +76,10 @@ public class CurriculumnHeaderController {
 	}
 
 	@RequestMapping(value = "/delete")
-	public String delete(SearchCriteria cri,@RequestParam(value="f_id") int f_id) {
-		PageMaker pageMaker=new PageMaker();
+	public String delete(SearchCriteria cri, @RequestParam(value = "f_id") int f_id) {
+		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		categoryDo.deleteCategory(f_id);
-		return "redirect:/category/list"+pageMaker.makeSearch(pageMaker.getCri().getPage());
+		return "redirect:/category/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 }

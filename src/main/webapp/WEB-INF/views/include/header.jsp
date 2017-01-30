@@ -30,7 +30,7 @@
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="/resources/dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="/resources/dist/css/main.css">
+<link rel="stylesheet" href="/resources/dist/css/main.css?ver=5">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,17 +61,17 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- User Account: style can be found in dropdown.less -->
-						<li class="dropdown user user-menu"><a> <img
+						<li class="user user-menu"><a style="border-left:0;"> <img
 								src="/resources/dist/img/user2-160x160.png" class="user-image"
 								alt="User Image"> <span class="hidden-xs">${sessionScope.admin.f_name}</span>
 						</a></li>
 						<!-- 비밀번호 변경, 로그아웃 -->
-						<li><a class="btn btn-primary" data-toggle="modal"
+						<li><a class="btn" data-toggle="modal"
 							data-target="#passwordChange" style="border: 0;">비밀번호 변경</a></li>
-						<li><a class="btn btn-primary" href="/logout"
+						<li><a class="btn" href="/logout"
 							style="border: 0;">로그아웃</a></li>
 						<!-- Control Sidebar Toggle Button -->
-						<li><a href="#" data-toggle="control-sidebar"><i
+						<li><a style="border-left:0;" href="#" data-toggle="control-sidebar"><i
 								class="fa fa-gears"></i></a></li>
 					</ul>
 				</div>
@@ -95,14 +95,14 @@
 				</div>
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
-					<li class="active treeview"><a href="#" class="contentTitle">
-							<i class="fa fa-dashboard"></i> <span>대쉬보드</span>
+					<li class="active treeview"><a href="/" class="contentTitle">
+							<i class="fa fa-dashboard"></i> <span>홈</span>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
 						href="/popup/list"> <i class="fa fa-files-o"></i> <span>팝업
 								관리</span> </span>
 					</a></li>
-					<li><a href="/setBoard/list" class="contentTitle"> <i
+					<li class="treeview"><a href="/setBoard/list" class="contentTitle"> <i
 							class="fa fa-edit"></i> <span class="coantentTitle">게시판 관리</span>
 							</span>
 					</a></li>
@@ -139,7 +139,7 @@
 					<div class="modal-body">
 						<form method="POST" id="passwordChangeForm">
 							<div class="form-group has-feedback">
-								<input type="password" class="form-control" id="password1" name="password1"><span
+								<input type="password" class="form-control" id="password1" name="password1" autofocus><span
 									class="form-control-feedback"><i
 									class="glyphicon glyphicon-lock"></i></span>
 							</div>

@@ -11,7 +11,7 @@
 	<section class="content-header">
 		<h1>교육과정 과목구분 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
 			<li class="active">교육과정 과목구분 관리</li>
 		</ol>
 	</section>
@@ -23,25 +23,35 @@
 
 			<div class="box">
 				<div class="box-header">
-					<form class="form-horizontal">
-						<div class="form-group">
+					<form class="form-horizontal" id="searchForm">
+						<div class="form-group col-md-3">
 							<label class="col-sm-1 control-label" for="title"
-								style="width: 66px; text-align: right; padding-left: 0; padding-right: 0;">제목</label>
-							<div class="col-md-2">
-								<input type="text" class="form-control" id="title">
+								style="width: 55px; text-align: left; padding-right: 0;">제목</label>
+							<div class="input-group">
+								<input type="text" class="form-control" id="title"
+									name="keyword">
+								<div class="input-group-btn">
+									<button type="button" class="btn btn-success" id="search">검색</button>
+								</div>
 							</div>
-							<button type="button" class="btn btn-success">검색</button>
-							&nbsp;총 : ${pageMaker.totalCount }
 						</div>
 					</form>
+					<div id="count">&nbsp;총 : ${pageMaker.totalCount } 개</div>
+
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
-						<a class="btn btn-warning"
-							style="margin-bottom: 20px;" href="create${pageMaker.makeSearch(pageMaker.cri.getPage()) }">1단계 분류 추가</a>
+						<a class="btn btn-warning" style="margin-bottom: 20px;"
+							href="create${pageMaker.makeSearch(pageMaker.cri.getPage()) }">1단계
+							분류 추가</a>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
+							<colgroup>
+								<col width="5%">
+								<col>
+								<col width="12%">
+							</colgroup>
 							<thead>
 								<tr>
 									<th>분류 코드</th>
@@ -53,14 +63,14 @@
 								<c:forEach items="${list }" var="item">
 
 									<tr>
-										<td>${item.f_ca_id }</td>
-										<td>${item.f_ca_name }</td>
-										<td><button type="button" class="btn btn-info"
-												id="secondStep">추가</button>
-											<a type="button" class="btn btn-info"
-												id="categoryModify" href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">수정</a>
-											<a class="btn btn-info"
-												id="categoryDelete" href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">삭제</a></td>
+										<td class="text-center">${item.f_ca_id }</td>
+										<td style="text-indent: 5px;">${item.f_ca_name }</td>
+										<td class="text-center"><button type="button"
+												class="btn btn-info" id="secondStep">추가</button> <a
+											type="button" class="btn btn-info" id="categoryModify"
+											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">수정</a>
+											<a class="btn btn-info" id="categoryDelete"
+											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">삭제</a></td>
 
 									</tr>
 								</c:forEach>
@@ -68,7 +78,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="col-md-12 text-right">
+					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">
 								<li><a

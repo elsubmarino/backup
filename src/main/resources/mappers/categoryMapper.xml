@@ -3,14 +3,22 @@
 	PUBLIC "-//Mybatis 3.0 Mapper//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coresec.admin.mapper.categoryMapper">
+	<sql id="search">
+		<if test="keyword !=null">
+		<![CDATA[
+			where f_ca_name like CONCAT ('%',#{keyword},'%')
+			]]>
+		</if>
+	</sql>
 	<select id="selectListCategory" resultType="Category">
 		select
 		f_id,f_ca_id,f_ca_name from tbl_category
-		<if test="keyword !=null">
-		where f_ca_name=#{keyword}
-		</if>
-		limit #{pageStart}, #{perPageNum}
+		<include refid="search"></include>
+
+		limit #{pageStart},
+		#{perPageNum}
 	</select>
+
 
 	<select id="selectOneCategory" resultType="Category">
 		select
@@ -18,13 +26,15 @@
 	</select>
 
 	<insert id="insertCategory">
-		insert into tbl_category(f_ca_id,f_ca_name,f_comment,f_upfile_name)
+		insert into
+		tbl_category(f_ca_id,f_ca_name,f_comment,f_upfile_name)
 		values(#{f_ca_id},#{f_ca_name},#{f_comment},#{f_upfile_name})
 	</insert>
 
 	<update id="updateCategory">
 		update tbl_category set
-		f_ca_id=#{f_ca_id},f_ca_name=#{f_ca_name},f_comment=#{f_comment} where f_id=#{f_id}
+		f_ca_id=#{f_ca_id},f_ca_name=#{f_ca_name},f_comment=#{f_comment} where
+		f_id=#{f_id}
 	</update>
 
 	<delete id="deleteCategory" parameterType="Integer">
@@ -34,7 +44,8 @@
 
 	<select id="countsCategory" resultType="Integer">
 		select count(*) from
-		tbl_category;
+		tbl_category
+		<include refid="search"></include>
 	</select>
 
 </mapper>

@@ -81,6 +81,11 @@
 	<script src="/resources/plugins/iCheck/icheck.min.js"></script>
 	<script>
 		$(function() {
+			$("input").keydown(function(key){
+				if(key.keyCode==13){
+					$("#enterLogin").trigger("click");
+				}
+			});
 			$("#loginForm #f_idno").focus();
 			var id="${id}";
 			if(id){

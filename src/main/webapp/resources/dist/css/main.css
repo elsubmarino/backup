@@ -16,3 +16,13 @@
 	text-align: left;
 	vertical-align: middle;
 }
+
+th {
+	background-color: #ECF0F5;
+	text-align: center;
+	vertical-align:middle;
+}
+
+#searchForm col-md-3{
+	padding-bottom:0;
+}
