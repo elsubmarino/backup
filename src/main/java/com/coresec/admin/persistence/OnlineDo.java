@@ -2,27 +2,27 @@ package com.coresec.admin.persistence;
 
 import java.util.List;
 
+import com.coresec.admin.domain.Online;
 import com.coresec.admin.domain.SearchCriteria;
-import com.coresec.admin.domain.SetBoard;
 
 public interface OnlineDo {
 	//selectOne
-	public SetBoard selectOneSetBoard(int f_id);
+	public Online selectOne(int f_id);
 	
 	//selectList
-	public List<SetBoard> selectListSetBoard(SearchCriteria cri);
+	public List<Online> selectList(SearchCriteria cri);
 	
 	//modify
-	public void updateSetBoard(SetBoard setBoard);
+	public void update(Online onloine);
 	
 	//delete
-	public void deleteSetBoard(int f_id);
+	public void delete(int f_id);
 	
 	//insert
-	public void insertSetBoard(SetBoard setBoard);	
+	public void insert(Online online);	
 	
 	//counts
-	public int countsSetBoard(SearchCriteria cri);
+	public int getCount(SearchCriteria cri);
 	
 	
 	//new badge

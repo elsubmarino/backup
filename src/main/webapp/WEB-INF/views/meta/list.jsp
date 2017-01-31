@@ -23,38 +23,43 @@
 		<div class="row">
 
 			<div class="box">
-				<div class="box-header" style="padding-bottom: 0;">
-			
-				
-				</div>
+				<div class="box-header" style="padding-bottom: 0;"></div>
 				<div class="box-body">
 					<div class="col-md-12">
-						<table class="table table-bordered table-hover">
-							<colgroup>
-								<col width="150px;">
-								<col>
-							</colgroup>
-							<tbody>
-								<tr>
-								<th>타이틀명</th>
-								<td>${item.f_title }</td>
-								</tr>
-								<tr>
-								<th>한글키워드</th>
-								<td>${item.keywords }</td>
-								</tr>
-								<tr>
-								<th>영문키워드</th>
-								<td>${item.keywords_e }</td>
-								</tr>
-								<tr>
-								<th>요약설명</th>
-								<td>${item.f_comment }</td>
-								</tr>
-							</tbody>
-						</table>
+						<form action="create" method="POST" id="form">
+							<table class="table table-bordered table-hover">
+								<colgroup>
+									<col width="150px;">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th>타이틀명</th>
+										<td><input type="text" name="f_title" class="form-control"
+											value="${item.f_title }"></td>
+									</tr>
+									<tr>
+										<th>한글키워드</th>
+										<td><input type="text" name="f_keywords" class="form-control"
+											value="${item.f_keywords }"></td>
+									</tr>
+									<tr>
+										<th>영문키워드</th>
+										<td><input type="text" name="f_keywords_e" class="form-control"
+											value="${item.f_keywords_e }"></td>
+									</tr>
+									<tr>
+										<th>요약설명</th>
+										<td><input type="text" name="f_description" class="form-control"
+											value="${item.f_description }"></td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
 					</div>
-					
+					<div class="col-md-12 text-center">
+						<button type="button" class="btn btn-default" id="create">등록</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -67,5 +72,8 @@
 <script>
 	$('tr[data-href]').on("click", function() {
 		document.location = $(this).data('href');
+	});
+	$("#create").on("click", function() {
+		$("#form").submit();
 	});
 </script>

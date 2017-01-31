@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>수강 신청</h1>
+		<h1>수강 신청 관리</h1>
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">수강 신청</li>
+			<li class="active">수강 신청 관리</li>
 		</ol>
 	</section>
 
@@ -52,19 +52,17 @@
 								<col width="100px">
 								<col width="80px">
 								<col width="150px">
-								<col width="150px">
 							</colgroup>
 							<thead>
 								<tr>
-									<th>번호</th>
+									<th>교육 구분</th>
+									<th>교육 과목명</th>
+									<th>교육 일정</th>
 									<th>성명</th>
 									<th>소속</th>
-									<th>연락처</th>
-									<th>직무분야</th>
-									<th>보유경력</th>
-									<th>직급</th>
-									<th>등록일</th>
-									<th>보기/삭제</th>
+									<th>이동 전화</th>
+									<th>신청일</th>
+									<th>인쇄/수정/삭제</th>
 								</tr>
 							</thead>
 							<tbody>

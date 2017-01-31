@@ -4,15 +4,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.coresec.admin.mapper.metaMapper">
 
-	<select id="selectOneSetBoard" resultType="Meta">
+	<select id="selectOne" resultType="Meta">
 		select f_title,f_description,f_keywords,f_keywords_e,f_wdate from tbl_meta
 
 	</select>
-	<update id="updateSetBoard">
+	<update id="update">
 		update tbl_meta set f_title=#{f_title}, f_description=#{f_description}, f_keywords=#{f_keywords},f_keywords_e=#{f_keywords_e}
 	</update>
 
-	<delete id="deleteSetBoard">
+	<delete id="delete">
 		delete from tbl_set_board where f_id=#{f_id}
 	</delete>
 	

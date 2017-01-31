@@ -15,7 +15,7 @@ public class Online {
 	private String f_upmu;
 	private String f_comment;
 	private String f_ip;
-	private Date f_wdate;
+	private String f_wdate;
 	public int getF_id() {
 		return f_id;
 	}
@@ -88,12 +88,13 @@ public class Online {
 	public void setF_ip(String f_ip) {
 		this.f_ip = f_ip;
 	}
-	public Date getF_wdate() {
+	public String getF_wdate() {
 		return f_wdate;
 	}
-	public void setF_wdate(Date f_wdate) {
+	public void setF_wdate(String f_wdate) {
 		this.f_wdate = f_wdate;
 	}
+	
 	
 	
 

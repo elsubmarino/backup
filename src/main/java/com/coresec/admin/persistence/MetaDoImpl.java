@@ -1,14 +1,11 @@
 package com.coresec.admin.persistence;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.coresec.admin.domain.SearchCriteria;
-import com.coresec.admin.domain.SetBoard;
+import com.coresec.admin.domain.Meta;
 
 @Repository
 public class MetaDoImpl implements MetaDo {
@@ -17,35 +14,17 @@ public class MetaDoImpl implements MetaDo {
 	private final String namespace = "com.coresec.admin.mapper.metaMapper";
 
 	@Override
-	public SetBoard selectOneSetBoard() {
-		return sqlSession.selectOne(namespace + ".selectOneSetBoard");
+	public Meta selectOne() {
+		return sqlSession.selectOne(namespace + ".selectOne");
 	}
+
 
 	@Override
-	public List<SetBoard> selectListSetBoard(SearchCriteria cri) {
-		return sqlSession.selectList(namespace + ".selectListSetBoard",cri);
+	public void update(Meta meta) {
+		sqlSession.update(namespace + ".update", meta);
 	}
 
-	@Override
-	public void updateSetBoard(SetBoard setBoard) {
-		sqlSession.update(namespace + ".updateSetBoard", setBoard);
-	}
 
-	@Override
-	public void deleteSetBoard(int f_id) {
-		sqlSession.delete(namespace + ".deleteSetBoard", f_id);
-
-	}
-
-	@Override
-	public void insertSetBoard(SetBoard setBoard) {
-		sqlSession.insert(namespace + ".insertSetBoard", setBoard);
-	}
-
-	@Override
-	public int countsSetBoard(SearchCriteria cri) {
-		return sqlSession.selectOne(namespace+".countsSetBoard",cri);
-	}
 	
 	@Override
 	public int getBadge() {

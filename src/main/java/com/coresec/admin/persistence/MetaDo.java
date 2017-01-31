@@ -8,22 +8,10 @@ import com.coresec.admin.domain.SetBoard;
 
 public interface MetaDo {
 	//selectOne
-	public Meta selectOneSetBoard();
-	
-	//selectList
-	public List<SetBoard> selectListSetBoard(SearchCriteria cri);
+	public Meta selectOne();
 	
 	//modify
-	public void updateSetBoard(SetBoard setBoard);
-	
-	//delete
-	public void deleteSetBoard(int f_id);
-	
-	//insert
-	public void insertSetBoard(SetBoard setBoard);	
-	
-	//counts
-	public int countsSetBoard(SearchCriteria cri);
+	public void update(Meta meta);
 	
 	
 	//new badge

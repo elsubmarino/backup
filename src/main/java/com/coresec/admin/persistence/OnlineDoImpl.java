@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.coresec.admin.domain.Online;
 import com.coresec.admin.domain.SearchCriteria;
-import com.coresec.admin.domain.SetBoard;
 
 @Repository
 public class OnlineDoImpl implements OnlineDo {
@@ -17,34 +17,34 @@ public class OnlineDoImpl implements OnlineDo {
 	private final String namespace = "com.coresec.admin.mapper.onlineMapper";
 
 	@Override
-	public SetBoard selectOneSetBoard(int f_id) {
-		return sqlSession.selectOne(namespace + ".selectOneSetBoard", f_id);
+	public Online selectOne(int f_id) {
+		return sqlSession.selectOne(namespace + ".selectOne", f_id);
 	}
 
 	@Override
-	public List<SetBoard> selectListSetBoard(SearchCriteria cri) {
-		return sqlSession.selectList(namespace + ".selectListSetBoard",cri);
+	public List<Online> selectList(SearchCriteria cri) {
+		return sqlSession.selectList(namespace + ".selectList",cri);
 	}
 
 	@Override
-	public void updateSetBoard(SetBoard setBoard) {
-		sqlSession.update(namespace + ".updateSetBoard", setBoard);
+	public void update(Online online) {
+		sqlSession.update(namespace + ".update", online);
 	}
 
 	@Override
-	public void deleteSetBoard(int f_id) {
-		sqlSession.delete(namespace + ".deleteSetBoard", f_id);
+	public void delete(int f_id) {
+		sqlSession.delete(namespace + ".delete", f_id);
 
 	}
 
 	@Override
-	public void insertSetBoard(SetBoard setBoard) {
-		sqlSession.insert(namespace + ".insertSetBoard", setBoard);
+	public void insert(Online online) {
+		sqlSession.insert(namespace + ".insert", online);
 	}
 
 	@Override
-	public int countsSetBoard(SearchCriteria cri) {
-		return sqlSession.selectOne(namespace+".countsSetBoard",cri);
+	public int getCount(SearchCriteria cri) {
+		return sqlSession.selectOne(namespace+".getCount",cri);
 	}
 	
 	@Override
