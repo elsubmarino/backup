@@ -1,9 +1,13 @@
 package com.coresec.admin.controller;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +26,7 @@ public class CategoryControl {
 	@Inject
 	CategoryDo categoryDo;
 
+
 	@RequestMapping(value = "/list")
 	public String list(Model model, SearchCriteria cri) throws UnsupportedEncodingException {
 		PageMaker pageMaker = new PageMaker();
@@ -38,7 +43,20 @@ public class CategoryControl {
 	}
 
 	@RequestMapping(value = "/create")
-	public String create() {
+	public String create(Model model, HttpServletRequest request) {
+		String f_ca_id = request.getParameter("f_ca_id");
+		if (f_ca_id != null) {
+			Map<String, Object> map = new HashMap();
+			map.put("f_ca_id", f_ca_id);
+			map.put("length_start", f_ca_id.length() - 1);
+			String result=categoryDo.getCountAboveThree(map);
+			if(result==null){
+				result=f_ca_id+"10";
+			}
+			model.addAttribute("f_ca_id", result);
+		} else {
+			model.addAttribute("f_ca_id", categoryDo.getCountBelowTwo());
+		}
 		return "/category/create";
 	}
 
@@ -48,6 +66,8 @@ public class CategoryControl {
 		pageMaker.setCri(cri);
 		category.setF_upfile_name("");
 		categoryDo.insertCategory(category);
+		
+		
 		return "redirect:/category/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 

@@ -1,6 +1,7 @@
 package com.coresec.admin.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import com.coresec.admin.domain.Category;
 import com.coresec.admin.domain.SearchCriteria;
@@ -23,4 +24,11 @@ public interface CategoryDo {
 	
 	//counts
 	public int countsCategory(SearchCriteria cri);
+	
+	public int getCountBelowTwo();
+	
+	public String getCountAboveThree(Map<String,Object> map);
+	
+	//new badge
+	public int getBadge();
 }

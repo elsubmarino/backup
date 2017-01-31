@@ -7,10 +7,12 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,11 +57,18 @@ public class PopupController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPOST(SearchCriteria cri, Popup popup) {
+	public String registerPOST(SearchCriteria cri, Popup popup,HttpServletRequest request) {
 		popup.setF_comment(popup.getF_comment().replaceAll("\r", ""));
 		popupDo.insertPopup(popup);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
+		
+		HttpSession sess=request.getSession(false);
+		Map<String,Integer> list=(Map<String, Integer>) sess.getAttribute("list");
+		list.put("popup",popupDo.getBadge());
+		sess.setAttribute("list", list);
+		
+		
 		return "redirect:/popup/list" + pageMaker.makeSearch(cri.getPage());
 	}
 
@@ -110,7 +119,7 @@ public class PopupController {
 			String callback = request.getParameter("CKEditorFuncNum");
 
 			printWriter = response.getWriter();
-			String fileUrl = "/resources/popup/img/" + fileName;// url경로
+			String fileUrl = "/resources/admin/popup/img/" + fileName;// url경로
 
 			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
 					+ ",'" + fileUrl + "','이미지를 업로드 하였습니다.'" + ")</script>");

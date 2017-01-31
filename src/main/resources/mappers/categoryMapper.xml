@@ -14,10 +14,25 @@
 		select
 		f_id,f_ca_id,f_ca_name from tbl_category
 		<include refid="search"></include>
-
+		order by f_ca_id
 		limit #{pageStart},
 		#{perPageNum}
 	</select>
+
+	<!-- 서브 카테고리 2자리 이하일 때 최소값을 구한다 -->
+	<select id="getCountBelowTwo" resultType="int">
+	<![CDATA[
+ 	select max(f_ca_id)+10 from tbl_category where length(f_ca_id) < 3 
+	]]>
+	</select>
+
+	<select id="getCountAboveThree" resultType="string">
+		<![CDATA[
+select cast(max(f_ca_id)+10 as integer) from tbl_category where length(f_ca_id) > 3 and substr(f_ca_id,#{length_start},2)=#{f_ca_id}
+	]]>
+	</select>
+
+	<!-- 서브 카테고리 3자리 이상일 때 최소값을 구한다 -->
 
 
 	<select id="selectOneCategory" resultType="Category">
@@ -46,6 +61,12 @@
 		select count(*) from
 		tbl_category
 		<include refid="search"></include>
+	</select>
+	
+	<!-- 새로운 뱃지 -->
+	<select id="getBadget" resultType="Integer">
+		select count(*) from tbl_category where f_wdate between curdate() - interval 7
+		day and curdate()
 	</select>
 
 </mapper>

@@ -54,28 +54,16 @@ $(function() {
 	})
 
 	$("#popupRegister").click(function() {
-		location.replace("/popup/register");
-	});
-	$("#popupCreate").click(function() {
-		var checked = $("#use").is(":checked");
-		if (checked) {
-			$("#f_use").val('Y');
-		} else {
-			$("#f_use").val('N');
-		}
-		$("#popupCreateForm").submit();
+		location.replace("/admin/popup/register");
 	});
 
+
 	$("#popupDelete").click(function() {
-		location.replace("/popup/delete");
+		location.replace("/admin/popup/delete");
 	})
 
 	$("#firstStep").click(function() {
 		location.replace("/category/create")
-	});
-
-	$("#secondStep").click(function() {
-		location.replace("/category/create");
 	});
 
 	$("#categoryModify").click(function() {
@@ -87,27 +75,27 @@ $(function() {
 	})
 
 	$("#educationModify").click(function() {
-		location.replace("/education/modify");
+		location.replace("/admin/education/modify");
 	});
 
 	$("#educationDelete").click(function() {
-		location.replace("/education/delete");
+		location.replace("/admin/education/delete");
 	});
 
 	$("#setBoardCreate").click(function() {
-		location.replace("/setBoard/create");
+		location.replace("/admin/setBoard/create");
 	});
 
 	$("#setBoardDelete").click(function() {
-		location.replace("/setBoard/delete")
+		location.replace("/admin/setBoard/delete")
 	});
 
 	$("#popupList").click(function() {
-		location.replace("/popup/list");
+		location.replace("/admin/popup/list");
 	});
 
 	$("#setBoardCancel").click(function() {
-		location.replace("/setBoard/list");
+		location.replace("/admin/setBoard/list");
 	});
 
 	$("#categoryList").click(function() {
@@ -115,7 +103,7 @@ $(function() {
 	});
 
 	$("#educationList").click(function() {
-		location.replace("/education/list");
+		location.replace("/admin/education/list");
 	});
 
 	$("#acceptPasswordChange").click(function() {

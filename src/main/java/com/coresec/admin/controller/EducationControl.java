@@ -2,8 +2,11 @@ package com.coresec.admin.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,10 +46,17 @@ public class EducationControl {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createPOST(Education education, SearchCriteria cri) {
+	public String createPOST(Education education, SearchCriteria cri,HttpServletRequest request) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		educationDo.insertEducation(education);
+		
+		HttpSession sess=request.getSession(false);
+		Map<String,Integer> list=(Map<String, Integer>) sess.getAttribute("list");
+		list.put("category",educationDo.getBadge());
+		sess.setAttribute("list", list);
+		
+		
 		return "redirect:/education/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 

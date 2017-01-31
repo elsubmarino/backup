@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//Mybatis 3.0 Mapper//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.coresec.admin.mapper.metaMapper">
+
+	<select id="selectOneSetBoard" resultType="Meta">
+		select f_title,f_description,f_keywords,f_keywords_e,f_wdate from tbl_meta
+
+	</select>
+	<update id="updateSetBoard">
+		update tbl_meta set f_title=#{f_title}, f_description=#{f_description}, f_keywords=#{f_keywords},f_keywords_e=#{f_keywords_e}
+	</update>
+
+	<delete id="deleteSetBoard">
+		delete from tbl_set_board where f_id=#{f_id}
+	</delete>
+	
+	<!-- 새로운 뱃지 -->
+	<select id="getBadget" resultType="Integer">
+		select count(*) from tbl_set_board where f_wdate between curdate() - interval 7
+		day and curdate()
+	</select>
+
+</mapper>

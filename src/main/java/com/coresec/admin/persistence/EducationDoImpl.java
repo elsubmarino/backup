@@ -39,5 +39,10 @@ public class EducationDoImpl implements EducationDo {
 	public void updateEducation(int f_id) {
 		sqlSession.update(namespace+".updateEducaiton", f_id);
 	}
+	
+	@Override
+	public int getBadge() {
+		return sqlSession.selectOne(namespace+".getBadget");
+	}
 
 }

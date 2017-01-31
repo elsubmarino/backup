@@ -1,6 +1,7 @@
 package com.coresec.admin.persistence;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -40,6 +41,18 @@ public class CategoryDoImpl implements CategoryDo {
 	@Override
 	public int countsCategory(SearchCriteria cri) {
 		return sqlSession.selectOne(namespace+".countsCategory",cri);
+	}
+	@Override
+	public int getCountBelowTwo() {
+		return sqlSession.selectOne(namespace+".getCountBelowTwo");
+	}
+	@Override
+	public String getCountAboveThree(Map<String,Object> map) {
+		return sqlSession.selectOne(namespace+".getCountAboveThree",map);
+	}
+	@Override
+	public int getBadge() {
+		return sqlSession.selectOne(namespace+".getBadget");
 	}
 
 }

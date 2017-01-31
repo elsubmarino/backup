@@ -11,7 +11,7 @@
 	<section class="content-header">
 		<h1>교육과정 과목구분 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">Dashboard</li>
 		</ol>
 	</section>
@@ -63,6 +63,12 @@
 <script>
 	$(function() {
 		$("#categoryCreate").click(function() {
+			var f_ca_name=$("[name=f_ca_name]");
+			if(!f_ca_name.val()){
+				alert("분류명을 입력하셔야 합니다!");
+				f_ca_name.focus();
+				return;
+			}
 			$("#categoryForm").submit();
 		});
 	});

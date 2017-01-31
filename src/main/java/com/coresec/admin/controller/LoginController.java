@@ -1,6 +1,7 @@
 package com.coresec.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,11 +19,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coresec.admin.domain.Admin;
 import com.coresec.admin.persistence.AdminDo;
+import com.coresec.admin.persistence.CategoryDo;
+import com.coresec.admin.persistence.EducationDo;
+import com.coresec.admin.persistence.PopupDo;
+import com.coresec.admin.persistence.SetBoardDo;
 
 @Controller
 public class LoginController {
 	@Inject
 	AdminDo memberDo;
+	
+	@Inject
+	CategoryDo categoryDo;
+	
+	@Inject
+	EducationDo educationDo;
+	
+	@Inject
+	PopupDo popupDo;
+	
+	@Inject
+	SetBoardDo setBoardDo;
 
 	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest request, Model model, HttpServletResponse response) {
@@ -53,10 +70,13 @@ public class LoginController {
 		}
 
 		if (me != null) {
-
+			Map<String,Integer> list=new HashMap<>();
+			list.put("popup",popupDo.getBadge());
+			list.put("education",educationDo.getBadge());
 			response.getWriter().print("success");
 			HttpSession sess = request.getSession();
 			sess.setAttribute("admin", me);
+			sess.setAttribute("list", list);
 			sess.setMaxInactiveInterval(3600);
 			return;
 		}

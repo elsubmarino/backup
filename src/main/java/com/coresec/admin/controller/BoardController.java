@@ -2,8 +2,11 @@ package com.coresec.admin.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -56,6 +59,8 @@ public class BoardController {
 		setBoard.setF_comment(setBoard.getF_comment().replaceAll(",", ""));
 		setBoard.setF_comment_del(setBoard.getF_comment_del().replaceAll(",", ""));
 		setBoardDo.insertSetBoard(setBoard);
+		
+		
 		return "redirect:/setBoard/list";
 	}
 

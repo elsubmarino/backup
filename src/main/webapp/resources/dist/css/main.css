@@ -26,3 +26,8 @@ th {
 #searchForm col-md-3{
 	padding-bottom:0;
 }
+
+.box .box-header .well{
+	font-size:1.3em;
+	font-weight:900;
+}

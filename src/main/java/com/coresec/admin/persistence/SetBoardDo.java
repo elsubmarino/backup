@@ -23,4 +23,8 @@ public interface SetBoardDo {
 	
 	//counts
 	public int countsSetBoard(SearchCriteria cri);
+	
+	
+	//new badge
+	public int getBadge();
 }

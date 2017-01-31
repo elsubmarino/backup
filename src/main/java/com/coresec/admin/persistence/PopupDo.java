@@ -27,5 +27,9 @@ public interface PopupDo {
 	
 	//apply
 	List<Popup> applyForPopups();
+	
+	
+	//new badge
+	public int getBadge();
 
 }

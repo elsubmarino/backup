@@ -11,7 +11,7 @@
 	<section class="content-header">
 		<h1>교육과정 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">Dashboard</li>
 		</ol>
 	</section>

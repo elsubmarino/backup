@@ -46,5 +46,10 @@ public class SetBoardDoImpl implements SetBoardDo {
 	public int countsSetBoard(SearchCriteria cri) {
 		return sqlSession.selectOne(namespace+".countsSetBoard",cri);
 	}
+	
+	@Override
+	public int getBadge() {
+		return sqlSession.selectOne(namespace+".getBadget");
+	}
 
 }

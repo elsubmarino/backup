@@ -15,7 +15,7 @@ public class BeforeLoginController extends HandlerInterceptorAdapter {
 		if (sess != null && sess.getAttribute("admin") != null) {
 			return true;
 		}
-		response.sendRedirect("/login");
+		response.sendRedirect("/admin/login");
 		return false;
 	}
 

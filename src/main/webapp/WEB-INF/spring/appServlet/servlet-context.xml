@@ -28,6 +28,7 @@
 
 
 	<context:component-scan base-package="com.coresec.admin.controller" />
+	<!-- 
 	<interceptors>
 		<interceptor>
 			<mapping path="/**" />
@@ -35,5 +36,5 @@
 			<beans:bean class="com.coresec.admin.controller.BeforeLoginController"></beans:bean>
 		</interceptor>
 	</interceptors>
-
+	-->
 </beans:beans>

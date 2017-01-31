@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@include file="../include/header.jsp"%>
 
 <!-- Content Wrapper. Contains page content -->
@@ -11,7 +12,7 @@
 	<section class="content-header">
 		<h1>교육과정 과목구분 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">교육과정 과목구분 관리</li>
 		</ol>
 	</section>
@@ -48,9 +49,9 @@
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
 							<colgroup>
-								<col width="5%">
+								<col width="100px">
 								<col>
-								<col width="12%">
+								<col width="200px">
 							</colgroup>
 							<thead>
 								<tr>
@@ -62,15 +63,24 @@
 							<tbody>
 								<c:forEach items="${list }" var="item">
 
-									<tr>
+									<tr
+										data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}"
+										style="cursor: pointer">
 										<td class="text-center">${item.f_ca_id }</td>
-										<td style="text-indent: 5px;">${item.f_ca_name }</td>
-										<td class="text-center"><button type="button"
-												class="btn btn-info" id="secondStep">추가</button> <a
-											type="button" class="btn btn-info" id="categoryModify"
+										<td style="text-indent: 5px;"><c:if
+												test="${fn:length(item.f_ca_id)>3}">
+												<img src="/admin/resources/dist/img/icon_catlevel.gif">
+											</c:if>${item.f_ca_name }</td>
+										<td class="text-center">
+										<div class="btn-group">
+										<a class="btn btn-info"
+											href="create${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_ca_id=${item.f_ca_id}">
+												추가</a> <a type="button" class="btn btn-info" id="categoryModify"
 											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">수정</a>
 											<a class="btn btn-info" id="categoryDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">삭제</a></td>
+											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">삭제</a>
+											</div>
+											</td>
 
 									</tr>
 								</c:forEach>
@@ -111,4 +121,11 @@
 
 <%@include file="../include/footer.jsp"%>
 
+<script>
+	$(function() {
+		$("tr[data-href]").on("click", function() {
+			document.location = $(this).data('href');
+		});
+	});
+</script>
 

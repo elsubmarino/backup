@@ -12,4 +12,7 @@ public interface EducationDo {
 	void deleteEducation(int f_id);
 	Education selectOneEducation(int f_id);
 	void updateEducation(int f_id);
+	
+	//new badge
+	public int getBadge();
 }

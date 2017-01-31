@@ -11,7 +11,7 @@
 	<section class="content-header">
 		<h1>접속 통계</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">접속 통계</li>
 		</ol>
 	</section>
@@ -28,8 +28,8 @@
 				</div>
 				<div class="box-body">
 					<div class="col-md-5">
-						날짜조건 : <input type="checkbox">일별<input type="checkbox">월별<input
-							type="checkbox">년도별
+						날짜조건 : <input type="radio" name="dateCategory">일별<input type="radio" name="dateCategory">월별<input
+							type="radio" name="dateCategory">년도별
 					</div>
 
 					<div class="col-md-12">

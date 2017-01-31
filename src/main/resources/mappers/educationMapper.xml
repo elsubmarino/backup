@@ -47,6 +47,11 @@
 		tbl_education where f_id=#{f_id}
 	</select>
 
+<!-- 새로운 뱃지 -->
+	<select id="getBadget" resultType="Integer">
+		select count(*) from tbl_education where f_wdate between curdate() - interval 7
+		day and curdate()
+	</select>
 
 
 </mapper>

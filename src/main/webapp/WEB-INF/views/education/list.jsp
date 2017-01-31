@@ -11,7 +11,7 @@
 	<section class="content-header">
 		<h1>교육과정 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">교육과정 관리</li>
 		</ol>
 	</section>
@@ -58,7 +58,7 @@
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
 							<colgroup>
-								<col width="3%">
+								<col width="50px">
 								<col>
 								<col>
 								<col>
@@ -67,7 +67,7 @@
 								<col>
 								<col>
 								<col>
-								<col width="8%">
+								<col width="150px">
 							</colgroup>
 							<thead>
 								<tr>
@@ -85,7 +85,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr>
+									<tr data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}" style="cursor:pointer">
 										<td class="text-center">${item.f_id }</td>
 										<td></td>
 										<td>${item.f_code }</td>
@@ -95,11 +95,14 @@
 										<td></td>
 										<td></td>
 										<td></td>
-										<td class="text-center"><a class="btn btn-info"
+										<td class="text-center">
+										<div class="btn-group">
+										<a class="btn btn-info"
 											id="educationModify"
 											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">수정</a>
 											<a class="btn btn-info" id="educationDelete"
 											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">삭제</a>
+											</div>
 										</td>
 
 									</tr>
@@ -138,4 +141,10 @@
 
 <%@include file="../include/footer.jsp"%>
 
-
+<script>
+	$(function() {
+		$("tr[data-href]").on("click", function() {
+			document.location = $(this).data('href');
+		});
+	});
+</script>

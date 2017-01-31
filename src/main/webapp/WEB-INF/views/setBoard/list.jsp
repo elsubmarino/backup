@@ -11,8 +11,8 @@
 	<section class="content-header">
 		<h1>게시판 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
-			<li class="active">게시판 관리</li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">시큐리티 서비스 문의</li>
 		</ol>
 	</section>
 
@@ -60,28 +60,35 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>게시판명</th>
-									<th>타입</th>
-									<th>경로</th>
-									<th>첨부파일</th>
-									<th>글등록수</th>
-									<th>수정/삭제</th>
+									<th>이름</th>
+									<th>회사명</th>
+									<th>직통번호</th>
+									<th>휴대번호</th>
+									<th>이메일</th>
+									<th>등록일</th>
+									<th>보기/삭제</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr>
+									<tr
+										data-href="/admin/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}"
+										style="cursor: pointer">
 										<td class="text-center">${item.f_id }</td>
 										<td style="text-indent: 5px;">${item.f_board_name }</td>
 										<td>${item.f_type }</td>
 										<td>${item.f_link }</td>
 										<td class="text-center">${item.f_file_use }</td>
 										<td></td>
-										<td class="text-center"><a
-											href="/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}"
+										<td class="text-center">
+										<div class="btn-group">
+										<a
+											href="/admin/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}"
 											class="btn btn-info" id="setBoardModify">수정</a> <a
 											type="button" class="btn btn-info" id="setBoardDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">삭제</a></td>
+											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">삭제</a>
+											</div>
+											</td>
 
 									</tr>
 								</c:forEach>
@@ -120,5 +127,7 @@
 <%@include file="../include/footer.jsp"%>
 
 <script>
-	
+	$('tr[data-href]').on("click", function() {
+		document.location = $(this).data('href');
+	});
 </script>

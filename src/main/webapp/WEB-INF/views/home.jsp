@@ -330,7 +330,7 @@
 										</div>
 										<!-- /.direct-chat-info -->
 										<img class="direct-chat-img"
-											src="/resources/dist/img/user1-128x128.jpg"
+											src="/admin/resources/dist/img/user1-128x128.jpg"
 											alt="message user image">
 										<!-- /.direct-chat-img -->
 										<div class="direct-chat-text">Is this template really
@@ -348,7 +348,7 @@
 										</div>
 										<!-- /.direct-chat-info -->
 										<img class="direct-chat-img"
-											src="/resources/dist/img/user3-128x128.jpg"
+											src="/admin/resources/dist/img/user3-128x128.jpg"
 											alt="message user image">
 										<!-- /.direct-chat-img -->
 										<div class="direct-chat-text">You better believe it!</div>
@@ -365,7 +365,7 @@
 										</div>
 										<!-- /.direct-chat-info -->
 										<img class="direct-chat-img"
-											src="/resources/dist/img/user1-128x128.jpg"
+											src="/admin/resources/dist/img/user1-128x128.jpg"
 											alt="message user image">
 										<!-- /.direct-chat-img -->
 										<div class="direct-chat-text">Working with AdminLTE on a
@@ -397,7 +397,7 @@
 								<div class="direct-chat-contacts">
 									<ul class="contacts-list">
 										<li><a href="#"> <img class="contacts-list-img"
-												src="/resources/dist/img/user1-128x128.jpg" alt="User Image">
+												src="/admin/resources/dist/img/user1-128x128.jpg" alt="User Image">
 
 												<div class="contacts-list-info">
 													<span class="contacts-list-name"> Count Dracula <small
@@ -799,7 +799,7 @@
 						<ul class="products-list product-list-in-box">
 							<li class="item">
 								<div class="product-img">
-									<img src="/resources/dist/img/default-50x50.gif"
+									<img src="/admin/resources/dist/img/default-50x50.gif"
 										alt="Product Image">
 								</div>
 								<div class="product-info">
@@ -812,7 +812,7 @@
 							<!-- /.item -->
 							<li class="item">
 								<div class="product-img">
-									<img src="/resources/dist/img/default-50x50.gif"
+									<img src="/admin/resources/dist/img/default-50x50.gif"
 										alt="Product Image">
 								</div>
 								<div class="product-info">
@@ -825,7 +825,7 @@
 							<!-- /.item -->
 							<li class="item">
 								<div class="product-img">
-									<img src="/resources/dist/img/default-50x50.gif"
+									<img src="/admin/resources/dist/img/default-50x50.gif"
 										alt="Product Image">
 								</div>
 								<div class="product-info">
@@ -838,7 +838,7 @@
 							<!-- /.item -->
 							<li class="item">
 								<div class="product-img">
-									<img src="/resources/dist/img/default-50x50.gif"
+									<img src="/admin/resources/dist/img/default-50x50.gif"
 										alt="Product Image">
 								</div>
 								<div class="product-info">

@@ -12,7 +12,7 @@
 	<section class="content-header">
 		<h1>교육과정 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-dashboard"></i> 홈</a></li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">Dashboard</li>
 		</ol>
 	</section>
@@ -24,7 +24,7 @@
 
 			<div class="box">
 				<div class="box-header">
-					<div class="well text-center">제품 추가</div>
+					<div class="well text-center">교육과정 추가</div>
 				</div>
 				<div class="box-body">
 					<form method="POST" id="createForm">
@@ -104,6 +104,12 @@
 <script>
 	$(function(){
 		$("#educationCreate").click(function(){
+			var f_subject=$("[name=f_subject]");
+			if(!f_subject.val()){
+				alert("교육명을 입력하셔야 합니다!");
+				f_subject.focus();
+				return;
+			}
 			$("#createForm").submit();
 		});
 	});

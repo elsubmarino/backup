@@ -43,5 +43,10 @@ public class PopupDoImpl implements PopupDo{
 	public List<Popup> applyForPopups() {
 		return sqlSession.selectList(namespace+".applyForPopups"); 
 	}
+	
+	@Override
+	public int getBadge() {
+		return sqlSession.selectOne(namespace+".getBadget");
+	}
 
 }
