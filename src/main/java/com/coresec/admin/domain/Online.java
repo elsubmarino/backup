@@ -15,7 +15,28 @@ public class Online {
 	private String f_upmu;
 	private String f_comment;
 	private String f_ip;
-	private String f_wdate;
+	private Date f_wdate;
+	private String f_ca_name;
+	private String f_ca_id;
+	private String f_subject;
+	public String getF_subject() {
+		return f_subject;
+	}
+	public void setF_subject(String f_subject) {
+		this.f_subject = f_subject;
+	}
+	public String getF_ca_id() {
+		return f_ca_id;
+	}
+	public void setF_ca_id(String f_ca_id) {
+		this.f_ca_id = f_ca_id;
+	}
+	public String getF_ca_name() {
+		return f_ca_name;
+	}
+	public void setF_ca_name(String f_ca_name) {
+		this.f_ca_name = f_ca_name;
+	}
 	public int getF_id() {
 		return f_id;
 	}
@@ -88,10 +109,10 @@ public class Online {
 	public void setF_ip(String f_ip) {
 		this.f_ip = f_ip;
 	}
-	public String getF_wdate() {
+	public Date getF_wdate() {
 		return f_wdate;
 	}
-	public void setF_wdate(String f_wdate) {
+	public void setF_wdate(Date f_wdate) {
 		this.f_wdate = f_wdate;
 	}
 	

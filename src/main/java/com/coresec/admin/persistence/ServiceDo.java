@@ -3,28 +3,27 @@ package com.coresec.admin.persistence;
 import java.util.List;
 
 import com.coresec.admin.domain.SearchCriteria;
-import com.coresec.admin.domain.SetBoard;
+import com.coresec.admin.domain.Service;
 
 public interface ServiceDo {
 	//selectOne
-	public SetBoard selectOneSetBoard(int f_id);
+	public Service selectOne(int f_id);
 	
 	//selectList
-	public List<SetBoard> selectListSetBoard(SearchCriteria cri);
+	public List<Service> selectList(SearchCriteria cri);
 	
 	//modify
-	public void updateSetBoard(SetBoard setBoard);
+	public void update(Service service);
 	
 	//delete
-	public void deleteSetBoard(int f_id);
+	public void delete(int f_id);
 	
 	//insert
-	public void insertSetBoard(SetBoard setBoard);	
+	public void insert(Service service);	
 	
 	//counts
-	public int countsSetBoard(SearchCriteria cri);
+	public int getCount(SearchCriteria cri);
 	
-	
-	//new badge
+		//new badge
 	public int getBadge();
 }

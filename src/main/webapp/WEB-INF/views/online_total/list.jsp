@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>팝업 관리</h1>
+		<h1>온라인 문의</h1>
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">팝업 관리</li>
+			<li class="active">온라인 문의</li>
 		</ol>
 	</section>
 
@@ -61,30 +61,30 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>팝업 제목</th>
-									<th>시작일시</th>
-									<th>종료일시</th>
-									<th>사용여부</th>
+									<th>구분</th>
+									<th>이름</th>
+									<th>휴대번호</th>
+									<th>이메일</th>
 									<th>등록일</th>
 									<th>수정/삭제</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${list }" var="popup">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">
-										<td class="text-center">${popup.f_id }</td>
-										<td style="text-indent: 5px;">${popup.f_subject }</td>
-										<td class="text-center">${popup.f_start }</td>
-										<td class="text-center">${popup.f_end }</td>
-										<td class="text-center">${popup.f_use }</td>
+								<c:forEach items="${list }" var="item">
+									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${ite.f_id }">
+										<td class="text-center">${item.f_id }</td>
+										<td style="text-indent: 5px;">${item.f_type2 }</td>
+										<td class="text-center">${item.f_name }</td>
+										<td class="text-center">${item.f_hp }</td>
+										<td class="text-center">${item.f_email }</td>
 										<td class="text-center"><fmt:formatDate
-												value="${popup.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
+											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
 											<a class="btn btn-info" id="popupDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a>
+											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
 											</div>
 											</td>
 											

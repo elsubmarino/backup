@@ -24,21 +24,7 @@
 
 			<div class="box">
 				<div class="box-header" style="padding-bottom: 0;">
-					<form class="form-horizontal" id="searchForm" method="GET">
-						<div class="form-group col-md-3">
-							<label class="col-sm-1 control-label" for="title"
-								style="width: 55px; text-align: left; padding-right: 0;">제목</label>
-							<div class="input-group">
-								<input type="text" class="form-control" id="title"
-									name="keyword">
-								<div class="input-group-btn">
-									<button type="button" class="btn btn-success" id="search">검색</button>
-								</div>
-
-							</div>
-						</div>
-
-					</form>
+					
 					<div id="count">&nbsp;총 : ${pageMaker.totalCount } 개</div>
 
 				</div>
@@ -67,21 +53,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${list }" var="popup">
+								<c:forEach items="${list }" var="item">
 									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">
-										<td class="text-center">${popup.f_id }</td>
-										<td style="text-indent: 5px;">${popup.f_subject }</td>
-										<td class="text-center">${popup.f_start }</td>
-										<td class="text-center">${popup.f_end }</td>
-										<td class="text-center">${popup.f_use }</td>
-										<td class="text-center"><fmt:formatDate
-												value="${popup.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+										<td class="text-center">${item.f_id }</td>
+										<td style="text-indent: 5px;">${item.f_subject }</td>
+										<td class="text-center">${item.f_sort }</td>
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
+											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
 											<a class="btn btn-info" id="popupDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a>
+											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
 											</div>
 											</td>
 											

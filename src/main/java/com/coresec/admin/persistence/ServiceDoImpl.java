@@ -8,48 +8,42 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.coresec.admin.domain.SearchCriteria;
-import com.coresec.admin.domain.SetBoard;
+import com.coresec.admin.domain.Service;
 
 @Repository
 public class ServiceDoImpl implements ServiceDo {
 	@Inject
 	SqlSession sqlSession;
-	private final String namespace = "com.coresec.admin.mapper.setBoardMapper";
+	private final String namespace = "com.coresec.admin.mapper.serviceMapper";
 	@Override
-	public SetBoard selectOneSetBoard(int f_id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Service selectOne(int f_id) {
+		return sqlSession.selectOne(namespace+".selectOne",f_id);
 	}
 	@Override
-	public List<SetBoard> selectListSetBoard(SearchCriteria cri) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Service> selectList(SearchCriteria cri) {
+		return sqlSession.selectList(namespace+".selectList",cri);
 	}
 	@Override
-	public void updateSetBoard(SetBoard setBoard) {
-		// TODO Auto-generated method stub
-		
+	public void update(Service service) {
+		sqlSession.update(namespace+"update",service);
 	}
 	@Override
-	public void deleteSetBoard(int f_id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(int f_id) {
+		sqlSession.delete(namespace+"delete",f_id);
 	}
 	@Override
-	public void insertSetBoard(SetBoard setBoard) {
-		// TODO Auto-generated method stub
-		
+	public void insert(Service service) {
+		sqlSession.insert(namespace+".insert",service);
 	}
 	@Override
-	public int countsSetBoard(SearchCriteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getCount(SearchCriteria cri) {
+		return sqlSession.selectOne(namespace+".getCount",cri);
 	}
 	@Override
 	public int getBadge() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 
 }

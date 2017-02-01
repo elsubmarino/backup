@@ -6,7 +6,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +32,11 @@ public class HomeController {
 		request.setAttribute("list", list);
 		return "home";
 
+	}
+	
+	@RequestMapping(value="/test",method=RequestMethod.GET)
+	public String test(){
+		return "/template/faqTemplate";
 	}
 
 }

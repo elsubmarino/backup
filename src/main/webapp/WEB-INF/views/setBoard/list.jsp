@@ -60,13 +60,12 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>이름</th>
-									<th>회사명</th>
-									<th>직통번호</th>
-									<th>휴대번호</th>
-									<th>이메일</th>
-									<th>등록일</th>
-									<th>보기/삭제</th>
+									<th>게시판명</th>
+									<th>스킨</th>
+									<th>경로</th>
+									<th>첨부파일</th>
+									<th>글등록수</th>
+									<th>수정/삭제</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -76,7 +75,7 @@
 										style="cursor: pointer">
 										<td class="text-center">${item.f_id }</td>
 										<td style="text-indent: 5px;">${item.f_board_name }</td>
-										<td>${item.f_type }</td>
+										<td>${item.f_skin }</td>
 										<td>${item.f_link }</td>
 										<td class="text-center">${item.f_file_use }</td>
 										<td></td>

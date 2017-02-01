@@ -4,17 +4,16 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <%@include file="../include/header.jsp"%>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>수강 신청 관리</h1>
+		<h1>Template</h1>
 		<ol class="breadcrumb">
 			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">수강 신청 관리</li>
+			<li class="active">Template</li>
 		</ol>
 	</section>
 
@@ -44,50 +43,39 @@
 
 				</div>
 				<div class="box-body">
+					<div class="col-md-2">
+						<button type="button" class="btn btn-warning"
+							style="margin-bottom: 20px;" id="itemRegister">글쓰기</button>
+					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
 							<colgroup>
-								<col width="300px;">
+								<col width="50px;">
 								<col>
 								<col width="100px">
 								<col width="100px">
 								<col width="80px">
 								<col width="150px">
+								<col width="150px">
 							</colgroup>
 							<thead>
 								<tr>
-									<th>교육 구분</th>
-									<th>교육 과목명</th>
-									<th>교육 일정</th>
-									<th>성명</th>
-									<th>소속</th>
-									<th>이동 전화</th>
-									<th>신청일</th>
-									<th>인쇄/수정/삭제</th>
+									<th>번호</th>
+									<th>제목</th>
+									<th>작성자</th>
+									<th>작성일</th>
+									<th>조회수</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr style="cursor: pointer"
-										data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">
-										<td class="text-center">${item.f_ca_name }</td>
+									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">
+										<td class="text-center">${item.f_id }</td>
 										<td style="text-indent: 5px;">${item.f_subject }</td>
-										<td class="text-center"></td>
 										<td class="text-center">${item.f_name }</td>
-										<td class="text-center">${item.f_sosok }</td>
-										<td class="text-center">${item.f_hp }</td>
 										<td class="text-center"><fmt:formatDate
-												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" />
-										</td>
-										<td class="text-center">
-											<div class="btn-group">
-												<a class="btn btn-info"
-													href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
-												<a class="btn btn-info" id="popupDelete"
-													href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
-											</div>
-										</td>
-
+												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+										<td class="text-center"></td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,7 @@ import com.coresec.admin.persistence.SetBoardDo;
 public class BoardController {
 	@Inject
 	SetBoardDo setBoardDo;
-
+	
 	@RequestMapping(value = "/list")
 	public String list(Model model, SearchCriteria cri) throws UnsupportedEncodingException {
 		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {

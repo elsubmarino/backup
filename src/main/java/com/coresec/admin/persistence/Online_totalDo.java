@@ -2,24 +2,24 @@ package com.coresec.admin.persistence;
 
 import java.util.List;
 
-import com.coresec.admin.domain.Online;
+import com.coresec.admin.domain.Online_total;
 import com.coresec.admin.domain.SearchCriteria;
 
-public interface OnlineDo {
+public interface Online_totalDo {
 	//selectOne
-	public Online selectOne(int f_id);
+	public Online_total selectOne(int f_id);
 	
 	//selectList
-	public List<Online> selectList(SearchCriteria cri);
+	public List<Online_total> selectList(SearchCriteria cri);
 	
 	//modify
-	public void update(Online onloine);
+	public void update(Online_total onloine);
 	
 	//delete
 	public void delete(int f_id);
 	
 	//insert
-	public void insert(Online online);	
+	public void insert(Online_total Online_total);	
 	
 	//counts
 	public int getCount(SearchCriteria cri);

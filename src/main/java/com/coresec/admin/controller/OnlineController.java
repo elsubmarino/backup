@@ -30,6 +30,30 @@ public class OnlineController {
 			cri.setKeyword(null);
 		}
 		List<Online> list = onlineDo.selectList(cri);
+		for (Online temp : list) {
+			temp.setF_subject(onlineDo.getSubject(temp.getF_eid()));
+			String result = "";
+			if (temp.getF_ca_id().length() > 2) {
+				int f_ca_id = Integer.parseInt(temp.getF_ca_id());
+				String divisor = "1";
+				for (int i = 0; i < temp.getF_ca_id().length() - 2; i++) {
+					divisor += "0";
+				}
+				int divisor_real = Integer.parseInt(divisor);
+				while (divisor_real > 1) {
+
+					int tem = (int) (f_ca_id / divisor_real);
+					result += onlineDo.getCategoryName(Integer.toString(tem));
+					result += " > ";
+					divisor_real /= 100;
+
+				}
+				temp.setF_ca_name(result);
+			}
+			result += onlineDo.getCategoryName(temp.getF_ca_id());
+			temp.setF_ca_name(result);
+
+		}
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", list);
 	}

@@ -7,28 +7,28 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.coresec.admin.domain.Online;
+import com.coresec.admin.domain.Reception;
 import com.coresec.admin.domain.SearchCriteria;
 
 @Repository
-public class OnlineDoImpl implements OnlineDo {
+public class ReceptionDoImpl implements ReceptionDo {
 	@Inject
 	SqlSession sqlSession;
-	private final String namespace = "com.coresec.admin.mapper.onlineMapper";
+	private final String namespace = "com.coresec.admin.mapper.receptionMapper";
 
 	@Override
-	public Online selectOne(int f_id) {
+	public Reception selectOne(int f_id) {
 		return sqlSession.selectOne(namespace + ".selectOne", f_id);
 	}
 
 	@Override
-	public List<Online> selectList(SearchCriteria cri) {
+	public List<Reception> selectList(SearchCriteria cri) {
 		return sqlSession.selectList(namespace + ".selectList",cri);
 	}
 
 	@Override
-	public void update(Online online) {
-		sqlSession.update(namespace + ".update", online);
+	public void update(Reception Reception) {
+		sqlSession.update(namespace + ".update", Reception);
 	}
 
 	@Override
@@ -38,8 +38,8 @@ public class OnlineDoImpl implements OnlineDo {
 	}
 
 	@Override
-	public void insert(Online online) {
-		sqlSession.insert(namespace + ".insert", online);
+	public void insert(Reception Reception) {
+		sqlSession.insert(namespace + ".insert", Reception);
 	}
 
 	@Override
