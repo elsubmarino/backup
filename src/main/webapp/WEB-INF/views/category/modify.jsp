@@ -30,6 +30,9 @@
 					<div class="col-md-12">
 						<form id="categoryForm" method="POST">
 							<table class="table table-bordered table-hover">
+								<colgroup>
+							<col width="150px">
+							</colgroup>
 								<tbody>
 									<tr>
 										<th>분류코드</th>

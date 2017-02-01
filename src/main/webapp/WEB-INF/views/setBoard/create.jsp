@@ -30,6 +30,9 @@
 						<form method="POST" id="setBoardCreateForm">
 
 							<table class="table table-bordered table-hover">
+							<colgroup>
+							<col width="200px">
+							</colgroup>
 								<tbody>
 									<tr>
 										<th>타입</th>

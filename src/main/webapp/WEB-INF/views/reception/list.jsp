@@ -53,7 +53,7 @@
 								<col width="50px;">
 								<col>
 								<col width="100px">
-								<col width="100px">
+								<col width="130px">
 								<col width="80px">
 								<col width="150px">
 								<col width="150px">
@@ -71,7 +71,8 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">
+									<tr style="cursor: pointer"
+										data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">
 										<td class="text-center">${item.f_id }</td>
 										<td style="text-indent: 5px;">${item.f_type2 }</td>
 										<td class="text-center">${item.f_name }</td>
@@ -80,14 +81,14 @@
 										<td class="text-center"><fmt:formatDate
 												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 										<td class="text-center">
-										<div class="btn-group">
-										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
-											<a class="btn btn-info" id="popupDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
+											<div class="btn-group">
+												<a class="btn btn-info"
+													href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
+												<a class="btn btn-info" id="popupDelete"
+													href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
 											</div>
-											</td>
-											
+										</td>
+
 									</tr>
 								</c:forEach>
 							</tbody>

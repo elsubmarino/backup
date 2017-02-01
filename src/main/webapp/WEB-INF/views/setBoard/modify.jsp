@@ -21,13 +21,16 @@
 
 			<div class="box">
 				<div class="box-header">
-									<div class="well text-center">게시판 수정</div>
+					<div class="well text-center">게시판 수정</div>
 				</div>
 				<div class="box-body">
 					<div class="col-md-12">
 						<form method="POST" id="setBoardModifyForm">
 
 							<table class="table table-bordered table-hover">
+								<colgroup>
+									<col width="200px">
+								</colgroup>
 								<tbody>
 									<tr>
 										<th>타입</th>

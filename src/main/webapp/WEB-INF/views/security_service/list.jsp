@@ -45,13 +45,15 @@
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
 							<colgroup>
-								<col width="3%">
-								<col>
-								<col width="6%">
-								<col width="6%">
-								<col width="5%">
-								<col width="9%">
+								<col width="50px">
+								<col width="100px">
+								<col width="150px">
+								<col width="150px">
+								<col width="150px">
+								<col width="150px">
 								<col width="8%">
+								<col width="140px">
+
 							</colgroup>
 
 							<thead>

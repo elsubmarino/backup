@@ -4,7 +4,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../include/header.jsp"%>
-<link rel="stylesheet" href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet"
+	href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
 <script src="/admin/resources/plugins/ckeditor/ckeditor.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -31,6 +32,11 @@
 						<input type="hidden" name="f_use" id="f_use">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
+								<colgroup>
+									<col width="150px">
+									<col>
+									<col width="150px">
+								</colgroup>
 								<tbody>
 									<tr>
 										<th>팝업 제목</th>
@@ -44,14 +50,10 @@
 									</tr>
 									<tr>
 										<th>사용 기간</th>
-										<td colspan="3">
-													<i class="fa fa-calendar"></i>
-												<input type="text" name="f_start"
-													class=" "> ~ 
-													<i class="fa fa-calendar"></i>
-												<input type="text" class=" "
-													name="f_end">
-										</td>
+										<td colspan="3"><i class="fa fa-calendar"></i> <input
+											type="text" name="f_start"> ~ <i
+											class="fa fa-calendar"></i> <input type="text"
+											name="f_end"></td>
 									</tr>
 									<tr>
 										<th>창위치 왼쪽</th>
@@ -139,16 +141,16 @@
 <!-- CK Editor -->
 
 <%@include file="../include/footer.jsp"%>
-
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script
-	src="/admin/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
-	<script
-	src="/admin/resources/plugins/datepicker/locales/bootstrap-datepicker.kr.js"></script>
+	src="/admin/resources/bootstrap-datepicker.js"></script>
+<script
+	src="/admin/resources/bootstrap-datepicker.kr.js"></script>
 <script>
 	$(function() {
 		$("[name='f_start'], [name='f_end']").datepicker({
 			format : 'yyyy-mm-dd',
-			langauge:"kr",
+			langauge : "kr",
 			autoclose : true
 		});
 

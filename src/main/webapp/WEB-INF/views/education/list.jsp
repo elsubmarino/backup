@@ -59,15 +59,15 @@
 						<table class="table table-bordered table-hover">
 							<colgroup>
 								<col width="50px">
+								<col width="80px">
+								<col width="100px">
+								<col width="300px">
 								<col>
 								<col>
 								<col>
 								<col>
 								<col>
-								<col>
-								<col>
-								<col>
-								<col width="150px">
+								<col width="130px">
 							</colgroup>
 							<thead>
 								<tr>

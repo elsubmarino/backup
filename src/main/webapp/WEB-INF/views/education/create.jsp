@@ -30,7 +30,9 @@
 					<form method="POST" id="createForm">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
-
+							<colgroup>
+							<col width="150px">
+							</colgroup>
 								<tbody>
 									<tr>
 										<th>과목구분</th>

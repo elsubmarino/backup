@@ -38,11 +38,8 @@
 							<colgroup>
 								<col width="50px;">
 								<col>
-								<col width="100px">
-								<col width="100px">
-								<col width="80px">
-								<col width="150px">
-								<col width="150px">
+								<col width="50px">
+								<col width="140px">
 							</colgroup>
 							<thead>
 								<tr>

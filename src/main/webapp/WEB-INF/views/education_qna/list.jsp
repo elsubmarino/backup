@@ -43,10 +43,7 @@
 
 				</div>
 				<div class="box-body">
-					<div class="col-md-2">
-						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;" id="popupRegister">등록하기</button>
-					</div>
+				
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
 							<colgroup>

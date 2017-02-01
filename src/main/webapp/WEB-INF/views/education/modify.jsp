@@ -30,7 +30,9 @@
 					<form method="POST" id="createForm">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
-
+								<colgroup>
+									<col width="150px">
+								</colgroup>
 								<tbody>
 									<tr>
 										<th>과목구분</th>
@@ -40,21 +42,23 @@
 									</tr>
 									<tr>
 										<th>과목코드</th>
-										<td><input type="text" name="f_code" value="${item.f_code }"></td>
+										<td><input type="text" name="f_code"
+											value="${item.f_code }"></td>
 									</tr>
 									<tr>
 										<th>과목명</th>
-										<td><input type="text" name="f_subject" value="${item.f_subject }"></td>
+										<td><input type="text" name="f_subject"
+											value="${item.f_subject }"></td>
 
 									</tr>
 									<tr>
 										<th>교육난이도</th>
 										<td><select name="f_elevel"><option value="1">초급</option>
-										<option value="2">초중급</option>
-										<option value="3">중급</option>
-										<option value="4">중상급</option>
-										<option value="5">상급</option>
-										
+												<option value="2">초중급</option>
+												<option value="3">중급</option>
+												<option value="4">중상급</option>
+												<option value="5">상급</option>
+
 										</select></td>
 									</tr>
 									<tr>
@@ -63,18 +67,21 @@
 									</tr>
 									<tr>
 										<th>수강형태</th>
-										<td><input type="checkbox" name="f_type1_1" checked value="1">개인수강<input
-											type="checkbox" name="f_type2" value="1">단체수강
+										<td><input type="checkbox" name="f_type1_1" checked
+											value="1">개인수강<input type="checkbox" name="f_type2"
+											value="1">단체수강
 									</tr>
 									<tr>
 										<th>교육구분</th>
-										<td><input type="radio" name="f_type1_2" checked value="1">단기<input
-											type="radio" name="f_type2" value="2">주말<input type="radio" name="f_type2" value="3">단기+주말</td>
+										<td><input type="radio" name="f_type1_2" checked
+											value="1">단기<input type="radio" name="f_type2"
+											value="2">주말<input type="radio" name="f_type2"
+											value="3">단기+주말</td>
 									</tr>
 									<tr>
 										<th>교육개요</th>
-										<td><textarea class="ckeditor" id="editor1" name="f_note1" rows="10"
-												cols="80">${item.f_note1 }
+										<td><textarea class="ckeditor" id="editor1"
+												name="f_note1" rows="10" cols="80">${item.f_note1 }
                     </textarea></td>
 									</tr>
 									<tr>
@@ -89,7 +96,8 @@
 					</form>
 					<div class="col-md-12 text-center">
 						<button type="button" class="btn btn-default" id="educationCreate">등록</button>
-						<a class="btn btn-default" id="educationList" href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }">목록</a>
+						<a class="btn btn-default" id="educationList"
+							href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }">목록</a>
 					</div>
 
 				</div>
@@ -102,10 +110,10 @@
 
 <%@include file="../include/footer.jsp"%>
 <script>
-	$(function(){
-		$("#educationCreate").click(function(){
-			var f_subject=$("[name=f_subject]");
-			if(!f_subject.val()){
+	$(function() {
+		$("#educationCreate").click(function() {
+			var f_subject = $("[name=f_subject]");
+			if (!f_subject.val()) {
 				alert("교육명을 입력하셔야 합니다!");
 				f_subject.focus();
 				return;

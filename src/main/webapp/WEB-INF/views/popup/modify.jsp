@@ -31,6 +31,11 @@
 						<input type="hidden" name="f_use" id="f_use">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
+							<colgroup>
+							<col width="150px">
+							<col>
+							<col width="150px">
+							</colgroup>
 								<tbody>
 									<tr>
 										<th>팝업 제목</th>

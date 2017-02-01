@@ -129,31 +129,31 @@
               </c:if>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
-						href="/admin/security_service/list"> <i class="fa fa-list-alt"></i> <span>사큐리티 서비스 문의</span> </span>
+						href="/admin/security_service/list"> <i class="fa fa-question-circle"></i> <span>사큐리티 서비스 문의</span> </span>
 					</a></li>
 						<li class="treeview"><a class="contentTitle"
-						href="/admin/education_qna/list"> <i class="fa fa-list-alt"></i> <span>수강 신청</span> </span>
+						href="/admin/education_qna/list"> <i class="fa fa-bell-o"></i> <span>수강 신청</span> </span>
 					</a></li>
 						<li class="treeview"><a class="contentTitle"
-						href="/admin/banner/list"> <i class="fa fa-list-alt"></i> <span>배너 관리</span> </span>
+						href="/admin/banner/list"> <i class="fa fa-th"></i> <span>배너 관리</span> </span>
 					</a></li>
 						<li class="treeview"><a class="contentTitle"
-						href="/admin/meta/list"> <i class="fa fa-list-alt"></i> <span>메타 태그 관리</span> </span>
+						href="/admin/meta/list"> <i class="fa fa-tags"></i> <span>메타 태그 관리</span> </span>
 					</a></li>
 						<li class="treeview"><a class="contentTitle"
-						href="/admin/online/list"> <i class="fa fa-list-alt"></i> <span>수강 신청
+						href="/admin/online/list"> <i class="fa fa-book"></i> <span>수강 신청
 								관리</span> </span>
 					</a></li>
 						<li class="treeview"><a class="contentTitle"
-						href="/admin/service/list"> <i class="fa fa-list-alt"></i> <span>상담 요청
+						href="/admin/service/list"> <i class="fa fa-search"></i> <span>상담 요청
 								분야</span> </span>
 					</a></li>
 						<li class="treeview"><a class="contentTitle"
-						href="/admin/online_total/list"> <i class="fa fa-list-alt"></i> <span>온라인
+						href="/admin/online_total/list"> <i class="fa fa-question"></i> <span>온라인
 								문의</span> </span>
 					</a></li>
 						<li class="treeview"><a class="contentTitle"
-						href="/admin/reception/list"> <i class="fa fa-list-alt"></i> <span>접수 신청
+						href="/admin/reception/list"> <i class="fa fa-tasks"></i> <span>접수 신청
 								관리</span> </span>
 					</a></li>
 						
