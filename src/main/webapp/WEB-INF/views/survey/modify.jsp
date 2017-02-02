@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>팝업 관리</h1>
+		<h1>설문 조사</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">설문 조사</li>
 		</ol>
 	</section>
 
@@ -24,7 +24,7 @@
 
 			<div class="box">
 				<div class="box-header">
-					<div class="well text-center">팝업 수정하기</div>
+					<div class="well text-center">설문조사 수정하기</div>
 				</div>
 				<div class="box-body">
 					<form method="POST" id="popupModifyForm">

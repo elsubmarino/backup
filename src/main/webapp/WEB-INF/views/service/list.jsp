@@ -12,7 +12,7 @@
 	<section class="content-header">
 		<h1>상담 요청 분야</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">상담 요청 분야</li>
 		</ol>
 	</section>
@@ -69,6 +69,9 @@
 							</tbody>
 						</table>
 					</div>
+							<c:if test="${pageMaker.totalCount eq 0 }">
+							<div class="col-md-12 text-center">등록된 자료가 없습니다.</div>
+						</c:if>
 					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">

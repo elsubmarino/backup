@@ -52,4 +52,14 @@ public class SetBoardDoImpl implements SetBoardDo {
 		return sqlSession.selectOne(namespace+".getBadget");
 	}
 
+	@Override
+	public int getMaximum() {
+		return sqlSession.selectOne(namespace+".getMaximum");
+	}
+
+	@Override
+	public void updateAdministration() {
+		sqlSession.update(namespace+".updateAdministration");
+	}
+
 }

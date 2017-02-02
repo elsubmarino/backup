@@ -11,7 +11,7 @@
 	<section class="content-header">
 		<h1>교육과정 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">교육과정 관리</li>
 		</ol>
 	</section>
@@ -28,7 +28,11 @@
 							<select class="col-sm-1 form-control "
 								style="width: 250px; text-align: right; padding-left: 0; padding-right: 0; margin-left: 30px; border-right: 0;">
 								<option>과목구분</option>
-							</select> <select name="searchType" class="col-sm-1 form-control "
+								<c:forEach items="${categoryNames }" var="item">
+								<option value="${item.f_ca_id }">${item.f_ca_name }</option>
+								</c:forEach>
+							</select>
+							 <select name="searchType" class="col-sm-1 form-control "
 								style="width: 100px; text-align: right; padding-left: 0; padding-right: 0; border-right: 0;">
 								<option value="f_subject">과목명</option>
 								<option value="f_note1">교육개요</option>
@@ -59,7 +63,7 @@
 						<table class="table table-bordered table-hover">
 							<colgroup>
 								<col width="50px">
-								<col width="80px">
+								<col width="400px">
 								<col width="100px">
 								<col width="300px">
 								<col>
@@ -87,7 +91,7 @@
 								<c:forEach items="${list }" var="item">
 									<tr data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}" style="cursor:pointer">
 										<td class="text-center">${item.f_id }</td>
-										<td></td>
+										<td>${item.f_ca_name }</td>
 										<td>${item.f_code }</td>
 										<td>${item.f_subject }</td>
 										<td></td>
@@ -110,6 +114,9 @@
 							</tbody>
 						</table>
 					</div>
+							<c:if test="${pageMaker.totalCount eq 0 }">
+							<div class="col-md-12 text-center">등록된 자료가 없습니다.</div>
+						</c:if>
 					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">

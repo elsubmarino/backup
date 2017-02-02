@@ -12,8 +12,8 @@
 	<section class="content-header">
 		<h1>교육과정 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">교육과정 관리</li>
 		</ol>
 	</section>
 
@@ -83,7 +83,47 @@
 										<th>교육내용</th>
 										<td><textarea class="ckeditor" id="editor2"
 												name="f_note2" rows="10" cols="80">
-                    </textarea></td>
+                    </textarea>
+                    
+                    <script type="text/javascript">
+															//<![CDATA[
+															CKEDITOR
+																	.replace(
+																			'editor1',
+																			{
+																				'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
+
+																			});
+															CKEDITOR
+															.replace(
+																	'editor2',
+																	{
+																		'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
+
+																	});
+
+															CKEDITOR
+																	.on(
+																			'dialogDefinition',
+																			function(
+																					ev) {
+																				var dialogName = ev.data.name;
+																				var dialogDefinition = ev.data.definition;
+
+																				switch (dialogName) {
+																				case 'image': //Image Properties dialog
+																					//dialogDefinition.removeContents('info');
+																					dialogDefinition
+																							.removeContents('Link');
+																					dialogDefinition
+																							.removeContents('advanced');
+																					break;
+																				}
+																			});
+
+															//]]>
+														</script>
+                    </td>
 									</tr>
 								</tbody>
 							</table>

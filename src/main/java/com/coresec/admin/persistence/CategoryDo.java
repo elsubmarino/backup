@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.coresec.admin.domain.Category;
+import com.coresec.admin.domain.CategoryNames;
 import com.coresec.admin.domain.SearchCriteria;
 
 public interface CategoryDo {
@@ -31,4 +32,9 @@ public interface CategoryDo {
 	
 	//new badge
 	public int getBadge();
+	
+	public List<CategoryNames> getCategoryNames();
+	
+	public String getCategoryName(String f_ca_id);
+	
 }

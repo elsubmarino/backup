@@ -52,15 +52,8 @@ public class OnlineDoImpl implements OnlineDo {
 		return sqlSession.selectOne(namespace+".getBadget");
 	}
 
-	@Override
-	public String getCategoryName(String f_ca_id) {
-		return sqlSession.selectOne(namespace+".getCategoryName",f_ca_id);
-	}
 
-	@Override
-	public String getSubject(int f_eid) {
-		return sqlSession.selectOne(namespace+".getSubject",f_eid);
-	}
+	
 
 	@Override
 	public String getDate(int f_sid) {

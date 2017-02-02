@@ -4,6 +4,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../include/header.jsp"%>
+<script src="/admin/resources/plugins/ckeditor/ckeditor.js"></script>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -11,8 +12,8 @@
 	<section class="content-header">
 		<h1>게시판 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">게시판 관리</li>
 		</ol>
 	</section>
 
@@ -43,10 +44,6 @@
 									<tr>
 										<th>게시판명</th>
 										<td colspan="2"><input type="text" name="f_board_name">
-									</tr>
-									<tr>
-										<th>카테고리</th>
-										<td colspan="2"><input type="text" name="f_category"></td>
 									</tr>
 									<tr>
 										<th>내용안 이미지 크기</th>
@@ -152,18 +149,62 @@
 											type="checkbox" name="f_comment_del" value="--S--" checked>최고관리자</td>
 									</tr>
 									<tr>
-										<th>게시판 링크 주소</th>
-										<td colspan="2"><input type="text" name="f_link"></td>
+										<th>카테고리</th>
+										<td colspan="2">
+										<select name="f_link">
+										<option value="sub01">sub01</option>
+										<option value="sub03">sub03</option>
+										</select>
+										</td>
 									</tr>
 									<tr>
 										<th>상단 내용</th>
-										<td><textarea name="f_top_comment"></textarea></td>
-										<td><input type="checkbox">HTML</td>
+										<td><textarea class="ckeditor" name="f_top_comment" id="editor1"></textarea></td>
+										
 									</tr>
 									<tr>
 										<th>하단 내용</th>
-										<td><textarea name="f_bottom_comment"></textarea></td>
-										<td><input type="checkbox">HTML</td>
+										<td><textarea class="ckeditor" name="f_bottom_comment" id="editor2"></textarea>
+										
+										<script type="text/javascript">
+															//<![CDATA[
+															CKEDITOR
+																	.replace(
+																			'editor1',
+																			{
+																				'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
+
+																			});
+															CKEDITOR
+															.replace(
+																	'editor2',
+																	{
+																		'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
+
+																	});
+
+															CKEDITOR
+																	.on(
+																			'dialogDefinition',
+																			function(
+																					ev) {
+																				var dialogName = ev.data.name;
+																				var dialogDefinition = ev.data.definition;
+
+																				switch (dialogName) {
+																				case 'image': //Image Properties dialog
+																					//dialogDefinition.removeContents('info');
+																					dialogDefinition
+																							.removeContents('Link');
+																					dialogDefinition
+																							.removeContents('advanced');
+																					break;
+																				}
+																			});
+
+															//]]>
+														</script>
+										</td>
 									</tr>
 								</tbody>
 

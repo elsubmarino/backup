@@ -58,14 +58,14 @@ public class PopupController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPOST(SearchCriteria cri, Popup popup,HttpServletRequest request) {
-		popup.setF_comment(popup.getF_comment().replaceAll("\r", ""));
+		popup.setF_comment(popup.getF_comment().replaceAll("\r\n", ""));
 		popupDo.insertPopup(popup);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
 		HttpSession sess=request.getSession(false);
 		Map<String,Integer> list=(Map<String, Integer>) sess.getAttribute("list");
-		list.put("popup",popupDo.getBadge());
+		//list.put("popup",popupDo.getBadge());
 		sess.setAttribute("list", list);
 		
 		
@@ -74,6 +74,7 @@ public class PopupController {
 
 	@RequestMapping(value = "/modify")
 	public String modify(@RequestParam(value = "f_id") int f_id, Model model, SearchCriteria cri) {
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		Popup item = popupDo.selectOnePopup(f_id);
@@ -84,9 +85,10 @@ public class PopupController {
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(Popup popup, Model model, SearchCriteria cri) {
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		popup.setF_comment(popup.getF_comment().replaceAll("\r", ""));
+		popup.setF_comment(popup.getF_comment().replaceAll("\r\n", ""));
 		popupDo.updatePopup(popup);
 		return "redirect:/popup/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
@@ -112,14 +114,14 @@ public class PopupController {
 
 			String fileName = upload.getOriginalFilename();
 			byte[] bytes = upload.getBytes();
-			String uploadPath = "D:\\Users\\Ji-wan\\Documents\\sts\\coresecadmin\\src\\main\\webapp\\resources\\popup\\img\\" + fileName;
+			String uploadPath = "C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\admin\\popup\\img\\" + fileName;
 
 			out = new FileOutputStream(new File(uploadPath));
 			out.write(bytes);
 			String callback = request.getParameter("CKEditorFuncNum");
 
 			printWriter = response.getWriter();
-			String fileUrl = "/resources/admin/popup/img/" + fileName;// url경로
+			String fileUrl = "/admin//resources/admin/popup/img/" + fileName;// url경로
 
 			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
 					+ ",'" + fileUrl + "','이미지를 업로드 하였습니다.'" + ")</script>");

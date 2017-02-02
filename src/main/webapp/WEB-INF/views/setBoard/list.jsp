@@ -11,7 +11,7 @@
 	<section class="content-header">
 		<h1>게시판 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">시큐리티 서비스 문의</li>
 		</ol>
 	</section>
@@ -26,7 +26,7 @@
 					<form class="form-horizontal" id="searchForm">
 						<div class="form-group col-md-3">
 							<label class="col-sm-1 control-label" for="title"
-								style="width: 55px; text-align: left; padding-right: 0;">제목</label>
+								style="width: 80px; text-align: left; padding-right: 0;">게시판명</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="title"
 									name="keyword">
@@ -70,15 +70,13 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr
-										data-href="/admin/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}"
-										style="cursor: pointer">
+									<tr>
 										<td class="text-center">${item.f_id }</td>
-										<td style="text-indent: 5px;">${item.f_board_name }</td>
+										<td class="selectMe" data-href="/admin/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}" style="cursor:pointer;text-indent: 5px;">${item.f_board_name }</td>
 										<td>${item.f_skin }</td>
-										<td>${item.f_link }</td>
+										<td><a href="${item.f_link}">${item.f_link }</a></td>
 										<td class="text-center">${item.f_file_use }</td>
-										<td></td>
+										<td>${item.numOfPosts }</td>
 										<td class="text-center">
 										<div class="btn-group">
 										<a
@@ -94,6 +92,9 @@
 							</tbody>
 						</table>
 					</div>
+							<c:if test="${pageMaker.totalCount eq 0 }">
+							<div class="col-md-12 text-center">등록된 자료가 없습니다.</div>
+						</c:if>
 					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">
@@ -126,7 +127,7 @@
 <%@include file="../include/footer.jsp"%>
 
 <script>
-	$('tr[data-href]').on("click", function() {
+	$('.selectMe[data-href]').on("click", function() {
 		document.location = $(this).data('href');
 	});
 </script>

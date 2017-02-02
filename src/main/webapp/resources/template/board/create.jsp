@@ -4,16 +4,16 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="/WEB-INF/views/include/header.jsp"%>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>배너 관리</h1>
+		<h1>공지사항</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">배너 관리</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">공지사항</li>
 		</ol>
 	</section>
 
@@ -45,7 +45,7 @@
 				<div class="box-body">
 					<div class="col-md-2">
 						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;" id="popupRegister">등록하기</button>
+							style="margin-bottom: 20px;" id="itemRegister">글쓰기</button>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
@@ -61,31 +61,21 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>이미지</th>
 									<th>제목</th>
-									<th>순서</th>
-									<th>수정/삭제</th>
+									<th>작성자</th>
+									<th>작성일</th>
+									<th>조회수</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${list }" var="popup">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">
-										<td class="text-center">${popup.f_id }</td>
-										<td style="text-indent: 5px;">${popup.f_subject }</td>
-										<td class="text-center">${popup.f_start }</td>
-										<td class="text-center">${popup.f_end }</td>
-										<td class="text-center">${popup.f_use }</td>
+								<c:forEach items="${list }" var="item">
+									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">
+										<td class="text-center">${item.f_id }</td>
+										<td style="text-indent: 5px;">${item.f_subject }</td>
+										<td class="text-center">${item.f_name }</td>
 										<td class="text-center"><fmt:formatDate
-												value="${popup.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
-										<td class="text-center">
-										<div class="btn-group">
-										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
-											<a class="btn btn-info" id="popupDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a>
-											</div>
-											</td>
-											
+												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+										<td class="text-center">${item.f_see }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -120,7 +110,7 @@
 </div>
 <!-- /.content-wrapper -->
 
-<%@include file="../include/footer.jsp"%>
+<%@include file="/WEB-INF/views/include/footer.jsp"%>
 <script>
 	$('tr[data-href]').on("click", function() {
 		document.location = $(this).data('href');

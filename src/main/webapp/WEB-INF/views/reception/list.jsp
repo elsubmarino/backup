@@ -12,7 +12,7 @@
 	<section class="content-header">
 		<h1>접수 신청 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">접수 신청 관리</li>
 		</ol>
 	</section>
@@ -27,7 +27,7 @@
 					<form class="form-horizontal" id="searchForm" method="GET">
 						<div class="form-group col-md-3">
 							<label class="col-sm-1 control-label" for="title"
-								style="width: 55px; text-align: left; padding-right: 0;">제목</label>
+								style="width: 55px; text-align: left; padding-right: 0;">성명</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="title"
 									name="keyword">
@@ -93,7 +93,12 @@
 								</c:forEach>
 							</tbody>
 						</table>
+
+					
 					</div>
+						<c:if test="${pageMaker.totalCount eq 0 }">
+							<div class="col-md-12 text-center">등록된 자료가 없습니다.</div>
+						</c:if>
 					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">

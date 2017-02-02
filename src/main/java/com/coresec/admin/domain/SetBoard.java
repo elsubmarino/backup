@@ -37,6 +37,18 @@ public class SetBoard {
 	private String f_bottom_comment;
 	private String f_top_comment_html;
 	private String f_bottom_comment_html;
+	private int numOfPosts;
+	
+	
+
+
+	public int getNumOfPosts() {
+		return numOfPosts;
+	}
+
+	public void setNumOfPosts(int numOfPosts) {
+		this.numOfPosts = numOfPosts;
+	}
 
 	public int getF_id() {
 		return f_id;

@@ -44,5 +44,8 @@ public class EducationDoImpl implements EducationDo {
 	public int getBadge() {
 		return sqlSession.selectOne(namespace+".getBadget");
 	}
-
+	@Override
+	public String getSubject(int f_eid) {
+		return sqlSession.selectOne(namespace+".getSubject",f_eid);
+	}
 }

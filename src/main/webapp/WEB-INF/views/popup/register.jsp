@@ -13,8 +13,8 @@
 	<section class="content-header">
 		<h1>팝업 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">팝업 관리</li>
 		</ol>
 	</section>
 
@@ -29,6 +29,8 @@
 				</div>
 				<div class="box-body">
 					<form id="popupCreateForm" method="POST">
+					<input type="hidden" name="f_width">
+					<input type="hidden" name="f_height">
 						<input type="hidden" name="f_use" id="f_use">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
@@ -64,6 +66,7 @@
 										<td><input type="number" class="form-control"
 											name="f_w_top"><label>* 화면 위로부터 px 단위</label></td>
 									</tr>
+									<!-- 
 									<tr>
 										<th>창크기 가로</th>
 										<td><input type="number" class="form-control"
@@ -72,6 +75,7 @@
 										<td><input type="number" class="form-control"
 											name="f_height"><label>* px 단위</label></td>
 									</tr>
+									-->
 									<tr>
 										<th>내용</th>
 										<td colspan="3">
@@ -167,6 +171,11 @@
 				f_subject.focus();
 				return;
 			}
+			var f_width=$("[name=f_width]");
+			var f_height=$("[name=f_height]");
+			f_width.val($("#editor1 img").css("width"));
+			f_height.val($("img").css("height"));
+			
 			$("#popupCreateForm").submit();
 		});
 

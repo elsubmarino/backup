@@ -5,7 +5,12 @@
 <mapper namespace="com.coresec.admin.mapper.education_qnaMapper">
 	<sql id="search">
 		<if test="keyword != null">
-			where f_company like CONCAT('%',#{keyword},'%')
+			<if test="searchType == 'f_company'">
+			where f_company
+			</if>
+			<if test="searchType == 'f_name'">
+			where f_name
+			</if> like CONCAT('%',#{keyword},'%')
 		</if>
 	</sql>
 	<select id="selectListEducation_qna" resultType="Education_qna">

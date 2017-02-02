@@ -18,6 +18,15 @@ public class Education {
 	private String f_note1;
 	private String f_note2;
 	private Date f_wdate;
+	private String f_ca_name;
+
+	public String getF_ca_name() {
+		return f_ca_name;
+	}
+
+	public void setF_ca_name(String f_ca_name) {
+		this.f_ca_name = f_ca_name;
+	}
 
 	public int getF_id() {
 		return f_id;

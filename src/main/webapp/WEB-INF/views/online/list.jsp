@@ -13,7 +13,7 @@
 	<section class="content-header">
 		<h1>수강 신청 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
 			<li class="active">수강 신청 관리</li>
 		</ol>
 	</section>
@@ -26,9 +26,21 @@
 			<div class="box">
 				<div class="box-header" style="padding-bottom: 0;">
 					<form class="form-horizontal" id="searchForm" method="GET">
+						<select class="col-sm-1 form-control "
+								style="width: 250px; text-align: right; padding-left: 0; padding-right: 0; margin-left: 30px; border-right: 0;">
+								<option>과목구분</option>
+								<c:forEach items="${categoryNames }" var="item">
+								<option value="${item.f_ca_id }">${item.f_ca_name }</option>
+								</c:forEach>
+							</select>
+							
+							 <select name="searchType" class="col-sm-1 form-control "
+								style="width: 100px; text-align: right; padding-left: 0; padding-right: 0; border-right: 0;">
+								<option value="f_name">이름</option>
+								<option value="f_sosok">소속</option>
+
+							</select>
 						<div class="form-group col-md-3">
-							<label class="col-sm-1 control-label" for="title"
-								style="width: 55px; text-align: left; padding-right: 0;">제목</label>
 							<div class="input-group">
 								<input type="text" class="form-control" id="title"
 									name="keyword">
@@ -59,7 +71,7 @@
 									<th>교육 구분</th>
 									<th>교육 과목명</th>
 									<th>교육 일정</th>
-									<th>성명</th>
+									<th>이름</th>
 									<th>소속</th>
 									<th>이동 전화</th>
 									<th>신청일</th>
@@ -93,6 +105,9 @@
 							</tbody>
 						</table>
 					</div>
+							<c:if test="${pageMaker.totalCount eq 0 }">
+							<div class="col-md-12 text-center">등록된 자료가 없습니다.</div>
+						</c:if>
 					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">

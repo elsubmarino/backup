@@ -8,9 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.coresec.admin.domain.CategoryNames;
 import com.coresec.admin.domain.Online;
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
+import com.coresec.admin.persistence.CategoryDo;
+import com.coresec.admin.persistence.EducationDo;
 import com.coresec.admin.persistence.OnlineDo;
 
 @Controller
@@ -19,8 +22,20 @@ public class OnlineController {
 	@Inject
 	OnlineDo onlineDo;
 
+	@Inject
+	EducationDo educationDo;
+
+	@Inject
+	CategoryDo categoryDo;
+
 	@RequestMapping(value = "/list")
 	public void list(Model model, SearchCriteria cri) {
+		List<CategoryNames> names = categoryDo.getCategoryNames();
+		for (CategoryNames temp : names) {
+			if (temp.getF_ca_id().length() > 2) {
+				temp.setF_ca_name("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + temp.getF_ca_name());
+			}
+		}
 
 		PageMaker pageMaker = new PageMaker();
 		int count = onlineDo.getCount(cri);
@@ -31,7 +46,7 @@ public class OnlineController {
 		}
 		List<Online> list = onlineDo.selectList(cri);
 		for (Online temp : list) {
-			temp.setF_subject(onlineDo.getSubject(temp.getF_eid()));
+			temp.setF_subject(educationDo.getSubject(temp.getF_eid()));
 			String result = "";
 			if (temp.getF_ca_id().length() > 2) {
 				int f_ca_id = Integer.parseInt(temp.getF_ca_id());
@@ -43,18 +58,19 @@ public class OnlineController {
 				while (divisor_real > 1) {
 
 					int tem = (int) (f_ca_id / divisor_real);
-					result += onlineDo.getCategoryName(Integer.toString(tem));
+					result += categoryDo.getCategoryName(Integer.toString(tem));
 					result += " > ";
 					divisor_real /= 100;
 
 				}
 				temp.setF_ca_name(result);
 			}
-			result += onlineDo.getCategoryName(temp.getF_ca_id());
+			result += categoryDo.getCategoryName(temp.getF_ca_id());
 			temp.setF_ca_name(result);
 
 		}
 		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("categoryNames", names);
 		model.addAttribute("list", list);
 	}
 }

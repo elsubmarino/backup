@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../include/header.jsp"%>
+<script src="/admin/resources/plugins/ckeditor/ckeditor.js"></script>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -9,8 +10,8 @@
 	<section class="content-header">
 		<h1>게시판 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">게시판 관리</li>
 		</ol>
 	</section>
 
@@ -158,15 +159,54 @@
 										<td colspan="2"><input type="text" name="f_link"
 											value="${item.f_link }"></td>
 									</tr>
-									<tr>
+								<tr>
 										<th>상단 내용</th>
-										<td><textarea name="f_top_comment">${item.f_top_comment }</textarea></td>
-										<td><input type="checkbox">HTML</td>
+										<td><textarea class="ckeditor" name="f_top_comment" id="editor1">${item.f_top_comment }</textarea></td>
+										
 									</tr>
 									<tr>
 										<th>하단 내용</th>
-										<td><textarea name="f_bottom_comment">${item.f_bottom_comment }</textarea></td>
-										<td><input type="checkbox">HTML</td>
+										<td><textarea class="ckeditor" name="f_bottom_comment" id="editor2">${item.f_bottom_comment }</textarea>
+										
+										<script type="text/javascript">
+															//<![CDATA[
+															CKEDITOR
+																	.replace(
+																			'editor1',
+																			{
+																				'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
+
+																			});
+															CKEDITOR
+															.replace(
+																	'editor2',
+																	{
+																		'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
+
+																	});
+
+															CKEDITOR
+																	.on(
+																			'dialogDefinition',
+																			function(
+																					ev) {
+																				var dialogName = ev.data.name;
+																				var dialogDefinition = ev.data.definition;
+
+																				switch (dialogName) {
+																				case 'image': //Image Properties dialog
+																					//dialogDefinition.removeContents('info');
+																					dialogDefinition
+																							.removeContents('Link');
+																					dialogDefinition
+																							.removeContents('advanced');
+																					break;
+																				}
+																			});
+
+															//]]>
+														</script>
+										</td>
 									</tr>
 								</tbody>
 

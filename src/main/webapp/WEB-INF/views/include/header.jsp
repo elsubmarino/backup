@@ -12,6 +12,10 @@
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
+<meta name="description" content="${meta.f_description }">
+<meta name="keywords" content="${meta.f_keywords }">
+<meta name="keywords" content="${meta.f_keywords_e }">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap 3.3.6 -->
 <link rel="stylesheet"
 	href="/admin/resources/bootstrap/css/bootstrap.css?ver=1">
@@ -30,14 +34,16 @@
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="/admin/resources/dist/css/skins/_all-skins.min.css">
-<link rel="stylesheet" href="/admin/resources/dist/css/main.css?ver=10">
-<link rel="icon" href="/admin/resources/dist/img/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/admin/resources/dist/css/main.css?ver=11">
+<link rel="icon" href="/admin/resources/dist/img/favicon.ico"
+	type="image/x-icon">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
 </head>
 
 <body class="hold-transition skin-green-light sidebar-mini">
@@ -61,13 +67,13 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<!-- User Account: style can be found in dropdown.less -->
-						<li class="user user-menu"><a style="border-left: 0;"> <img
-								src="/admin/resources/dist/img/user2-160x160.png" class="user-image"
-								alt="User Image"> <span class="hidden-xs">${sessionScope.admin.f_name}</span>
+						<li class="user user-menu hahaha"><a style="border-left: 0px;"> <img
+								src="/admin/resources/dist/img/user2-160x160.png"
+								class="user-image" alt="User Image"> <span
+								class="hidden-xs">${sessionScope.admin.f_name}</span>
 						</a></li>
 						<!-- 비밀번호 변경, 로그아웃 -->
-						<li>
-						<a class="btn" href="/admin" style="border:0;">홈페이지</a>
+						<li><a class="btn" href="/admin" style="border: 0;">홈페이지</a>
 						</li>
 						<li><a class="btn" data-toggle="modal"
 							data-target="#passwordChange" style="border: 0;">비밀번호 변경</a></li>
@@ -97,69 +103,72 @@
 				</div>
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu">
-					<li class="active treeview"><a href="/" class="contentTitle">
+					<li class="active treeview"><a href="/admin" class="contentTitle">
 							<i class="fa fa-home"></i> <span>홈</span>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
 						href="/admin/popup/list"> <i class="fa fa-files-o"></i> <span>팝업
-								관리</span>
-								<c:if test="${sessionScope.list.popup > 0 }">
-								 <span class="pull-right-container">
-              <small class="label pull-right bg-red">${sessionScope.list.popup }</small></span>
-              </c:if>
-					</a>
-					
-					</li>
+								관리</span> <c:if test="${sessionScope.list.popup > 0 }">
+								<span class="pull-right-container"> <small
+									class="label pull-right bg-red">${sessionScope.list.popup }</small></span>
+							</c:if>
+					</a></li>
 					<li class="treeview"><a href="/admin/setBoard/list"
 						class="contentTitle"> <i class="fa fa-edit"></i> <span
-							class="coantentTitle">게시판 관리</span><span class="pull-right-container">
-              <small class="label pull-right bg-red">${sessionScope.list.setboard }</small> </span>
+							class="coantentTitle">게시판 관리</span><span
+							class="pull-right-container"> <small
+								class="label pull-right bg-red">${sessionScope.list.setboard }</small>
+						</span>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
 						href="/admin/category/list"> <i class="fa fa-list"></i> <span>교육과정
-								과목구분 관리</span><span class="pull-right-container">
-              <small class="label pull-right bg-red">${sessionScope.list.category }</small> </span>
+								과목구분 관리</span><span class="pull-right-container"> <small
+								class="label pull-right bg-red">${sessionScope.list.category }</small>
+						</span>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
 						href="/admin/education/list"> <i class="fa fa-list-alt"></i> <span>교육과정
-								관리</span>
-								<c:if test="${sessionScope.list.education > 0 }">
-								 <span class="pull-right-container">
-              <small class="label pull-right bg-red">${sessionScope.list.education }</small></span>
-              </c:if>
+								관리</span> <c:if test="${sessionScope.list.education > 0 }">
+								<span class="pull-right-container"> <small
+									class="label pull-right bg-red">${sessionScope.list.education }</small></span>
+							</c:if>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
-						href="/admin/security_service/list"> <i class="fa fa-question-circle"></i> <span>사큐리티 서비스 문의</span> </span>
+						href="/admin/security_service/list"> <i
+							class="fa fa-question-circle"></i> <span>사큐리티 서비스 문의</span> </span>
 					</a></li>
-						<li class="treeview"><a class="contentTitle"
-						href="/admin/education_qna/list"> <i class="fa fa-bell-o"></i> <span>수강 신청</span> </span>
-					</a></li>
-						<li class="treeview"><a class="contentTitle"
-						href="/admin/banner/list"> <i class="fa fa-th"></i> <span>배너 관리</span> </span>
-					</a></li>
-						<li class="treeview"><a class="contentTitle"
-						href="/admin/meta/list"> <i class="fa fa-tags"></i> <span>메타 태그 관리</span> </span>
-					</a></li>
-						<li class="treeview"><a class="contentTitle"
-						href="/admin/online/list"> <i class="fa fa-book"></i> <span>수강 신청
-								관리</span> </span>
-					</a></li>
-						<li class="treeview"><a class="contentTitle"
-						href="/admin/service/list"> <i class="fa fa-search"></i> <span>상담 요청
-								분야</span> </span>
-					</a></li>
-						<li class="treeview"><a class="contentTitle"
-						href="/admin/online_total/list"> <i class="fa fa-question"></i> <span>온라인
-								문의</span> </span>
-					</a></li>
-						<li class="treeview"><a class="contentTitle"
-						href="/admin/reception/list"> <i class="fa fa-tasks"></i> <span>접수 신청
-								관리</span> </span>
-					</a></li>
-						
 					<li class="treeview"><a class="contentTitle"
-						href="/admin/statistics/list"> <i class="fa fa-pie-chart"></i> <span>접속
-								통계</span> </span>
+						href="/admin/education_qna/list"> <i class="fa fa-bell-o"></i>
+							<span>수강 신청</span> </span>
+					</a></li>
+					<li class="treeview"><a class="contentTitle"
+						href="/admin/survey/list"> <i class="fa fa-th"></i> <span>설문
+								조사</span> </span>
+					</a></li>
+					<li class="treeview"><a class="contentTitle"
+						href="/admin/meta/list"> <i class="fa fa-tags"></i> <span>메타
+								태그 관리</span> </span>
+					</a></li>
+					<li class="treeview"><a class="contentTitle"
+						href="/admin/online/list"> <i class="fa fa-book"></i> <span>수강
+								신청 관리</span> </span>
+					</a></li>
+					<li class="treeview"><a class="contentTitle"
+						href="/admin/service/list"> <i class="fa fa-search"></i> <span>상담
+								요청 분야</span> </span>
+					</a></li>
+					<li class="treeview"><a class="contentTitle"
+						href="/admin/online_total/list"> <i class="fa fa-question"></i>
+							<span>온라인 문의</span> </span>
+					</a></li>
+					<li class="treeview"><a class="contentTitle"
+						href="/admin/reception/list"> <i class="fa fa-tasks"></i> <span>접수
+								신청 관리</span> </span>
+					</a></li>
+
+					<li class="treeview"><a class="contentTitle"
+						href="/admin/statistics/list"> <i class="fa fa-pie-chart"></i>
+							<span>접속 통계</span> </span>
 					</a></li>
 
 				</ul>

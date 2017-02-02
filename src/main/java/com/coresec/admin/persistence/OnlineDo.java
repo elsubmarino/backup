@@ -28,9 +28,7 @@ public interface OnlineDo {
 	//new badge
 	public int getBadge();
 	
-	public String getCategoryName(String f_ca_id);
-	
-	public String getSubject(int f_eid);
+
 	
 	public String getDate(int f_sid);
 }

@@ -52,6 +52,10 @@
 		select count(*) from tbl_education where f_wdate between curdate() - interval 7
 		day and curdate()
 	</select>
+	
+	<select id="getSubject" resultType="String">
+	select f_subject from tbl_education where f_id=#{f_eid}
+	</select>
 
 
 </mapper>

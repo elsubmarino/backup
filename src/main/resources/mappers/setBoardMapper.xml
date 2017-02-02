@@ -72,5 +72,13 @@
 		day and
 		curdate()
 	</select>
+	
+	<select id="getMaximum" resultType="Integer">
+		select f_bid from tbl_board_administration
+	</select>
+	
+	<update id="updateAdministration">
+	update tbl_board_administration set f_bid=f_bid+1 
+	</update>
 
 </mapper>

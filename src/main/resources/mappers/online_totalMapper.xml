@@ -10,7 +10,7 @@
 		</if>
 	</sql>
 	<select id="selectList" resultType="Online_total">
-select * from tbl_online_total where f_type2 not like '%접수신청%'
+		select * from tbl_online_total where f_type2 not like '%접수신청%'
 		<include refid="search"></include>
 
 		order by
@@ -42,26 +42,29 @@ select * from tbl_online_total where f_type2 not like '%접수신청%'
 	</delete>
 
 	<select id="getCount" resultType="Integer">
-select count(*) from tbl_online_total  where f_type2 not like '%접수신청%'
+		select count(*) from tbl_online_total where f_type2 not like '%접수신청%'
 		<include refid="search"></include>
 	</select>
-	
+
 	<!-- 새로운 뱃지 -->
 	<select id="getBadget" resultType="Integer">
-		select count(*) from tbl_online_total where f_wdate between curdate() - interval 7
-		day and curdate()
+		select count(*) from
+		tbl_online_total where f_wdate between curdate() - interval 7
+		day and
+		curdate()
 	</select>
-	
+
 	<select id="getCategoryName" resultType="String">
-		select f_ca_name from tbl_category where f_ca_id=#{f_ca_id}
+		select f_ca_name from
+		tbl_category where f_ca_id=#{f_ca_id}
 	</select>
-	
+
 	<select id="getSubject" resultType="String">
-	select f_subject from tbl_education where f_id=#{f_eid}
+		select f_subject from tbl_education where f_id=#{f_eid}
 	</select>
-	
+
 	<select id="getDate" resultType="String">
-	select f_start,f_end from tbl_education_s where f_id=#{f_sid}
+		select f_start,f_end from tbl_education_s where f_id=#{f_sid}
 	</select>
 
 </mapper>

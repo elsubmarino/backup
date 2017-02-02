@@ -5,8 +5,13 @@
 <mapper namespace="com.coresec.admin.mapper.onlineMapper">
 
 	<sql id="search">
-		<if test="keyword != null">
-			and f_name like CONCAT('%',#{keyword},'%')
+	<if test="keyword !=null">
+			<if test="searchType == 'f_name'.toString()">
+				and f_name like CONCAT('%',#{keyword},'%')
+			</if>
+			<if test="searchType == 'f_sosok'.toString()">
+				and f_sosok like CONCAT('%',#{keyword},'%')
+			</if>
 		</if>
 	</sql>
 	<select id="selectList" resultType="Online">
@@ -53,13 +58,7 @@ select count(*) from tbl_online as a,tbl_education as b where a.f_eid=b.f_id
 		day and curdate()
 	</select>
 	
-	<select id="getCategoryName" resultType="String">
-		select f_ca_name from tbl_category where f_ca_id=#{f_ca_id}
-	</select>
 	
-	<select id="getSubject" resultType="String">
-	select f_subject from tbl_education where f_id=#{f_eid}
-	</select>
 	
 	<select id="getDate" resultType="String">
 	select f_start,f_end from tbl_education_s where f_id=#{f_sid}

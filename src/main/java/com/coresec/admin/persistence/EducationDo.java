@@ -15,4 +15,6 @@ public interface EducationDo {
 	
 	//new badge
 	public int getBadge();
+	
+	public String getSubject(int f_eid);
 }

@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.coresec.admin.domain.Category;
+import com.coresec.admin.domain.CategoryNames;
 import com.coresec.admin.domain.SearchCriteria;
 
 @Repository
@@ -54,5 +55,15 @@ public class CategoryDoImpl implements CategoryDo {
 	public int getBadge() {
 		return sqlSession.selectOne(namespace+".getBadget");
 	}
+	@Override
+	public List<CategoryNames> getCategoryNames() {
+		return sqlSession.selectList(namespace+".getCategoryNames");
+	}
+	
+	@Override
+	public String getCategoryName(String f_ca_id) {
+		return sqlSession.selectOne(namespace+".getCategoryName",f_ca_id);
+	}
+
 
 }

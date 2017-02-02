@@ -63,6 +63,15 @@ select cast(max(f_ca_id)+10 as integer) from tbl_category where length(f_ca_id) 
 		<include refid="search"></include>
 	</select>
 	
+	<select id="getCategoryNames" resultType="CategoryNames">
+		select distinct f_ca_id,f_ca_name from tbl_category order by f_ca_id
+	</select>
+	
+	
+	<select id="getCategoryName" resultType="String">
+		select f_ca_name from tbl_category where f_ca_id=#{f_ca_id}
+	</select>
+	
 	<!-- 새로운 뱃지 -->
 	<select id="getBadget" resultType="Integer">
 		select count(*) from tbl_category where f_wdate between curdate() - interval 7

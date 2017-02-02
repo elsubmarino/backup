@@ -12,8 +12,8 @@
 	<section class="content-header">
 		<h1>팝업 관리</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">팝업 관리</li>
 		</ol>
 	</section>
 
@@ -100,6 +100,37 @@
 														<textarea class="ckeditor" id="editor1" name="f_comment"
 															rows="10" cols="80">${item.f_comment }
                     </textarea>
+                    	<script type="text/javascript">
+															//<![CDATA[
+															CKEDITOR
+																	.replace(
+																			'editor1',
+																			{
+																				'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
+
+																			});
+
+															CKEDITOR
+																	.on(
+																			'dialogDefinition',
+																			function(
+																					ev) {
+																				var dialogName = ev.data.name;
+																				var dialogDefinition = ev.data.definition;
+
+																				switch (dialogName) {
+																				case 'image': //Image Properties dialog
+																					//dialogDefinition.removeContents('info');
+																					dialogDefinition
+																							.removeContents('Link');
+																					dialogDefinition
+																							.removeContents('advanced');
+																					break;
+																				}
+																			});
+
+															//]]>
+														</script>
 													</form>
 												</div>
 											</div>

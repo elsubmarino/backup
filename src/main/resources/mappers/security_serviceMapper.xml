@@ -5,7 +5,12 @@
 <mapper namespace="com.coresec.admin.mapper.security_serviceMapper">
 	<sql id="search">
 		<if test="keyword != null">
-			where f_company like CONCAT('%',#{keyword},'%')
+			<if test="searchType == 'f_company'">
+			where f_company
+			</if>
+			<if test="searchType == 'f_name'">
+			where f_name
+			</if> like CONCAT('%',#{keyword},'%')
 		</if>
 	</sql>
 	<select id="selectListSecurity_service" resultType="Security_service">
@@ -13,7 +18,7 @@
 		f_id,f_name,f_company,f_tel,f_hp,f_email,f_wdate from tbl_security_service
 		
 		<include refid="search"></include>
-
+		
 		order by
 		f_id desc limit #{pageStart}, #{perPageNum}
 	</select>

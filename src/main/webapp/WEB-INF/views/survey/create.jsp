@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>팝업 관리</h1>
+		<h1>설문 조사</h1>
 		<ol class="breadcrumb">
-			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">Dashboard</li>
+			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">설문 조사</li>
 		</ol>
 	</section>
 
@@ -24,16 +24,16 @@
 
 			<div class="box">
 				<div class="box-header">
-					<div class="well text-center">팝업 등록하기</div>
+					<div class="well text-center">설문조사 등록하기</div>
 				</div>
 				<div class="box-body">
-					<form id="popupCreateForm" method="POST">
+					<form id="createForm" method="POST">
 						<input type="hidden" name="f_use" id="f_use">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
 								<tbody>
 									<tr>
-										<th>팝업 제목</th>
+										<th>제목</th>
 										<td colspan="3"><input type="text" class="form-control"
 											name="f_subject"></td>
 									</tr>
@@ -54,25 +54,9 @@
 										</td>
 									</tr>
 									<tr>
-										<th>창위치 왼쪽</th>
-										<td><input type="number" class="form-control"
-											name="f_w_left"><label>* 화면 왼쪽으로부터 px 단위</label>
-											</div></td>
-										<th>창위치 왼쪽</th>
-										<td><input type="number" class="form-control"
-											name="f_w_top"><label>* 화면 위로부터 px 단위</label></td>
-									</tr>
-									<tr>
-										<th>창크기 가로</th>
-										<td><input type="number" class="form-control"
-											name="f_width"><label>* px 단위</label></td>
-										<th>창크기 세로</th>
-										<td><input type="number" class="form-control"
-											name="f_height"><label>* px 단위</label></td>
-									</tr>
-									<tr>
 										<th>내용</th>
-										<td colspan="3">
+										<td>
+										
 											<div class="box box-info">
 
 												<!-- /.box-header -->
@@ -118,6 +102,10 @@
 
 											</div>
 										</td>
+								
+									</tr>
+									<tr>
+									
 									</tr>
 								</tbody>
 							</table>
@@ -161,11 +149,11 @@
 			}
 			var f_subject = $("[name=f_subject]");
 			if (!f_subject.val()) {
-				alert("팝업 제목을 입력하세요!");
+				alert("제목을 입력하세요!");
 				f_subject.focus();
 				return;
 			}
-			$("#popupCreateForm").submit();
+			$("#createForm").submit();
 		});
 
 	});

@@ -27,4 +27,10 @@ public interface SetBoardDo {
 	
 	//new badge
 	public int getBadge();
+	
+	//get maximum count
+	public int getMaximum();
+	
+	//update tbl_board_administration
+	public void updateAdministration();
 }
