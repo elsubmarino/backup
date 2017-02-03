@@ -12,7 +12,13 @@ public class Survey {
 	private int f_w_top;
 	private int f_width;
 	private int f_height;
-	private String f_comment;
+	private String f_items;
+	public String getF_items() {
+		return f_items;
+	}
+	public void setF_items(String f_items) {
+		this.f_items = f_items;
+	}
 	private Date f_wdate;
 	public int getF_id() {
 		return f_id;
@@ -68,18 +74,15 @@ public class Survey {
 	public void setF_height(int f_height) {
 		this.f_height = f_height;
 	}
-	public String getF_comment() {
-		return f_comment;
-	}
-	public void setF_comment(String f_comment) {
-		this.f_comment = f_comment;
-	}
+
 	public Date getF_wdate() {
 		return f_wdate;
 	}
 	public void setF_wdate(Date f_wdate) {
 		this.f_wdate = f_wdate;
 	}
+	
+	
 	
 	
 	

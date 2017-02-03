@@ -6,10 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.NumberFormat;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -28,7 +30,7 @@ import com.coresec.admin.persistence.SetBoardDo;
 public class BoardController {
 	@Inject
 	SetBoardDo setBoardDo;
-	
+
 	@Inject
 	MyBoardDo myBoardDo;
 
@@ -39,10 +41,19 @@ public class BoardController {
 		}
 		int count = setBoardDo.countsSetBoard(cri);
 		List<SetBoard> list = setBoardDo.selectListSetBoard(cri);
-		for(SetBoard temp:list){
-			int haha=temp.getF_link().lastIndexOf("/");
-			String hahaha=temp.getF_link().substring(haha+1);
-		
+		for (SetBoard temp : list) {
+			int haha = temp.getF_link().lastIndexOf("/");
+			String hohoho = temp.getF_link().substring(0,haha);
+			int hoho=hohoho.lastIndexOf("/");
+			String hahaha=hohoho.substring(hoho+1);
+			if (NumberUtils.isNumber(hahaha)) {
+				System.out.println(myBoardDo.getNumOfPosts(Integer.parseInt(hahaha)));
+				System.out.println(myBoardDo.getNumOfPosts(Integer.parseInt(hahaha)));
+				System.out.println(myBoardDo.getNumOfPosts(Integer.parseInt(hahaha)));
+				System.out.println(myBoardDo.getNumOfPosts(Integer.parseInt(hahaha)));
+				System.out.println(myBoardDo.getNumOfPosts(Integer.parseInt(hahaha)));
+				temp.setNumOfPosts(myBoardDo.getNumOfPosts(Integer.parseInt(hahaha)));
+			}
 		}
 		PageMaker pageMaker = new PageMaker();
 		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
@@ -66,12 +77,13 @@ public class BoardController {
 		setBoardDo.updateAdministration();
 		String link = setBoard.getF_link();
 		int max = setBoardDo.getMaximum();
-		
-		//추후 디렉토리명 변경
-		String path="C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\WEB-INF\\views\\sub\\"+link+"\\"+max;
+
+		// 추후 디렉토리명 변경
+		String path = "C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\WEB-INF\\views\\sub\\" + link + "\\"
+				+ max;
 		createFile(path);
-		
-		setBoard.setF_link("/admin/bbs/" + link + "/" + max+"/list");
+
+		setBoard.setF_link("/admin/bbs/" + link + "/" + max + "/list");
 		setBoard.setF_read(setBoard.getF_read().replaceAll(",", ""));
 		setBoard.setF_write(setBoard.getF_write().replaceAll(",", ""));
 		setBoard.setF_edit(setBoard.getF_edit().replaceAll(",", ""));
@@ -123,10 +135,22 @@ public class BoardController {
 		File file = new File(path);
 		if (!file.exists()) {
 			file.mkdirs();
-			FileCopyUtils.copy(new FileInputStream("C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\list.jsp"),new FileOutputStream(path+"\\list.jsp"));
-			FileCopyUtils.copy(new FileInputStream("C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\create.jsp"),new FileOutputStream(path+"\\create.jsp"));
-			FileCopyUtils.copy(new FileInputStream("C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\modify.jsp"),new FileOutputStream(path+"\\modify.jsp"));
-			FileCopyUtils.copy(new FileInputStream("C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\read.jsp"),new FileOutputStream(path+"\\read.jsp"));
+			FileCopyUtils.copy(
+					new FileInputStream(
+							"C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\list.jsp"),
+					new FileOutputStream(path + "\\list.jsp"));
+			FileCopyUtils.copy(
+					new FileInputStream(
+							"C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\create.jsp"),
+					new FileOutputStream(path + "\\create.jsp"));
+			FileCopyUtils.copy(
+					new FileInputStream(
+							"C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\modify.jsp"),
+					new FileOutputStream(path + "\\modify.jsp"));
+			FileCopyUtils.copy(
+					new FileInputStream(
+							"C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\read.jsp"),
+					new FileOutputStream(path + "\\read.jsp"));
 			return true;
 		}
 		return false;

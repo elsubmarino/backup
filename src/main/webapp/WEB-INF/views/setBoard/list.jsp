@@ -76,7 +76,7 @@
 										<td>${item.f_skin }</td>
 										<td><a href="${item.f_link}">${item.f_link }</a></td>
 										<td class="text-center">${item.f_file_use }</td>
-										<td>${item.numOfPosts }</td>
+										<td class="text-center">${item.numOfPosts }</td>
 										<td class="text-center">
 										<div class="btn-group">
 										<a

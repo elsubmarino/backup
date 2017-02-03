@@ -10,9 +10,14 @@
 		<script>
 		var myRegex = /<img[^>]+src="([^">]+)"/g;
 		var test = '${item.f_comment}';
-		window.open(myRegex.exec(test)[1],"${item.f_subject}","width=${item.f_width},height=${item.f_height},left=${item.f_w_left},top=${item.f_w_top}");	
+		window.open(myRegex.exec(test)[1],"${item.f_subject}","width=${item.f_width},height=${item.f_height},left=${item.f_w_left},top=${item.f_w_top}");
 		</script>
+
 	</c:forEach>
+<%-- 	<c:forEach items=${listForSurvey } var="item">
+	window.open("","${item.f_subject }",);
+	</c:forEach> --%>
+
 	<!-- Content Header (Page header) -->
 
 	<section class="content-header">
@@ -397,7 +402,8 @@
 								<div class="direct-chat-contacts">
 									<ul class="contacts-list">
 										<li><a href="#"> <img class="contacts-list-img"
-												src="/admin/resources/dist/img/user1-128x128.jpg" alt="User Image">
+												src="/admin/resources/dist/img/user1-128x128.jpg"
+												alt="User Image">
 
 												<div class="contacts-list-info">
 													<span class="contacts-list-name"> Count Dracula <small

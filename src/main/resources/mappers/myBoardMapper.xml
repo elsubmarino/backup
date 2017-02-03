@@ -58,7 +58,7 @@
 	</select>
 	
 	
-	<select id="getNumOfPosts">
+	<select id="getNumOfPosts" resultType="int">
 	select count(*) from tbl_board where f_bid=#{f_bid}
 	</select>
 

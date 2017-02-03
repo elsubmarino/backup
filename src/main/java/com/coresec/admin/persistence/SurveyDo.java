@@ -2,6 +2,7 @@ package com.coresec.admin.persistence;
 
 import java.util.List;
 
+import com.coresec.admin.domain.Popup;
 import com.coresec.admin.domain.SearchCriteria;
 import com.coresec.admin.domain.Survey;
 
@@ -23,6 +24,9 @@ public interface SurveyDo {
 	
 	//counts
 	public int getCount(SearchCriteria cri);
+
+	//apply
+	List<Survey> applyForSurvey();
 	
 	
 	//new badge

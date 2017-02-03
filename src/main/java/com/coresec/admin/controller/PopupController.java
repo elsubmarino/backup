@@ -58,6 +58,7 @@ public class PopupController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String registerPOST(SearchCriteria cri, Popup popup,HttpServletRequest request) {
+		
 		popup.setF_comment(popup.getF_comment().replaceAll("\r\n", ""));
 		popupDo.insertPopup(popup);
 		PageMaker pageMaker = new PageMaker();

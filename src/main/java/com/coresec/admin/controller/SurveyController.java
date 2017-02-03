@@ -47,8 +47,13 @@ public class SurveyController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String registerPOST(SearchCriteria cri, Survey survey,HttpServletRequest request) {
-		survey.setF_comment(survey.getF_comment().replaceAll("\r\n", ""));
+	public String registerPOST(SearchCriteria cri,@RequestParam(value="f_items") String[]f_items, Survey survey,HttpServletRequest request) {
+		String temp="";
+		for(String haha:f_items){
+			temp+=haha+"¢Ô";
+		}
+		temp=temp.substring(0, temp.length()-1);
+		survey.setF_items(temp);
 		surveyDo.insert(survey);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -78,7 +83,6 @@ public class SurveyController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		survey.setF_comment(survey.getF_comment().replaceAll("\r\n", ""));
 		surveyDo.update(survey);
 		return "redirect:/popup/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}

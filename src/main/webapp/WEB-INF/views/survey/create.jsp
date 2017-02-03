@@ -4,7 +4,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../include/header.jsp"%>
-<link rel="stylesheet" href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet"
+	href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
 <script src="/admin/resources/plugins/ckeditor/ckeditor.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -44,68 +45,16 @@
 									</tr>
 									<tr>
 										<th>사용 기간</th>
-										<td colspan="3">
-													<i class="fa fa-calendar"></i>
-												<input type="text" name="f_start"
-													class=" "> ~ 
-													<i class="fa fa-calendar"></i>
-												<input type="text" class=" "
-													name="f_end">
-										</td>
+										<td colspan="3"><i class="fa fa-calendar"></i> <input
+											type="text" name="f_start" class=" "> ~ <i
+											class="fa fa-calendar"></i> <input type="text" class=" "
+											name="f_end"></td>
 									</tr>
 									<tr>
 										<th>내용</th>
-										<td>
-										
-											<div class="box box-info">
-
-												<!-- /.box-header -->
-												<form>
-
-													<div class="box-body pad">
-														<textarea class="ckeditor" id="editor1" name="f_comment"
-															rows="10" cols="80" name="f_comment">
-                    </textarea>
-														<script type="text/javascript">
-															//<![CDATA[
-															CKEDITOR
-																	.replace(
-																			'editor1',
-																			{
-																				'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
-
-																			});
-
-															CKEDITOR
-																	.on(
-																			'dialogDefinition',
-																			function(
-																					ev) {
-																				var dialogName = ev.data.name;
-																				var dialogDefinition = ev.data.definition;
-
-																				switch (dialogName) {
-																				case 'image': //Image Properties dialog
-																					//dialogDefinition.removeContents('info');
-																					dialogDefinition
-																							.removeContents('Link');
-																					dialogDefinition
-																							.removeContents('advanced');
-																					break;
-																				}
-																			});
-
-															//]]>
-														</script>
-													</div>
-												</form>
-
-											</div>
+										<td><a href="" class="btn btn-primary" id="addInputText">추가</a>
+											<input type="text" name="f_items" class="form-control" placeholder="항목 이름">
 										</td>
-								
-									</tr>
-									<tr>
-									
 									</tr>
 								</tbody>
 							</table>
@@ -130,13 +79,18 @@
 
 <script
 	src="/admin/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
-	<script
+<script
 	src="/admin/resources/plugins/datepicker/locales/bootstrap-datepicker.kr.js"></script>
 <script>
 	$(function() {
+		$("#addInputText").click(function(event) {
+			event.preventDefault();
+							var text = "<input type='text' name='f_items' class='form-control' placeholder='항목 이름'>";
+							$(this).parent().append(text);
+						});
 		$("[name='f_start'], [name='f_end']").datepicker({
 			format : 'yyyy-mm-dd',
-			langauge:"kr",
+			langauge : "kr",
 			autoclose : true
 		});
 

@@ -52,4 +52,9 @@ public class SurveyDoImpl implements SurveyDo {
 		return sqlSession.selectOne(namespace+".getBadget");
 	}
 
+	@Override
+	public List<Survey> applyForSurvey() {
+		return sqlSession.selectList(namespace+".applyForSurvey");
+	}
+
 }
