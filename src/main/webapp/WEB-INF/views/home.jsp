@@ -5,12 +5,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="include/header.jsp"%>
 <!-- Content Wrapper. Contains page content -->
+<script>
+var availWidth=screen.availWidth;
+var availHeight=screen.availHeight;
+
+</script>
 <div class="content-wrapper">
 	<c:forEach items="${list }" var="item">
 		<script>
+		var left;
+		var topPosition;
 		var myRegex = /<img[^>]+src="([^">]+)"/g;
 		var test = '${item.f_comment}';
-		window.open(myRegex.exec(test)[1],"${item.f_subject}","width=${item.f_width},height=${item.f_height},left=${item.f_w_left},top=${item.f_w_top}");
+		var subject="${item.f_subject}";
+		var width="${item.f_width}";
+		var height="${item.f_height}";
+		switch("${item.f_position}"){
+		case "1":left=0;topPosition=0;break;
+		case "2":left=availWidth/2-width/2;topPosition=0;break;
+		case "3":left=width-width;topPosition=0;break;
+		case "4":left=0;topPosition=availHeight/2-height/2;break;
+		case "5":left=availWidth/2-width/2;topPosition=availHeight/2-height/2;break;
+		case "6":left=availWidth-width;topPosition=availHeight/2-height/2;break;
+		case "7":left=0;topPosition=availHeight-height/2;break;
+		case "8":left=availWidth/2-width/2;topPosition=availHeight-height/2;break;
+		case "9":left=availWidth-width;topPosition=availHeight-height/2;break;
+		}
+		var param="width="+width+",height="+height+",left="+left+",top="+topPosition;
+		window.open(myRegex.exec(test)[1],subject,param);
 		</script>
 
 	</c:forEach>

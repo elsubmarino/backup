@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coresec.admin.domain.CategoryNames;
 import com.coresec.admin.domain.Online;
@@ -72,5 +73,13 @@ public class OnlineController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("categoryNames", names);
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(@RequestParam(value = "f_id") int f_id, SearchCriteria cri) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		onlineDo.delete(f_id);
+		return "redirect:/online/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 }

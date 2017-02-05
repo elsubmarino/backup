@@ -120,6 +120,13 @@
 								class="label pull-right bg-red">${sessionScope.list.setboard }</small>
 						</span>
 					</a></li>
+					<li class="treeview"><a href="/admin/canonical/list"
+						class="contentTitle"> <i class="fa fa-edit"></i> <span
+							class="coantentTitle">연혁 관리</span><span
+							class="pull-right-container"> <small
+								class="label pull-right bg-red">${sessionScope.list.canonical }</small>
+						</span>
+					</a></li>
 					<li class="treeview"><a class="contentTitle"
 						href="/admin/category/list"> <i class="fa fa-list"></i> <span>교육과정
 								과목구분 관리</span><span class="pull-right-container"> <small

@@ -25,11 +25,11 @@ public class ServiceDoImpl implements ServiceDo {
 	}
 	@Override
 	public void update(Service service) {
-		sqlSession.update(namespace+"update",service);
+		sqlSession.update(namespace+".update",service);
 	}
 	@Override
 	public void delete(int f_id) {
-		sqlSession.delete(namespace+"delete",f_id);
+		sqlSession.delete(namespace+".delete",f_id);
 	}
 	@Override
 	public void insert(Service service) {

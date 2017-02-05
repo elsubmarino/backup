@@ -4,8 +4,7 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../include/header.jsp"%>
-<link rel="stylesheet"
-	href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
 <script src="/admin/resources/plugins/ckeditor/ckeditor.js"></script>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -14,7 +13,7 @@
 		<h1>팝업 관리</h1>
 		<ol class="breadcrumb">
 			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">팝업 관리</li>
+			<li class="active">Dashboard</li>
 		</ol>
 	</section>
 
@@ -30,14 +29,8 @@
 				<div class="box-body">
 					<form id="popupCreateForm" method="POST">
 						<input type="hidden" name="f_use" id="f_use">
-						<input type="hidden" name="f_position" >
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
-								<colgroup>
-									<col width="150px">
-									<col>
-									<col width="150px">
-								</colgroup>
 								<tbody>
 									<tr>
 										<th>팝업 제목</th>
@@ -47,30 +40,28 @@
 									<tr>
 										<th>사용 여부</th>
 										<td colspan="3"><label class="checkbox-inline"><input
-												type="checkbox" name="use" id="use" checked>체크시 팝업 사용</label></td>
+												type="checkbox" name="use" id="use">체크시 팝업 사용</label></td>
 									</tr>
 									<tr>
 										<th>사용 기간</th>
-										<td colspan="3"><i class="fa fa-calendar"></i> <input
-											type="text" name="f_start"> ~ <i
-											class="fa fa-calendar"></i> <input type="text"
-											name="f_end"></td>
+										<td colspan="3">
+													<i class="fa fa-calendar"></i>
+												<input type="text" name="f_start"
+													class=" "> ~ 
+													<i class="fa fa-calendar"></i>
+												<input type="text" class=" "
+													name="f_end">
+										</td>
 									</tr>
 									<tr>
-										<th>창 위치</th>
-										<td colspan="3">
-										<div class="btn-group">
-										<button name="position" type="button" class="btn btn-warning">X</button>
-										<button name="position" type="button" class="btn btn-warning">X</button>
-										<button name="position" type="button" class="btn btn-warning">X</button><br/>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button><br/>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										</div>
-										</tr>
+										<th>창위치 왼쪽</th>
+										<td><input type="number" class="form-control"
+											name="f_w_left"><label>* 화면 왼쪽으로부터 px 단위</label>
+											</div></td>
+										<th>창위치 왼쪽</th>
+										<td><input type="number" class="form-control"
+											name="f_w_top"><label>* 화면 위로부터 px 단위</label></td>
+									</tr>
 									<tr>
 										<th>창크기 가로</th>
 										<td><input type="number" class="form-control"
@@ -148,30 +139,16 @@
 <!-- CK Editor -->
 
 <%@include file="../include/footer.jsp"%>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+
 <script
-	src="/admin/resources/bootstrap-datepicker.js"></script>
-<script
-	src="/admin/resources/bootstrap-datepicker.kr.js"></script>
+	src="/admin/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
+	<script
+	src="/admin/resources/plugins/datepicker/locales/bootstrap-datepicker.kr.js"></script>
 <script>
 	$(function() {
-		var change;
-		//버튼 색갈 체인지
-		$("[name='position']").click(function(event){
-			if(change!=undefined){
-				change.removeClass("btn-primary");
-				change.addClass("btn-warning");
-			}
-			event.preventDefault();
-			$(this).removeClass("btn-warning");
-			$(this).addClass("btn-primary");
-			change=$(this);
-			$("[name='f_poisition']").val($(this).val());
-		})
-		
 		$("[name='f_start'], [name='f_end']").datepicker({
 			format : 'yyyy-mm-dd',
-			langauge : "kr",
+			langauge:"kr",
 			autoclose : true
 		});
 

@@ -1,10 +1,11 @@
 package com.coresec.admin.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,13 +49,15 @@ public class SurveyController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String registerPOST(SearchCriteria cri,@RequestParam(value="f_items") String[]f_items, Survey survey,HttpServletRequest request) {
-		String temp="";
-		for(String haha:f_items){
-			temp+=haha+"¢Ô";
-		}
-		temp=temp.substring(0, temp.length()-1);
-		survey.setF_items(temp);
+
 		surveyDo.insert(survey);
+		int num=surveyDo.getFid();
+		for(String haha:f_items){
+			Map<String,Object> map=new HashMap();
+			map.put("f_item", haha);
+			map.put("f_uid", num);
+			surveyDo.insertItem(map);
+		}
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
@@ -85,5 +88,13 @@ public class SurveyController {
 		pageMaker.setCri(cri);
 		surveyDo.update(survey);
 		return "redirect:/popup/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(@RequestParam(value = "f_id") int f_id, SearchCriteria cri) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		surveyDo.delete(f_id);
+		return "redirect:/survey/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 }

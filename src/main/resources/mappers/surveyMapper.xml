@@ -24,6 +24,13 @@
 		f_id=#{f_id} order by
 		f_id desc
 	</select>
+	<insert id="insertItem">
+	insert into tbl_survey_items(f_item,f_uid) values(#{f_item},#{f_uid})
+	</insert>
+	
+	<select id="getFid" resultType="int">
+	select max(f_id) from tbl_survey;
+	</select>
 
 	<insert id="insert">
 		insert into

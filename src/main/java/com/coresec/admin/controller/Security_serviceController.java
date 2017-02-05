@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
@@ -30,5 +31,13 @@ public class Security_serviceController {
 		List<Security_service> list=service_securityDo.selectListSecurity_service(cri);
 		model.addAttribute("pageMaker",pageMaker);
 		model.addAttribute("list",list);
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String delete(@RequestParam(value = "f_id") int f_id, SearchCriteria cri) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		service_securityDo.deleteSecurity_service(f_id);
+		return "redirect:/security_service/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 }

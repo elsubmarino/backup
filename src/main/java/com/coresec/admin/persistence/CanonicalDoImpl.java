@@ -1,35 +1,34 @@
 package com.coresec.admin.persistence;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.coresec.admin.domain.Canonical;
 import com.coresec.admin.domain.SearchCriteria;
-import com.coresec.admin.domain.Survey;
 
 @Repository
-public class SurveyDoImpl implements SurveyDo {
+public class CanonicalDoImpl implements CanonicalDo {
 	@Inject
 	SqlSession sqlSession;
-	private final String namespace = "com.coresec.admin.mapper.surveyMapper";
+	private final String namespace = "com.coresec.admin.mapper.canonicalMapper";
 
 	@Override
-	public Survey selectOne(int f_id) {
+	public Canonical selectOne(int f_id) {
 		return sqlSession.selectOne(namespace + ".selectOne", f_id);
 	}
 
 	@Override
-	public List<Survey> selectList(SearchCriteria cri) {
+	public List<Canonical> selectList(SearchCriteria cri) {
 		return sqlSession.selectList(namespace + ".selectList",cri);
 	}
 
 	@Override
-	public void update(Survey Survey) {
-		sqlSession.update(namespace + ".update", Survey);
+	public void update(Canonical Canonical) {
+		sqlSession.update(namespace + ".update", Canonical);
 	}
 
 	@Override
@@ -39,8 +38,8 @@ public class SurveyDoImpl implements SurveyDo {
 	}
 
 	@Override
-	public void insert(Survey Survey) {
-		sqlSession.insert(namespace + ".insert", Survey);
+	public void insert(Canonical Canonical) {
+		sqlSession.insert(namespace + ".insert", Canonical);
 	}
 
 	@Override
@@ -54,18 +53,18 @@ public class SurveyDoImpl implements SurveyDo {
 	}
 
 	@Override
-	public List<Survey> applyForSurvey() {
-		return sqlSession.selectList(namespace+".applyForSurvey");
+	public String getCategoryName(String f_ca_id) {
+		return sqlSession.selectOne(namespace+".getCategoryName",f_ca_id);
 	}
 
 	@Override
-	public int getFid() {
-		return sqlSession.selectOne(namespace+".getFid");
+	public String getSubject(int f_eid) {
+		return sqlSession.selectOne(namespace+".getSubject",f_eid);
 	}
 
 	@Override
-	public void insertItem(Map<String,Object> map) {
-		sqlSession.insert(namespace+".insertItem",map);
+	public String getDate(int f_sid) {
+		return sqlSession.selectOne(namespace+".getDate",f_sid);
 	}
 
 }

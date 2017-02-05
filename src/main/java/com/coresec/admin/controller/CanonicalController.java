@@ -9,39 +9,37 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.coresec.admin.domain.Service;
+import com.coresec.admin.domain.Canonical;
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
-import com.coresec.admin.domain.Service;
-import com.coresec.admin.persistence.ServiceDo;
+import com.coresec.admin.persistence.CanonicalDo;
 
 @Controller
-@RequestMapping(value = "/service")
-public class ServiceController {
+@RequestMapping(value = "/canonical")
+public class CanonicalController {
 	@Inject
-	ServiceDo serviceDo;
-	
-	@RequestMapping(value = "/list")
-	public void list(Model model, SearchCriteria cri) {
+	CanonicalDo canonicalDo;
 
+	@RequestMapping(value = "/list")
+	public String list(Model model, SearchCriteria cri) {
 		PageMaker pageMaker = new PageMaker();
-		int count = serviceDo.getCount(cri);
+		int count = canonicalDo.getCount(cri);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(count);
 		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
 			cri.setKeyword(null);
 		}
-		List<Service> list = serviceDo.selectList(cri);
-		
+		List<Canonical> list = canonicalDo.selectList(cri);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", list);
+		return "/online_total/list";
 	}
 	
 	@RequestMapping(value = "/delete")
 	public String delete(@RequestParam(value = "f_id") int f_id, SearchCriteria cri) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		serviceDo.delete(f_id);
-		return "redirect:/service/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
+		canonicalDo.delete(f_id);
+		return "redirect:/canonical/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 }

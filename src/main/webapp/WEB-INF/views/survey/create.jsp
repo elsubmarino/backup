@@ -41,7 +41,7 @@
 									<tr>
 										<th>사용 여부</th>
 										<td colspan="3"><label class="checkbox-inline"><input
-												type="checkbox" name="use" id="use">체크시 팝업 사용</label></td>
+												type="checkbox" name="use" id="use" checked>체크시 팝업 사용</label></td>
 									</tr>
 									<tr>
 										<th>사용 기간</th>
@@ -85,6 +85,10 @@
 	$(function() {
 		$("#addInputText").click(function(event) {
 			event.preventDefault();
+			if($(this).parent().children("[name='f_items']").size()>=10){
+				alert("더 이상 추가할 수 없습니다!");	
+				return;
+			}
 							var text = "<input type='text' name='f_items' class='form-control' placeholder='항목 이름'>";
 							$(this).parent().append(text);
 						});

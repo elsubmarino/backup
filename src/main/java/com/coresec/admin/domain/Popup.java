@@ -17,6 +17,17 @@ public class Popup {
 	private String f_end;
 	private String f_comment;
 	private Date f_wdate;
+	private String f_position;
+	
+	
+
+	public String getF_position() {
+		return f_position;
+	}
+
+	public void setF_position(String f_position) {
+		this.f_position = f_position;
+	}
 
 	public int getF_id() {
 		return f_id;

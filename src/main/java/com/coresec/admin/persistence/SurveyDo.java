@@ -1,8 +1,8 @@
 package com.coresec.admin.persistence;
 
 import java.util.List;
+import java.util.Map;
 
-import com.coresec.admin.domain.Popup;
 import com.coresec.admin.domain.SearchCriteria;
 import com.coresec.admin.domain.Survey;
 
@@ -31,4 +31,8 @@ public interface SurveyDo {
 	
 	//new badge
 	public int getBadge();
+	
+	public int getFid();
+	
+	public void insertItem(Map<String,Object> map);
 }
