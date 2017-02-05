@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.coresec.admin.domain.SearchCriteria;
 import com.coresec.admin.domain.Survey;
+import com.coresec.admin.domain.Survey_items;
 
 @Repository
 public class SurveyDoImpl implements SurveyDo {
@@ -36,6 +37,11 @@ public class SurveyDoImpl implements SurveyDo {
 	public void delete(int f_id) {
 		sqlSession.delete(namespace + ".delete", f_id);
 
+	}
+	
+	@Override
+	public void deleteItems(int f_uid){
+		sqlSession.delete(namespace+".deleteItems",f_uid);
 	}
 
 	@Override
@@ -67,5 +73,16 @@ public class SurveyDoImpl implements SurveyDo {
 	public void insertItem(Map<String,Object> map) {
 		sqlSession.insert(namespace+".insertItem",map);
 	}
+
+	@Override
+	public List<Survey_items> applyForSurveyItems(int f_uid) {
+		return sqlSession.selectList(namespace+".applyForSurveyItems",f_uid);
+	}
+
+	@Override
+	public void updateCount(int f_id) {
+		sqlSession.update(namespace+".updateCount",f_id);
+	}
+	
 
 }

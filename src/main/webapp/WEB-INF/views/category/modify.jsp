@@ -36,7 +36,7 @@
 								<tbody>
 									<tr>
 										<th>분류코드</th>
-										<td><input type="text" name="f_ca_id" value="${item.f_ca_id }"></td>
+										<td><input type="text" name="f_ca_id" value="${item.f_ca_id }" readonly></td>
 									</tr>
 									<tr>
 										<th>분류명</th>

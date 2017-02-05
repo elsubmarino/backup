@@ -29,6 +29,7 @@
 				<div class="box-body">
 					<form method="POST" id="popupModifyForm">
 						<input type="hidden" name="f_use" id="f_use">
+						<input type="hidden" name="f_position">
 						<div class="col-md-12">
 							<table class="table table-bordered table-hover">
 							<colgroup>
@@ -51,34 +52,27 @@
 									</tr>
 									<tr>
 										<th>사용 기간</th>
+										<td colspan="3"><i class="fa fa-calendar"></i> <input
+											type="text" name="f_start" value="${item.f_start }"> ~ <i
+											class="fa fa-calendar"></i> <input type="text"
+											name="f_end" value="${item.f_end }"></td>
+									</tr>
+											<tr>
+										<th>창 위치</th>
 										<td colspan="3">
-											<div class="input-group date">
-												<div class="input-group-addon">
-													<i class="fa fa-calendar"></i>
-												</div>
-												<input type="text" name="f_start"
-													class="form-control pull-right" value="${item.f_start }">
-											</div> ~
-											<div class="input-group date">
-												<div class="input-group-addon">
-													<i class="fa fa-calendar"></i>
-												</div>
-												<input type="text" class="form-control pull-right"
-													value="${item.f_end }" name="f_end">
-											</div>
-										</td>
-									</tr>
+										<div class="btn-group">
+										<button name="position" type="button" class="btn btn-warning" value="1">X</button>
+										<button name="position" type="button" class="btn btn-warning"  value="2">X</button>
+										<button name="position" type="button" class="btn btn-warning"  value="3">X</button><br/>
+										<button  name="position"type="button" class="btn btn-warning"  value="4">X</button>
+										<button  name="position"type="button" class="btn btn-warning"  value="5">X</button>
+										<button  name="position"type="button" class="btn btn-warning"  value="6">X</button><br/>
+										<button  name="position"type="button" class="btn btn-warning"  value="7">X</button>
+										<button  name="position"type="button" class="btn btn-warning"  value="8">X</button>
+										<button  name="position"type="button" class="btn btn-warning"  value="9">X</button>
+										</div>
+										</tr>
 									<tr>
-										<th>창위치 왼쪽</th>
-										<td><input type="text" name="f_w_left"
-											class="form-control" value="${item.f_w_left }"><label>*
-												화면 왼쪽으로부터 px 단위</label>
-											</div></td>
-										<th>창위치 왼쪽</th>
-										<td><input type="text" name="f_w_top"
-											class="form-control" value="${item.f_w_top }"><label>*
-												화면 위로부터 px 단위</label></td>
-									</tr>
 									<tr>
 										<th>창크기 가로</th>
 										<td><input type="text" name="f_width"
@@ -160,6 +154,21 @@
 <script src="/admin/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script>
 	$(function() {
+		var change;
+		//버튼 색갈 체인지
+		$("[name='position']").click(function(event){
+			if(change!=undefined){
+				change.removeClass("btn-primary");
+				change.addClass("btn-warning");
+			}
+			event.preventDefault();
+			$(this).removeClass("btn-warning");
+			$(this).addClass("btn-primary");
+			change=$(this);
+			$("[name='f_position']").val($(this).val());
+		})
+		var f_position=Number("${item.f_position}");
+		$("[name=position]").eq(f_position-1).trigger("click");
 		$("[name='f_start'], [name='f_end']").datepicker({
 			format : 'yyyy-mm-dd',
 			autoclose : true

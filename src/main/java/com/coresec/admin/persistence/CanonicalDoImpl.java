@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.coresec.admin.domain.Canonical;
+import com.coresec.admin.domain.Canonical_s;
 import com.coresec.admin.domain.SearchCriteria;
 
 @Repository
@@ -43,6 +44,18 @@ public class CanonicalDoImpl implements CanonicalDo {
 	}
 
 	@Override
+	public int getF_id() {
+		return sqlSession.selectOne(namespace + ".getF_id");
+	}
+	
+
+	@Override
+	public void insertItem(Canonical_s item) {
+		sqlSession.insert(namespace + ".insertItem", item);
+	}
+
+
+	@Override
 	public int getCount(SearchCriteria cri) {
 		return sqlSession.selectOne(namespace+".getCount",cri);
 	}
@@ -65,6 +78,21 @@ public class CanonicalDoImpl implements CanonicalDo {
 	@Override
 	public String getDate(int f_sid) {
 		return sqlSession.selectOne(namespace+".getDate",f_sid);
+	}
+	
+	@Override
+	public List<Canonical_s> selectOneHistory_s(int f_hid) {
+		return sqlSession.selectList(namespace+".selectOneHistory_s",f_hid);
+	}
+
+	@Override
+	public void updateCanonical_s(Canonical_s canonical_s) {
+		sqlSession.update(namespace+".updateCanonical_s",canonical_s);
+	}
+
+	@Override
+	public void deleteCanonical_s(int f_hid) {
+		sqlSession.delete(namespace+".deleteCanonical_s",f_hid);
 	}
 
 }

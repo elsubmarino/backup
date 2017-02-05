@@ -34,11 +34,53 @@ var availHeight=screen.availHeight;
 		var param="width="+width+",height="+height+",left="+left+",top="+topPosition;
 		window.open(myRegex.exec(test)[1],subject,param);
 		</script>
-
+		
 	</c:forEach>
-<%-- 	<c:forEach items=${listForSurvey } var="item">
-	window.open("","${item.f_subject }",);
-	</c:forEach> --%>
+	<c:forEach items="${surveyList }" var="list" varStatus="stat">
+		<script>
+	blah=window.open("",null,"height=500,width=500,left=0,top=0");
+	blah.document.write("<link rel='stylesheet' href='/admin/resources/bootstrap/css/bootstrap.min.css'/>");
+	blah.document.write("<script type='text/javascript' src='//code.jquery.com/jquery-latest.js'>\x3C/script>");
+	blah.document.write("<script>var f_uidn;/w3C/script>");
+	blah.document.write("<h3>${surveyListTitle[stat.index]}</h3>");
+	blah.document.write("<form id='poll' method=POST action='/admin/survey/poll'>")
+	blah.document.write("<input type='hidden' name='f_id' id='f_id'>");
+	blah.document.write("<input type='hidden' name='f_subject' id='f_subject' value='${surveyListTitle[stat.index]}'>");
+	blah.document.write("<input type='hidden' name='f_uid' id='f_uid'>");
+	blah.document.write("<ul class='list-group'>");
+	</script>
+		<c:forEach items="${list}" var="item">
+			<script>
+	blah.document.write("<li class='list-group-item'>\
+			   <div class=\"input-group\">\
+		        <span class=\"input-group-btn\">\
+		            <input name=\"f_item\" class='test' type=\"radio\" class=\"radio\" value=${item.f_id}>\
+		        </span>\
+		        <script>\
+		        f_uidn=${item.f_uid};\
+		        \x3C/script>\
+		        ${item.f_item}\
+		    </div>\
+	</li>");
+	</script>
+		</c:forEach>
+	<script>
+	blah.document.write("<li><button type='button' id='pollButton' class='btn btn-default' href='/survey/'>전송</button>")
+	blah.document.write("</ul>");
+	blah.document.write("</form>");
+	blah.document.write("<script>\
+		$('.test').click(function(){\
+		var f_id=$('#f_id');\
+		f_id.val($(this).val());\
+		var f_uid=$('#f_uid');\
+		f_uid.val(f_uidn);\
+		});\
+		$('#pollButton').click(function(){\
+			$('#poll').submit();\
+		});\
+		\x3C/script>");
+	</script>
+	</c:forEach>
 
 	<!-- Content Header (Page header) -->
 

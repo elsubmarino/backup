@@ -43,10 +43,6 @@
 
 				</div>
 				<div class="box-body">
-					<div class="col-md-2">
-						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;" id="popupRegister">등록하기</button>
-					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
 							<colgroup>
@@ -82,7 +78,7 @@
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
+											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">보기</a>
 											<a class="btn btn-info" id="popupDelete"
 											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
 											</div>

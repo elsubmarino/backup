@@ -20,24 +20,23 @@
 
 
 	<select id="selectOnePopup" resultType="Popup">
-		select f_id, f_subject,
-		f_start, f_end,f_use,f_w_left,f_w_top,f_width,f_height,f_comment from
-		tbl_popup where f_id=#{f_id} order by f_id
-		desc
+		select * from
+		tbl_popup where f_id=#{f_id} order by f_id desc
 	</select>
 
 
 	<insert id="insertPopup">
 		insert into
-		tbl_popup(f_subject,f_use,f_start,f_end,f_w_left,f_w_top,f_width,f_height,f_comment,f_wdate)
-		values(#{f_subject},#{f_use},#{f_start},#{f_end},#{f_w_left},#{f_w_top},#{f_width},#{f_height},#{f_comment},now())
+		tbl_popup(f_subject,f_use,f_start,f_end,f_w_left,f_w_top,f_width,f_height,f_comment,f_wdate,f_position)
+		values(#{f_subject},#{f_use},#{f_start},#{f_end},#{f_w_left},#{f_w_top},#{f_width},#{f_height},#{f_comment},now(),#{f_position})
 	</insert>
 
 	<update id="updatePopup">
 		update tbl_popup set
 		f_subject=#{f_subject},
 		f_use=#{f_use}, f_start=#{f_start},
-		f_end=#{f_end},f_w_left=#{f_w_left},f_w_top=#{f_w_top},f_width=#{f_width},f_height=#{f_height},f_comment=#{f_comment}
+		f_end=#{f_end},f_w_left=#{f_w_left},f_w_top=#{f_w_top},f_width=#{f_width},f_height=#{f_height},f_comment=#{f_comment},
+		f_position=#{f_position}
 		where f_id=#{f_id}
 	</update>
 

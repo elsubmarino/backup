@@ -37,7 +37,7 @@ select cast(max(f_ca_id)+10 as integer) from tbl_category where length(f_ca_id) 
 
 	<select id="selectOneCategory" resultType="Category">
 		select
-		f_ca_id,f_ca_name from tbl_category where f_id=#{f_id}
+		f_ca_id,f_ca_name,f_comment from tbl_category where f_id=#{f_id}
 	</select>
 
 	<insert id="insertCategory">

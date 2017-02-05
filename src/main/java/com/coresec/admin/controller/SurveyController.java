@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,18 @@ import com.coresec.admin.persistence.SurveyDo;
 public class SurveyController {
 	@Inject
 	SurveyDo surveyDo;
+	
+	@RequestMapping(value="/poll")
+	public String poll(@RequestParam(value="f_id") int f_id,@RequestParam(value="f_uid") int f_uid,@RequestParam(value="f_subject") String f_subject,HttpServletResponse response){
+		surveyDo.updateCount(f_id);
+		
+		return "redirect:/survey/result";
+	}
+
+	@RequestMapping(value="/result")
+	public void result(){
+		
+	}
 	
 	@RequestMapping(value="/list")
 	public String list(SearchCriteria cri,Model model){
@@ -94,6 +107,7 @@ public class SurveyController {
 	public String delete(@RequestParam(value = "f_id") int f_id, SearchCriteria cri) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
+		surveyDo.deleteItems(f_id);
 		surveyDo.delete(f_id);
 		return "redirect:/survey/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}

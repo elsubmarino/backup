@@ -60,15 +60,15 @@
 										<th>창 위치</th>
 										<td colspan="3">
 										<div class="btn-group">
-										<button name="position" type="button" class="btn btn-warning">X</button>
-										<button name="position" type="button" class="btn btn-warning">X</button>
-										<button name="position" type="button" class="btn btn-warning">X</button><br/>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button><br/>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
-										<button  name="position"type="button" class="btn btn-warning">X</button>
+										<button name="position" type="button" class="btn btn-warning" value="1">X</button>
+										<button name="position" type="button" class="btn btn-warning" value="2">X</button>
+										<button name="position" type="button" class="btn btn-warning" value="3">X</button><br/>
+										<button  name="position"type="button" class="btn btn-warning" value="4">X</button>
+										<button  name="position"type="button" class="btn btn-warning" value="5">X</button>
+										<button  name="position"type="button" class="btn btn-warning" value="6">X</button><br/>
+										<button  name="position"type="button" class="btn btn-warning" value="7">X</button>
+										<button  name="position"type="button" class="btn btn-warning" value="8">X</button>
+										<button  name="position"type="button" class="btn btn-warning" value="9">X</button>
 										</div>
 										</tr>
 									<tr>
@@ -166,7 +166,8 @@
 			$(this).removeClass("btn-warning");
 			$(this).addClass("btn-primary");
 			change=$(this);
-			$("[name='f_poisition']").val($(this).val());
+			alert($(this).val());
+			$("[name='f_position']").val($(this).val());
 		})
 		
 		$("[name='f_start'], [name='f_end']").datepicker({
@@ -183,11 +184,17 @@
 				$("#f_use").val('N');
 			}
 			var f_subject = $("[name=f_subject]");
+			var f_position=$("[name=f_position]");
 			if (!f_subject.val()) {
 				alert("팝업 제목을 입력하세요!");
 				f_subject.focus();
 				return;
 			}
+			if(!f_position.val()){
+				alert("위치를 선택해주세요!");
+				return;
+			}
+			
 			$("#popupCreateForm").submit();
 		});
 

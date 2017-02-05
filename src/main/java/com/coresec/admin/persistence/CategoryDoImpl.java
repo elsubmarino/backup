@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.coresec.admin.domain.Canonical_s;
 import com.coresec.admin.domain.Category;
 import com.coresec.admin.domain.CategoryNames;
 import com.coresec.admin.domain.SearchCriteria;
@@ -64,6 +65,7 @@ public class CategoryDoImpl implements CategoryDo {
 	public String getCategoryName(String f_ca_id) {
 		return sqlSession.selectOne(namespace+".getCategoryName",f_ca_id);
 	}
+	
 
 
 }

@@ -47,6 +47,9 @@
 	<delete id="delete">
 		delete from tbl_survey where f_id=#{f_id}
 	</delete>
+	<delete id="deleteItems">
+		delete from tbl_survey_items where f_uid=#{f_uid}
+	</delete>
 
 	<select id="getCount" resultType="Integer">
 		select count(*) from tbl_survey 
@@ -79,6 +82,21 @@
 	<![CDATA[
 		select * from tbl_survey where f_start <= (select now()) and f_end >= (select now()) order by f_id asc
 	]]>
+	</select>
+	
+	
+	<select id="applyForSurveyItems" resultType="Survey_items">
+	<![CDATA[
+		select * from tbl_survey_items where f_uid=#{f_uid}
+	]]>
+	</select>
+	
+	<select id="getResult" resultType="survey">
+		select * from
+	</select>
+	
+	<select id="updateCount">
+		update tbl_survey_items set f_count=f_count+1 where f_id=#{f_id}
 	</select>
 
 </mapper>

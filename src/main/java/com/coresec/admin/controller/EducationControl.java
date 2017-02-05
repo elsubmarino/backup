@@ -88,10 +88,10 @@ public class EducationControl {
 		pageMaker.setCri(cri);
 		educationDo.insertEducation(education);
 		
-		HttpSession sess=request.getSession(false);
-		Map<String,Integer> list=(Map<String, Integer>) sess.getAttribute("list");
-		list.put("category",educationDo.getBadge());
-		sess.setAttribute("list", list);
+		//HttpSession sess=request.getSession(false);
+		//Map<String,Integer> list=(Map<String, Integer>) sess.getAttribute("list");
+		//list.put("category",educationDo.getBadge());
+		//sess.setAttribute("list", list);
 		
 		
 		return "redirect:/education/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());

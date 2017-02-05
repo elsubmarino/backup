@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.coresec.admin.domain.SearchCriteria;
 import com.coresec.admin.domain.Survey;
+import com.coresec.admin.domain.Survey_items;
 
 public interface SurveyDo {
 	//selectOne
@@ -27,6 +28,7 @@ public interface SurveyDo {
 
 	//apply
 	List<Survey> applyForSurvey();
+	List<Survey_items> applyForSurveyItems(int f_uid);
 	
 	
 	//new badge
@@ -35,4 +37,10 @@ public interface SurveyDo {
 	public int getFid();
 	
 	public void insertItem(Map<String,Object> map);
+	
+	public void deleteItems(int f_uid);
+	
+	public void updateCount(int f_id);
+
+	
 }

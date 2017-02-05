@@ -40,7 +40,7 @@
 									<tr>
 										<th>출력 순서</th>
 										<td colspan="3"><label class="checkbox-inline"><input
-												type="checkbox" name="use" id="use">체크시 팝업 사용</label></td>
+												type="number" name="f_sort">체크시 팝업 사용</label></td>
 									</tr>
 									
 								</tbody>
@@ -77,16 +77,15 @@
 		});
 
 		$("#popupCreate").click(function() {
-			var checked = $("#use").is(":checked");
-			if (checked) {
-				$("#f_use").val('Y');
-			} else {
-				$("#f_use").val('N');
-			}
 			var f_subject = $("[name=f_subject]");
+			var f_sort=$("[name=f_sort]");
 			if (!f_subject.val()) {
-				alert("팝업 제목을 입력하세요!");
+				alert("제목을 입력하세요!");
 				f_subject.focus();
+				return;
+			}
+			if(!f_sort.val()){
+				alert("출력 순서를 입력하세요!");
 				return;
 			}
 			$("#popupCreateForm").submit();

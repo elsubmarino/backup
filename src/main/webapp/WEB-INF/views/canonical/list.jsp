@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>온라인 문의</h1>
+		<h1>연혁 관리</h1>
 		<ol class="breadcrumb">
 			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">온라인 문의</li>
+			<li class="active">연혁 관리</li>
 		</ol>
 	</section>
 
@@ -44,8 +44,8 @@
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
-						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;" id="popupRegister">등록하기</button>
+						<a href="create?${pageMaker.makeSearch(pageMaker.cri.getPage()) }" class="btn btn-warning"
+							style="margin-bottom: 20px;" id="register">등록하기</a>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
@@ -61,11 +61,8 @@
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>구분</th>
-									<th>이름</th>
-									<th>휴대번호</th>
-									<th>이메일</th>
-									<th>등록일</th>
+									<th>연혁 제목</th>
+									<th>연혁 년도</th>
 									<th>수정/삭제</th>
 								</tr>
 							</thead>
@@ -73,12 +70,8 @@
 								<c:forEach items="${list }" var="item">
 									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${ite.f_id }">
 										<td class="text-center">${item.f_id }</td>
-										<td style="text-indent: 5px;">${item.f_type2 }</td>
-										<td class="text-center">${item.f_name }</td>
-										<td class="text-center">${item.f_hp }</td>
-										<td class="text-center">${item.f_email }</td>
-										<td class="text-center"><fmt:formatDate
-												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+										<td style="text-indent: 5px;">${item.f_title }</td>
+										<td class="text-center">${item.f_date }</td>
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"

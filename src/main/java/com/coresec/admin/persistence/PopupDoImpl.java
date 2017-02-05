@@ -48,5 +48,7 @@ public class PopupDoImpl implements PopupDo{
 	public int getBadge() {
 		return sqlSession.selectOne(namespace+".getBadget");
 	}
+	
+	
 
 }

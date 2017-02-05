@@ -23,6 +23,10 @@
 
 		order by f_id desc limit #{pageStart}, #{perPageNum}
 	</select>
+	
+	<select id="updateEducation">
+		update from tbl_education set f_code=#{f_code}, f_subject=#{f_subject}, f_elevel=#{f_elevel}, f_target=#{f_target}, f_type1_1
+	</select>
 
 	<select id="countsEducation" resultType="Integer">
 		select count(*) from

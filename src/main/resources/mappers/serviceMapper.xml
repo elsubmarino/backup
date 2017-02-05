@@ -22,9 +22,9 @@
 
 	<insert id="insert">
 		insert into
-		tbl_service(f_skin,f_board_name,f_category,f_comment_img_width,f_one_page_num,f_ip_view,f_upload_num,f_comment_use,f_reply_use,f_file_use,f_hidden_use,f_write,f_read,f_edit,f_delete,f_reply,f_comment,f_comment_del,f_link,f_top_comment,f_bottom_comment)
-		values(#{f_skin},#{f_board_name},#{f_category},#{f_comment_img_width},#{f_one_page_num},#{f_ip_view},#{f_upload_num},#{f_comment_use},#{f_reply_use},#{f_file_use},#{f_hidden_use},#{f_write},#{f_read},#{f_edit},#{f_delete},#{f_reply},#{f_comment},#{f_comment_del},#{f_link},#{f_top_comment},#{f_bottom_comment})
-	</insert>
+		tbl_service(f_subject,f_sort,f_wdate)
+		values(#{f_subject},#{f_sort},now());
+		</insert>
 
 	<update id="update">
 		update tbl_service set f_skin=#{f_skin},

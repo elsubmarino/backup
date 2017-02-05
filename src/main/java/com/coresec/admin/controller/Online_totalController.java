@@ -7,11 +7,13 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coresec.admin.domain.Online_total;
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
+import com.coresec.admin.domain.Service;
 import com.coresec.admin.persistence.Online_totalDo;
 
 @Controller
@@ -42,4 +44,19 @@ public class Online_totalController {
 		online_totalDo.delete(f_id);
 		return "redirect:/online_total/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
+	
+	@RequestMapping(value = "/create")
+	public String create() {
+		return "/online_total/create";
+	}
+
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public String create(Online_total item) {
+	
+		online_totalDo.insert(item);
+		
+		
+		return "redirect:/online_total/list";
+	}
+
 }

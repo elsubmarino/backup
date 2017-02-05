@@ -6,44 +6,60 @@
 
 	<sql id="search">
 		<if test="keyword != null">
-			where f_subject like CONCAT('%',#{keyword},'%')
+			where f_title like CONCAT('%',#{keyword},'%')
 		</if>
 	</sql>
-	<select id="selectList" resultType="Online_total">
-		select * from tbl_history where f_type2 not like '%접수신청%'
+	<select id="selectList" resultType="Canonical">
+		select * from tbl_history 
 		<include refid="search"></include>
-
-		order by
-		f_wdate desc limit #{pageStart}, #{perPageNum}
+		order by f_id desc limit #{pageStart}, #{perPageNum}
 	</select>
 
-	<select id="selectOne" resultType="Online_total">
-		select
-		f_id,f_board_name,f_skin,f_category,f_comment_img_width,f_one_page_num,f_ip_view,f_upload_num,f_comment_use,f_file_use,f_hidden_use,f_write,f_read,f_edit,f_delete,f_reply,f_comment,f_comment_del,f_link,f_top_comment,f_bottom_comment
+	<select id="selectOne" resultType="Canonical">
+		select *
 		from tbl_history where
 		f_id=#{f_id} order by
 		f_id desc
 	</select>
+	
+	<select id="selectOneHistory_s" resultType="Canonical_s">
+		select * from tbl_history_s where f_hid=#{f_hid} order by f_id asc
+	</select>
 
 	<insert id="insert">
 		insert into
-		tbl_history(f_skin,f_board_name,f_category,f_comment_img_width,f_one_page_num,f_ip_view,f_upload_num,f_comment_use,f_reply_use,f_file_use,f_hidden_use,f_write,f_read,f_edit,f_delete,f_reply,f_comment,f_comment_del,f_link,f_top_comment,f_bottom_comment)
-		values(#{f_skin},#{f_board_name},#{f_category},#{f_comment_img_width},#{f_one_page_num},#{f_ip_view},#{f_upload_num},#{f_comment_use},#{f_reply_use},#{f_file_use},#{f_hidden_use},#{f_write},#{f_read},#{f_edit},#{f_delete},#{f_reply},#{f_comment},#{f_comment_del},#{f_link},#{f_top_comment},#{f_bottom_comment})
+		tbl_history(f_title,f_date) values(#{f_title},#{f_date})
+	</insert>
+	
+	<insert id="insertItem">
+		insert into tbl_history_s(f_hid,f_comment) values(#{f_hid},#{f_comment})
 	</insert>
 
 	<update id="update">
-		update tbl_history set f_skin=#{f_skin},
-		f_board_name=#{f_board_name},f_category=#{f_category},f_comment_img_width=#{f_comment_img_width},f_one_page_num=#{f_one_page_num},f_ip_view=#{f_ip_view},f_upload_num=#{f_upload_num},f_comment_use=#{f_comment_use},f_reply_use=#{f_reply_use},f_file_use=#{f_file_use},f_hidden_use=#{f_hidden_use},f_write=#{f_write},f_read=#{f_read},f_edit=#{f_edit},f_delete=#{f_delete},f_reply=#{f_reply},f_comment=#{f_comment},f_comment_del=#{f_comment_del},f_link=#{f_link},f_top_comment=#{f_top_comment},f_bottom_comment=#{f_bottom_comment}
-		where f_id=#{f_id}
+		update tbl_history set f_title=#{f_title},f_date=#{f_date} where f_id=#{f_id}
+	</update>
+	
+	
+
+	<update id="updateCanonical_s">
+		update tbl_history_s set f_comment=#{f_comment}	where f_id=#{f_id}
 	</update>
 
 	<delete id="delete">
 		delete from tbl_history where f_id=#{f_id}
 	</delete>
+	
+	<delete id="deleteCanonical_s">
+		delete from tbl_history_s where f_hid=#{f_hid}
+	</delete>
 
 	<select id="getCount" resultType="Integer">
-		select count(*) from tbl_history where f_type2 not like '%접수신청%'
+		select count(*) from tbl_history 
 		<include refid="search"></include>
+	</select>
+	
+	<select id="getF_id" resultType="Integer">
+		select max(f_id) from tbl_history
 	</select>
 
 	<!-- 새로운 뱃지 -->
