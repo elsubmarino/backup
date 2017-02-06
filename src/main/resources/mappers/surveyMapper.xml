@@ -25,7 +25,11 @@
 		f_id desc
 	</select>
 	<insert id="insertItem">
-	insert into tbl_survey_items(f_item,f_uid) values(#{f_item},#{f_uid})
+	insert into tbl_survey_items(f_item,f_uid) values(#{f_item},#{f_uid}),
+	</insert>
+	
+	<insert id="insertIp">
+	insert into tbl_survey_ip(f_uid,f_ip) values(#{f_uid},#{f_ip})
 	</insert>
 	
 	<select id="getFid" resultType="int">
@@ -99,12 +103,16 @@
 		update tbl_survey_items set f_count=f_count+1 where f_id=#{f_id}
 	</select>
 	
-	<select id="getCountByFuid">
+	<select id="getCountByFuid" resultType="int">
 		select sum(f_count) from tbl_survey_items where f_uid=#{f_uid}
 	</select>
 	
-	<select id="getCountByFid">
+	<select id="getCountByFid" resultType="int">
 		select sum(f_count) from tbl_survey_items where f_id=#{f_id}
+	</select>
+	
+	<select id="getItemsByFuid" resultType="Survey_items">
+		select * from tbl_survey_items where f_uid=#{f_uid}
 	</select>
 	
 	

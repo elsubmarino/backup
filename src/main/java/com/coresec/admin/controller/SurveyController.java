@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
 import com.coresec.admin.domain.Survey;
+import com.coresec.admin.domain.Survey_items;
 import com.coresec.admin.persistence.SurveyDo;
 
 @Controller
@@ -34,7 +35,10 @@ public class SurveyController {
 		map.put("f_id", String.valueOf(f_id));
 		map.put("f_uid", String.valueOf(f_uid));
 		map.put("f_subject",f_subject);
+		map.put("allCount", String.valueOf(surveyDo.getCountByFuid(f_uid)));
+		List<Survey_items> list=surveyDo.getItemsByFuid(f_uid);
 		ra.addFlashAttribute("item",map);
+		ra.addFlashAttribute("list",list);
 		
 		
 		return "redirect:/survey/result";

@@ -44,6 +44,11 @@ public interface SurveyDo {
 	
 	public int getCountByFuid(int f_uid);
 	public int getCountByFid(int f_id);
+	
+	public List<Survey_items> getItemsByFuid(int f_uid);
+	
+	public int insertIp(String f_ip);
+	
 
 	
 }

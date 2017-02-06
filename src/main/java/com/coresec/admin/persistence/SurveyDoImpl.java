@@ -93,6 +93,16 @@ public class SurveyDoImpl implements SurveyDo {
 	public int getCountByFid(int f_id) {
 		return sqlSession.selectOne(namespace+".getCountByFid",f_id);
 	}
+
+	@Override
+	public List<Survey_items> getItemsByFuid(int f_uid) {
+		return sqlSession.selectList(namespace+".getItemsByFuid",f_uid);
+	}
+
+	@Override
+	public int insertIp(String f_ip) {
+		return sqlSession.insert(namespace+".insertIp",f_ip);
+	}
 	
 
 }

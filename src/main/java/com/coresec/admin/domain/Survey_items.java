@@ -6,6 +6,16 @@ public class Survey_items {
 	private int f_id;
 	private String f_item;
 	private int f_uid;
+	private int f_count;
+	
+	
+	
+	public int getF_count() {
+		return f_count;
+	}
+	public void setF_count(int f_count) {
+		this.f_count = f_count;
+	}
 	public int getF_id() {
 		return f_id;
 	}

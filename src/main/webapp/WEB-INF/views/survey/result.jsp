@@ -11,11 +11,11 @@
 <script type='text/javascript' src='//code.jquery.com/jquery-latest.js'></script>
 <h3>${item.f_subject }</h3>
 <ul class='list-group'>
-	<li class='list-group-item'>
-		<div class='progress'>
-			<div class='progress-bar' role='progressbar' aria-value='70'
-				aria-valuemin='0' aria-valuemax='100' style='width: 70%'></div>
-		</div>
-	</li>
+	<c:forEach items="${list}" var="itm">
+			<div class='progress'>
+				<div class='progress-bar' role='progressbar' aria-value=<fmt:formatNumber value="${itm.f_count/item.allCount*100 }" maxFractionDigits="0" />
+					aria-valuemin='0' aria-valuemax='100' style='width: <fmt:formatNumber type="percent" value="${itm.f_count/item.allCount}"/>'><fmt:formatNumber value='${itm.f_count/item.allCount*100 }' maxFractionDigits='0'/>%</div><span class="progress-completed text-right">${itm.f_item }</span>
+			</div>
+		</c:forEach>
 </ul>
 </html>
