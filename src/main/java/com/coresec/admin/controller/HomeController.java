@@ -42,17 +42,8 @@ public class HomeController {
 			List<Survey_items> listForSurveyItems=surveyDo.applyForSurveyItems(temp.getF_id());
 			surveyList.add(listForSurveyItems);
 			surveyListTitle.add(temp.getF_subject());
+
 		}
-		String root=request.getSession().getServletContext().getRealPath("/");
-		System.out.println(root);
-		System.out.println(root);
-		System.out.println(root);
-		System.out.println(root);
-		System.out.println(root);
-		System.out.println(root);
-		System.out.println(root);
-		System.out.println(root);
-		System.out.println(root);
 		
 		request.setAttribute("surveyList",surveyList);
 		request.setAttribute("surveyListTitle",surveyListTitle);

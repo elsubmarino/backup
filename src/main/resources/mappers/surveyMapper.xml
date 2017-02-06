@@ -98,5 +98,15 @@
 	<select id="updateCount">
 		update tbl_survey_items set f_count=f_count+1 where f_id=#{f_id}
 	</select>
+	
+	<select id="getCountByFuid">
+		select sum(f_count) from tbl_survey_items where f_uid=#{f_uid}
+	</select>
+	
+	<select id="getCountByFid">
+		select sum(f_count) from tbl_survey_items where f_id=#{f_id}
+	</select>
+	
+	
 
 </mapper>

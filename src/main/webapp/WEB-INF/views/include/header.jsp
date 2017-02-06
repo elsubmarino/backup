@@ -73,11 +73,11 @@
 								class="hidden-xs">${sessionScope.admin.f_name}</span>
 						</a></li>
 						<!-- 비밀번호 변경, 로그아웃 -->
-						<li><a class="btn" href="/admin" style="border: 0;">홈페이지</a>
+						<li><a class="btn" href="/" style="border: 0;">홈페이지</a>
 						</li>
 						<li><a class="btn" data-toggle="modal"
 							data-target="#passwordChange" style="border: 0;">비밀번호 변경</a></li>
-						<li><a class="btn" href="/logout" style="border: 0;">로그아웃</a></li>
+						<li><a class="btn" href="/admin/logout" style="border: 0;">로그아웃</a></li>
 						<!-- Control Sidebar Toggle Button -->
 						<li><a style="border-left: 0;" href="#"
 							data-toggle="control-sidebar"><i class="fa fa-gears"></i></a></li>

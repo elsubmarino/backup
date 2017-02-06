@@ -41,6 +41,9 @@ public interface SurveyDo {
 	public void deleteItems(int f_uid);
 	
 	public void updateCount(int f_id);
+	
+	public int getCountByFuid(int f_uid);
+	public int getCountByFid(int f_id);
 
 	
 }

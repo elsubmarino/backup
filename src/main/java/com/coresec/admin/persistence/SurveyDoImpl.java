@@ -83,6 +83,16 @@ public class SurveyDoImpl implements SurveyDo {
 	public void updateCount(int f_id) {
 		sqlSession.update(namespace+".updateCount",f_id);
 	}
+
+	@Override
+	public int getCountByFuid(int f_uid) {
+		return sqlSession.selectOne(namespace+".getCountByFuid",f_uid);
+	}
+
+	@Override
+	public int getCountByFid(int f_id) {
+		return sqlSession.selectOne(namespace+".getCountByFid",f_id);
+	}
 	
 
 }

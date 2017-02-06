@@ -38,10 +38,10 @@ var availHeight=screen.availHeight;
 	</c:forEach>
 	<c:forEach items="${surveyList }" var="list" varStatus="stat">
 		<script>
-	blah=window.open("",null,"height=500,width=500,left=0,top=0");
+	blah=window.open("",null,"height=600,width=500,left=0,top=0");
 	blah.document.write("<link rel='stylesheet' href='/admin/resources/bootstrap/css/bootstrap.min.css'/>");
 	blah.document.write("<script type='text/javascript' src='//code.jquery.com/jquery-latest.js'>\x3C/script>");
-	blah.document.write("<script>var f_uidn;/w3C/script>");
+	blah.document.write("<script>var f_uidn;\x3C/script>");
 	blah.document.write("<h3>${surveyListTitle[stat.index]}</h3>");
 	blah.document.write("<form id='poll' method=POST action='/admin/survey/poll'>")
 	blah.document.write("<input type='hidden' name='f_id' id='f_id'>");

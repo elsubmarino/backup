@@ -12,7 +12,7 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
 		<property name="url"
-			value="jdbc:log4jdbc:mysql://localhost:3306/securityAdmin?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"></property>
+			value="jdbc:log4jdbc:mysql://192.168.11.88:3307/coresec?useSSL=false&amp;serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf8"></property>
 		<property name="username" value="security"></property>
 		<property name="password" value="security"></property>
 	</bean>

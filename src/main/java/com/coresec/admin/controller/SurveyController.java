@@ -1,5 +1,6 @@
 package com.coresec.admin.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
@@ -26,17 +28,22 @@ public class SurveyController {
 	SurveyDo surveyDo;
 	
 	@RequestMapping(value="/poll")
-	public String poll(@RequestParam(value="f_id") int f_id,@RequestParam(value="f_uid") int f_uid,@RequestParam(value="f_subject") String f_subject,HttpServletResponse response){
+	public String poll(@RequestParam(value="f_id") int f_id,@RequestParam(value="f_uid") int f_uid,@RequestParam(value="f_subject") String f_subject,HttpServletResponse response,RedirectAttributes ra) throws IOException{
 		surveyDo.updateCount(f_id);
+		Map<String,String> map=new HashMap<>();
+		map.put("f_id", String.valueOf(f_id));
+		map.put("f_uid", String.valueOf(f_uid));
+		map.put("f_subject",f_subject);
+		ra.addFlashAttribute("item",map);
+		
 		
 		return "redirect:/survey/result";
 	}
-
+	
 	@RequestMapping(value="/result")
 	public void result(){
-		
 	}
-	
+
 	@RequestMapping(value="/list")
 	public String list(SearchCriteria cri,Model model){
 		PageMaker pageMaker = new PageMaker();
