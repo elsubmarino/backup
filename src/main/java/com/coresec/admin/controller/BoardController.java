@@ -6,10 +6,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.text.NumberFormat;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.stereotype.Controller;
@@ -68,15 +68,17 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(SetBoard setBoard) throws FileNotFoundException, IOException {
+	public String create(SetBoard setBoard,HttpServletRequest request) throws FileNotFoundException, IOException {
 		setBoardDo.updateAdministration();
 		String link = setBoard.getF_link();
 		int max = setBoardDo.getMaximum();
 
 		// 추후 디렉토리명 변경
-		String path = "C:\\Users\\jisun\\git\\coresecadmin\\src\\main\\webapp\\WEB-INF\\views\\sub\\" + link + "\\"
+		String rootPath=request.getSession().getServletContext().getRealPath("/");
+		String path = rootPath+"\\WEB-INF\\views\\sub\\" + link + "\\"
 				+ max;
-		createFile(path);
+		
+		createFile(path,rootPath);
 
 		setBoard.setF_link("/admin/bbs/" + link + "/" + max + "/list");
 		setBoard.setF_read(setBoard.getF_read().replaceAll(",", ""));
@@ -126,26 +128,25 @@ public class BoardController {
 		return "redirect:/setBoard/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 
-	private boolean createFile(String path) throws FileNotFoundException, IOException {
+	private boolean createFile(String path,String rootPath) throws FileNotFoundException, IOException {
 		File file = new File(path);
-		System.out.println(file.toPath());
 		if (!file.exists()) {
 			file.mkdirs();
 			FileCopyUtils.copy(
 					new FileInputStream(
-							"C:\\Users\\jisun\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\list.jsp"),
+							rootPath+"\\resources\\template\\board\\list.jsp"),
 					new FileOutputStream(path + "\\list.jsp"));
 			FileCopyUtils.copy(
 					new FileInputStream(
-							"C:\\Users\\jisun\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\create.jsp"),
+							rootPath+"\\resources\\template\\board\\create.jsp"),
 					new FileOutputStream(path + "\\create.jsp"));
 			FileCopyUtils.copy(
 					new FileInputStream(
-							"C:\\Users\\jisun\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\modify.jsp"),
+							rootPath+"\\resources\\template\\board\\modify.jsp"),
 					new FileOutputStream(path + "\\modify.jsp"));
 			FileCopyUtils.copy(
 					new FileInputStream(
-							"C:\\Users\\jisun\\git\\coresecadmin\\src\\main\\webapp\\resources\\template\\board\\read.jsp"),
+							rootPath+"\\resources\\template\\board\\read.jsp"),
 					new FileOutputStream(path + "\\read.jsp"));
 			return true;
 		}

@@ -43,6 +43,16 @@ public class HomeController {
 			surveyList.add(listForSurveyItems);
 			surveyListTitle.add(temp.getF_subject());
 		}
+		String root=request.getSession().getServletContext().getRealPath("/");
+		System.out.println(root);
+		System.out.println(root);
+		System.out.println(root);
+		System.out.println(root);
+		System.out.println(root);
+		System.out.println(root);
+		System.out.println(root);
+		System.out.println(root);
+		System.out.println(root);
 		
 		request.setAttribute("surveyList",surveyList);
 		request.setAttribute("surveyListTitle",surveyListTitle);

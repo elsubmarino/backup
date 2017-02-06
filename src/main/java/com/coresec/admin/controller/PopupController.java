@@ -115,7 +115,8 @@ public class PopupController {
 
 			String fileName = upload.getOriginalFilename();
 			byte[] bytes = upload.getBytes();
-			String uploadPath = "C:\\Users\\jiwankim\\git\\coresecadmin\\src\\main\\webapp\\resources\\admin\\popup\\img\\" + fileName;
+			String rootPath=request.getSession().getServletContext().getRealPath("/");
+			String uploadPath = rootPath+"\\resources\\admin\\popup\\img\\" + fileName;
 
 			out = new FileOutputStream(new File(uploadPath));
 			out.write(bytes);

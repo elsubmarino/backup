@@ -166,7 +166,6 @@
 			$(this).removeClass("btn-warning");
 			$(this).addClass("btn-primary");
 			change=$(this);
-			alert($(this).val());
 			$("[name='f_position']").val($(this).val());
 		})
 		
