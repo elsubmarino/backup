@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.coresec.admin.domain.PageMaker;
@@ -57,9 +59,20 @@ public class PopupController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String registerPOST(SearchCriteria cri, Popup popup,HttpServletRequest request) {
+	public String registerPOST(SearchCriteria cri, Popup popup,HttpServletRequest request,WebRequest req,@RequestParam(value="map") String[]map,@RequestParam(value="src") String src) {
+		int i=0;
+		String coords=request.getParameter("coords");
+		StringTokenizer ts=new StringTokenizer(coords,"|");
+		String appendMap="<img src='"+src+"' width='"+popup.getF_width()+"' height='"+popup.getF_height()+"' usemap='#"+popup.getF_subject()+"'><map name='"+popup.getF_subject()+"'>";
+		while(ts.hasMoreTokens()){
+			appendMap+="<area shape='rect' coords='"+ts.nextToken()+"' href='"+map[i++]+"'>";
+		}
+	
+				
 		
-		popup.setF_comment(popup.getF_comment().replaceAll("\r\n", ""));
+
+		appendMap+="</map>";
+		popup.setF_comment(appendMap);
 		popupDo.insertPopup(popup);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -105,7 +118,7 @@ public class PopupController {
 	@RequestMapping(value = "/fileupload", method = RequestMethod.POST)
 	public void communityImageUpload(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam MultipartFile upload) {
-
+		
 		OutputStream out = null;
 		PrintWriter printWriter = null;
 		response.setCharacterEncoding("utf-8");
@@ -116,18 +129,16 @@ public class PopupController {
 			String fileName = upload.getOriginalFilename();
 			byte[] bytes = upload.getBytes();
 			String rootPath=request.getSession().getServletContext().getRealPath("/");
+			System.out.println(rootPath);
 			String uploadPath = rootPath+"\\resources\\admin\\popup\\img\\" + fileName;
 
 			out = new FileOutputStream(new File(uploadPath));
 			out.write(bytes);
-			String callback = request.getParameter("CKEditorFuncNum");
+			String fileUrl = "/admin/resources/admin/popup/img/" + fileName;// url경로
+			String json="{\"filePath\":\""+fileUrl+"\",\"msg\":\"이미지 업로드에 성공하였습니다!\"}";
 
 			printWriter = response.getWriter();
-			String fileUrl = "/admin//resources/admin/popup/img/" + fileName;// url경로
-
-			printWriter.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
-					+ ",'" + fileUrl + "','이미지를 업로드 하였습니다.'" + ")</script>");
-			printWriter.flush();
+			printWriter.println(json);
 
 		} catch (IOException e) {
 			e.printStackTrace();

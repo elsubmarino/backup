@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>수강 신청</h1>
+		<h1>접수 신청 관리</h1>
 		<ol class="breadcrumb">
 			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">수강 신청</li>
+			<li class="active">접수 신청 관리</li>
 		</ol>
 	</section>
 
