@@ -7,6 +7,9 @@
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 
 <!-- Content Wrapper. Contains page content -->
+<script>
+alert("${pageContext.request.requestURI}");
+</script>
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -73,61 +76,17 @@
 										</div>
 										</tr>
 									<tr>
-									<tr>
-										<th>창크기 가로</th>
-										<td><input type="text" name="f_width"
-											class="form-control" value="${item.f_width }"><label>*
-												px 단위</label></td>
-										<th>창크기 세로</th>
-										<td><input type="text" name="f_height"
-											class="form-control" value="${item.f_height }"><label>*
-												px 단위</label></td>
-									</tr>
+									
 									<tr>
 										<th>내용</th>
 										<td colspan="3">
-											<div class="box box-info">
-
-												<!-- /.box-header -->
-												<div class="box-body pad">
-													<form>
-														<textarea class="ckeditor" id="editor1" name="f_comment"
-															rows="10" cols="80">${item.f_comment }
-                    </textarea>
-                    	<script type="text/javascript">
-															//<![CDATA[
-															CKEDITOR
-																	.replace(
-																			'editor1',
-																			{
-																				'filebrowserImageUploadUrl' : '/admin/popup/fileupload',
-
-																			});
-
-															CKEDITOR
-																	.on(
-																			'dialogDefinition',
-																			function(
-																					ev) {
-																				var dialogName = ev.data.name;
-																				var dialogDefinition = ev.data.definition;
-
-																				switch (dialogName) {
-																				case 'image': //Image Properties dialog
-																					//dialogDefinition.removeContents('info');
-																					dialogDefinition
-																							.removeContents('Link');
-																					dialogDefinition
-																							.removeContents('advanced');
-																					break;
-																				}
-																			});
-
-															//]]>
-														</script>
-													</form>
-												</div>
-											</div>
+											<form method="POST" id="pictureForm"
+												action="/admin/popup/fileupload"
+												enctype="multipart/form-data">
+												<input type="file" accept="image/*" name="upload">
+												<button type="button" class="btn btn-success" id="picture">사진
+													전송</button>
+											</form>
 										</td>
 									</tr>
 								</tbody>
@@ -153,34 +112,138 @@
 
 <script src="/admin/resources/plugins/datepicker/bootstrap-datepicker.js"></script>
 <script>
-	$(function() {
-		var change;
-		//버튼 색갈 체인지
-		$("[name='position']").click(function(event){
-			if(change!=undefined){
-				change.removeClass("btn-primary");
-				change.addClass("btn-warning");
+$(function() {
+	//사진 올리기
+
+	 x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+	var i=1;
+	var width;
+	var height;
+	var src;
+	var coords="";
+
+	function make_base(data) {
+		var canvas = document.getElementById("pictureMe");
+		context = canvas.getContext("2d");
+		base_image = new Image();
+		src=data.filePath;
+		base_image.src = src;
+		base_image.onload = function() {
+			width=base_image.width;
+			height=base_image.height;
+			canvas.height = height;
+			canvas.width = width;
+			context.drawImage(base_image, 0, 0);
+		}
+	}
+
+	$("#picture").click(function() {
+		var formData = new FormData();
+		formData.append("upload", $("input[name='upload']")[0].files[0]);
+		$.ajax({
+			url : '/admin/popup/fileupload',
+			data : formData,
+			type : 'POST',
+			processData : false,
+			contentType : false,
+			success : function(result) {
+				var data = JSON.parse(result);
+				alert(data.msg);
+				
+				function reCalc() {
+					var x3 = Math.min(x1, x2);
+					var x4 = Math.max(x1, x2);
+					var y3 = Math.min(y1, y2);
+					var y4 = Math.max(y1, y2);
+					document.getElementById('div').style.left = x3 + 'px';
+					document.getElementById('div').style.top = y3 + 'px';
+					document.getElementById('div').style.width = x4 - x3 + 'px';
+					document.getElementById('div').style.height = y4 - y3 + 'px';
+				}
+				
+
+				var content="<div id='canvas-wrap'><canvas id='pictureMe'></canvas><div id='div' hidden><h6 style='color:white'>"+i+"</h6></div></div>";
+				$("#test").before(content);
+				$("#pictureMe").mousedown(function(e) {
+					document.getElementById("div").hidden=0;
+					x1 = e.offsetX;
+					y1 = e.offsetY;
+					reCalc();
+				});
+
+				$("#pictureMe").mousemove(function(e) {
+					x2 = e.offsetX;
+					y2 = e.offsetY;
+					reCalc();
+				});
+				$("#pictureMe").mouseup(function(e) {
+					var blah=$("#div").clone();
+					blah.css("z-index",i)
+					blah.html("<h6 style='color:white'>"+i+"</h6>");
+					$("#pictureMe").after(blah);
+					document.getElementById("div").hidden=1;
+					var content="<div class='input-group'><span class='input-group-addon'>"+i+"</span><input type=\"text\" name=\"map\" class=\"form-control\"></div>";
+					coords+=x1+","+y1+","+x2+","+y2+"|";
+					$("#test").before(content);
+					i++;
+					
+				});
+				make_base(data);
+
 			}
-			event.preventDefault();
-			$(this).removeClass("btn-warning");
-			$(this).addClass("btn-primary");
-			change=$(this);
-			$("[name='f_position']").val($(this).val());
-		})
-		var f_position=Number("${item.f_position}");
-		$("[name=position]").eq(f_position-1).trigger("click");
-		$("[name='f_start'], [name='f_end']").datepicker({
-			format : 'yyyy-mm-dd',
-			autoclose : true
-		});
-		$("#popupModify").click(function() {
-			var checked = $("#use").is(":checked");
-			if (checked) {
-				$("#f_use").val('Y');
-			} else {
-				$("#f_use").val('N');
-			}
-			$("#popupModifyForm").submit();
+
 		});
 	});
+	var f_position=Number("${item.f_position}");
+	var change;
+	//버튼 색갈 체인지
+	$("[name='position']").click(function(event) {
+		if (change != undefined) {
+			change.removeClass("btn-primary");
+			change.addClass("btn-warning");
+		}
+		event.preventDefault();
+		$(this).removeClass("btn-warning");
+		$(this).addClass("btn-primary");
+		change = $(this);
+		$("[name='f_position']").val($(this).val());
+	});
+		$("[name=position]").eq(f_position-1).trigger("click");
+
+
+	$("[name='f_start'], [name='f_end']").datepicker({
+		format : 'yyyy-mm-dd',
+		langauge : "kr",
+		autoclose : true
+	});
+
+	$("#popupModify").click(function() {
+		var checked = $("#use").is(":checked");
+		if (checked) {
+			$("#f_use").val('Y');
+		} else {
+			$("#f_use").val('N');
+		}
+		var f_subject = $("[name=f_subject]");
+		var f_position = $("[name=f_position]");
+		if (!f_subject.val()) {
+			alert("팝업 제목을 입력하세요!");
+			f_subject.focus();
+			return;
+		}
+		if (!f_position.val()) {
+			alert("위치를 선택해주세요!");
+			return;
+		}
+		$("[name=f_width]").val(width);
+		$("[name=f_height]").val(height);
+		$("[name=src]").val(src);
+		coords=coords.substring(0,coords.length-1);
+		$("[name=coords]").val(coords);
+
+		
+
+		$("#popupModifyForm").submit();
+	});
+});
 </script>

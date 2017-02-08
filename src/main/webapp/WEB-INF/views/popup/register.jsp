@@ -56,7 +56,9 @@
 									<tr>
 										<th>팝업 제목</th>
 										<td colspan="3"><input type="text" class="form-control"
-											name="f_subject"></td>
+											name="f_subject" 
+											<c:if test="${ }
+											></td>
 									</tr>
 									<tr>
 										<th>사용 여부</th>
@@ -188,7 +190,7 @@
 						document.getElementById('div').style.height = y4 - y3 + 'px';
 					}
 					
-
+	
 					var content="<div id='canvas-wrap'><canvas id='pictureMe'></canvas><div id='div' hidden><h6 style='color:white'>"+i+"</h6></div></div>";
 					$("#test").before(content);
 					$("#pictureMe").mousedown(function(e) {
