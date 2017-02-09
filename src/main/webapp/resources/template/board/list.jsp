@@ -45,7 +45,7 @@
 				<div class="box-body">
 					<div class="col-md-2">
 						<button type="button" class="btn btn-warning"
-							style="margin-bottom: 20px;" id="itemRegister">글쓰기</button>
+							style="margin-bottom: 20px;" id="register">글쓰기</button>
 					</div>
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
@@ -114,5 +114,9 @@
 <script>
 	$('tr[data-href]').on("click", function() {
 		document.location = $(this).data('href');
+	});
+	
+	$("#register").click(function(){
+		location.replace("list?mode=create"+${pageMaker.makeSearch(pageMaker.cri.getPage()) }";
 	});
 </script>

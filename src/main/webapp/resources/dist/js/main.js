@@ -68,9 +68,7 @@ $(function() {
 		$("#headerForm").submit();
 	})
 
-	$("#popupRegister").click(function() {
-		location.replace("/admin/popup/register");
-	});
+	
 
 
 	$("#popupDelete").click(function() {

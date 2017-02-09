@@ -6,9 +6,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -50,7 +53,7 @@ public class PopupController {
 		return "/popup/list";
 	}
 
-	@RequestMapping(value = "/register")
+	@RequestMapping(value = "/list",params="mode=create")
 	public String register(SearchCriteria cri, Model model) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -58,7 +61,7 @@ public class PopupController {
 		return "/popup/register";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/register",method = RequestMethod.POST)
 	public String registerPOST(SearchCriteria cri, Popup popup,HttpServletRequest request,WebRequest req,@RequestParam(value="map") String[]map,@RequestParam(value="src") String src) {
 		int i=0;
 		String coords=request.getParameter("coords");
@@ -86,23 +89,52 @@ public class PopupController {
 		return "redirect:/popup/list" + pageMaker.makeSearch(cri.getPage());
 	}
 
-	@RequestMapping(value = "/modify")
+	@RequestMapping(value = "/list",params="mode=modify")
 	public String modify(@RequestParam(value = "f_id") int f_id, Model model, SearchCriteria cri) {
-		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		Popup item = popupDo.selectOnePopup(f_id);
+		String temp=item.getF_comment();
+		Pattern pattern=Pattern.compile("href=\'([^\']*)");
+		Pattern coordsPattern=Pattern.compile("coords=\'([^\']*)");
+		Matcher m=pattern.matcher(temp);
+		System.out.println(temp);
+		List<String> coordsList=new ArrayList<>();
+		List<String> hrefList=new ArrayList<>();
+		int i=0;
+		while(m.find()){
+			hrefList.add(m.group(i).substring(6));
+		}
+		m=coordsPattern.matcher(temp);
+		i=0;
+		while(m.find()){
+			coordsList.add(m.group(i).substring(8));
+		}
+		
 		model.addAttribute("item", item);
 		model.addAttribute("pageMaker", pageMaker);
-		return "/popup/modify";
+		model.addAttribute("coordsList",coordsList);
+		model.addAttribute("hrefList",hrefList);
+		return "/popup/register";
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public String modifyPOST(Popup popup, Model model, SearchCriteria cri) {
+	public String modifyPOST(Popup popup, Model model, SearchCriteria cri,HttpServletRequest request,@RequestParam(value="map") String[]map,@RequestParam(value="src") String src) {
+		int i=0;
+		String coords=request.getParameter("coords");
+		StringTokenizer ts=new StringTokenizer(coords,"|");
+		String appendMap="<img src='"+src+"' width='"+popup.getF_width()+"' height='"+popup.getF_height()+"' usemap='#"+popup.getF_subject()+"'><map name='"+popup.getF_subject()+"'>";
+		while(ts.hasMoreTokens()){
+			appendMap+="<area shape='rect' coords='"+ts.nextToken()+"' href='"+map[i++]+"'>";
+		}
+	
+				
 		
+
+		appendMap+="</map>";
+		popup.setF_comment(appendMap);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		popup.setF_comment(popup.getF_comment().replaceAll("\r\n", ""));
 		popupDo.updatePopup(popup);
 		return "redirect:/popup/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}

@@ -75,19 +75,23 @@ public class BoardController {
 
 		// 추후 디렉토리명 변경
 		String rootPath=request.getSession().getServletContext().getRealPath("/");
-		String path = rootPath+"\\WEB-INF\\views\\sub\\" + link + "\\"
+		String path = rootPath+"\\views\\sub\\" + link + "\\"
 				+ max;
 		
 		createFile(path,rootPath);
-
+		setBoard.setF_comment_img_width("0");
+		setBoard.setF_ip_view("0");
+		setBoard.setF_comment_use("0");
+		setBoard.setF_reply_use("0");
+		setBoard.setF_file_use("0");
+		setBoard.setF_reply("0");
+		setBoard.setF_comment("0");
+		setBoard.setF_comment_del("0");
 		setBoard.setF_link("/admin/bbs/" + link + "/" + max + "/list");
 		setBoard.setF_read(setBoard.getF_read().replaceAll(",", ""));
 		setBoard.setF_write(setBoard.getF_write().replaceAll(",", ""));
 		setBoard.setF_edit(setBoard.getF_edit().replaceAll(",", ""));
 		setBoard.setF_delete(setBoard.getF_delete().replaceAll(",", ""));
-		setBoard.setF_reply(setBoard.getF_reply().replaceAll(",", ""));
-		setBoard.setF_comment(setBoard.getF_comment().replaceAll(",", ""));
-		setBoard.setF_comment_del(setBoard.getF_comment_del().replaceAll(",", ""));
 		setBoardDo.insertSetBoard(setBoard);
 
 		return "redirect:/setBoard/list";
