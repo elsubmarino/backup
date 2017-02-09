@@ -47,7 +47,7 @@ public class MyBoardController {
 	
 		myBoardDo.insert(myBoard);
 		
-		
+				
 		return "redirect:/setBoard/list";
 	}
 

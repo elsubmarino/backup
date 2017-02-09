@@ -28,16 +28,14 @@
 
 
 	<context:component-scan base-package="com.coresec.admin.controller" />
-<!-- 
 	<interceptors>
 		<interceptor>
 			<mapping path="/**" />
-			<exclude-mapping path="/login" />
-			<beans:bean class="com.coresec.admin.controller.BeforeLoginController"></beans:bean>
+			<beans:bean class="com.coresec.admin.controller.WebLogInterceptor"></beans:bean>
 		</interceptor>
-		<interceptor>
-			<mapping path="/popup/**"/>
-			<beans:bean class="com.coresec.admin.controller.HeaderController"></beans:bean>
-		</interceptor>
-	</interceptors> -->
+	</interceptors>
+	<!-- <interceptors> <interceptor> <mapping path="/**" /> <exclude-mapping 
+		path="/login" /> <beans:bean class="com.coresec.admin.controller.BeforeLoginController"></beans:bean> 
+		</interceptor> <interceptor> <mapping path="/popup/**"/> <beans:bean class="com.coresec.admin.controller.HeaderController"></beans:bean> 
+		</interceptor> </interceptors> -->
 </beans:beans>

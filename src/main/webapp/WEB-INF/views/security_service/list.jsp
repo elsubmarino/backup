@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>시큐리티 서비스 문의</h1>
+		<h1>상담 신청 관리</h1>
 		<ol class="breadcrumb">
 			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">시큐리티 서비스 문의</li>
+			<li class="active">상담 신청 관리</li>
 		</ol>
 	</section>
 

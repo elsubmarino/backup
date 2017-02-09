@@ -8,6 +8,8 @@ import java.util.Locale;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,34 +27,36 @@ import com.coresec.admin.persistence.SurveyDo;
 public class HomeController {
 	@Inject
 	PopupDo popupDo;
-	
+
 	@Inject
 	SurveyDo surveyDo;
 
-//	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	// private static final Logger logger =
+	// LoggerFactory.getLogger(HomeController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, HttpServletRequest request) throws IOException {
+
 		List<Popup> list = popupDo.applyForPopups();
 		request.setAttribute("list", list);
-		List<Survey> listForSurvey=surveyDo.applyForSurvey();
+		List<Survey> listForSurvey = surveyDo.applyForSurvey();
 		List<List<Survey_items>> surveyList = new ArrayList<>();
-		List<String> surveyListTitle=new ArrayList<>();
-		for(Survey temp:listForSurvey){
-			List<Survey_items> listForSurveyItems=surveyDo.applyForSurveyItems(temp.getF_id());
+		List<String> surveyListTitle = new ArrayList<>();
+		for (Survey temp : listForSurvey) {
+			List<Survey_items> listForSurveyItems = surveyDo.applyForSurveyItems(temp.getF_id());
 			surveyList.add(listForSurveyItems);
 			surveyListTitle.add(temp.getF_subject());
 
 		}
-		
-		request.setAttribute("surveyList",surveyList);
-		request.setAttribute("surveyListTitle",surveyListTitle);
+
+		request.setAttribute("surveyList", surveyList);
+		request.setAttribute("surveyListTitle", surveyListTitle);
 		return "home";
 
 	}
-	
-	@RequestMapping(value="/test",method=RequestMethod.GET)
-	public String test(){
+
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test() {
 		return "/template/faqTemplate";
 	}
 

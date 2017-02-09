@@ -35,31 +35,22 @@ $(function() {
 		$(".treeview").eq(5).addClass("active");
 	} else if (pathName.indexOf("security_service") != -1) {
 		$(".treeview").removeClass("active");
-		$(".treeview").eq(6).addClass("active");
+		$(".treeview").eq(7).addClass("active");
 	} else if (pathName.indexOf("education_qna") != -1) {
 		$(".treeview").removeClass("active");
-		$(".treeview").eq(7).addClass("active");
+		$(".treeview").eq(8).addClass("active");
 	} else if (pathName.indexOf("survey") != -1) {
 		$(".treeview").removeClass("active");
-		$(".treeview").eq(8).addClass("active");
+		$(".treeview").eq(9).addClass("active");
 	} else if (pathName.indexOf("meta") != -1) {
 		$(".treeview").removeClass("active");
-		$(".treeview").eq(9).addClass("active");
+		$(".treeview").eq(10).addClass("active");
 	} else if (pathName.indexOf("online/") != -1) {
 		$(".treeview").removeClass("active");
-		$(".treeview").eq(10).addClass("active");
-	} else if (pathName.indexOf("service") != -1) {
-		$(".treeview").removeClass("active");
-		$(".treeview").eq(11).addClass("active");
-	} else if (pathName.indexOf("online_total") != -1) {
-		$(".treeview").removeClass("active");
-		$(".treeview").eq(12).addClass("active");
-	} else if (pathName.indexOf("reception") != -1) {
-		$(".treeview").removeClass("active");
-		$(".treeview").eq(13).addClass("active");
+		$(".treeview").eq(6).addClass("active");
 	} else if (pathName.indexOf("statistics") != -1) {
 		$(".treeview").removeClass("active");
-		$(".treeview").eq(14).addClass("active");
+		$(".treeview").eq(11).addClass("active");
 	} 
 
 	$("#search").click(function() {
@@ -77,9 +68,7 @@ $(function() {
 		$("#headerForm").submit();
 	})
 
-	$("#popupRegister").click(function() {
-		location.replace("/admin/popup/register");
-	});
+	
 
 
 	$("#popupDelete").click(function() {

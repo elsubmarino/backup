@@ -15,8 +15,7 @@ var availHeight=screen.availHeight;
 		<script>
 		var left;
 		var topPosition;
-		var myRegex = /<img[^>]+src="([^">]+)"/g;
-		var test = '${item.f_comment}';
+		var comment = "${item.f_comment}";
 		var subject="${item.f_subject}";
 		var width="${item.f_width}";
 		var height="${item.f_height}";
@@ -32,7 +31,8 @@ var availHeight=screen.availHeight;
 		case "9":left=availWidth-width;topPosition=availHeight-height/2;break;
 		}
 		var param="width="+width+",height="+height+",left="+left+",top="+topPosition;
-		window.open(myRegex.exec(test)[1],subject,param);
+		var doc=window.open("",subject,param);
+		doc.document.write(comment);
 		</script>
 		
 	</c:forEach>

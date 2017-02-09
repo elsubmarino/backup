@@ -71,7 +71,8 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="popup">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">
+									<tr style="cursor: pointer"
+										data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }&mode=modify">
 										<td class="text-center">${popup.f_id }</td>
 										<td style="text-indent: 5px;">${popup.f_subject }</td>
 										<td class="text-center">${popup.f_start }</td>
@@ -80,22 +81,22 @@
 										<td class="text-center"><fmt:formatDate
 												value="${popup.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
 										<td class="text-center">
-										<div class="btn-group">
-										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
-											<a class="btn btn-info" id="popupDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a>
+											<div class="btn-group">
+												<a class="btn btn-info"
+													href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
+												<a class="btn btn-info" id="popupDelete"
+													href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a>
 											</div>
-											</td>
-											
+										</td>
+
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
-							<c:if test="${pageMaker.totalCount eq 0 }">
-							<div class="col-md-12 text-center">등록된 자료가 없습니다.</div>
-						</c:if>
+					<c:if test="${pageMaker.totalCount eq 0 }">
+						<div class="col-md-12 text-center">등록된 자료가 없습니다.</div>
+					</c:if>
 					<div class="col-md-12 text-center">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">
@@ -127,6 +128,10 @@
 
 <%@include file="../include/footer.jsp"%>
 <script>
+	$("#popupRegister").click(function() {
+		location.replace("/admin/popup/list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&mode=create");
+	});
+	
 	$('tr[data-href]').on("click", function() {
 		document.location = $(this).data('href');
 	});
