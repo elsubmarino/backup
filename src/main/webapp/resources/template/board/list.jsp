@@ -5,15 +5,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="/WEB-INF/views/include/header.jsp"%>
-
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>공지사항</h1>
+		<h1>${boardName }</h1>
 		<ol class="breadcrumb">
-			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">공지사항</li>
+			<li><a href="/"><i class="fa fa-home"></i> 홈</a></li>
+			<li class="active">${boardName }</li>
 		</ol>
 	</section>
 
@@ -69,12 +68,12 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">
+									<tr style="cursor:pointer" data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }&mode=read">
 										<td class="text-center">${item.f_id }</td>
 										<td style="text-indent: 5px;">${item.f_subject }</td>
 										<td class="text-center">${item.f_name }</td>
 										<td class="text-center"><fmt:formatDate
-												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+												value="${item.f_wdate  }" pattern="yyyy-MM-dd" /></td>
 										<td class="text-center">${item.f_see }</td>
 									</tr>
 								</c:forEach>
@@ -117,6 +116,6 @@
 	});
 	
 	$("#register").click(function(){
-		location.replace("list?mode=create"+${pageMaker.makeSearch(pageMaker.cri.getPage()) }";
+		location.replace("list"+"${pageMaker.makeSearch(pageMaker.cri.getPage()) }"+"&mode=create");
 	});
 </script>

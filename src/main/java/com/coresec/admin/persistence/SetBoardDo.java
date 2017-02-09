@@ -33,4 +33,6 @@ public interface SetBoardDo {
 	
 	//update tbl_board_administration
 	public void updateAdministration();
+	
+	public String getBoardName(int f_id);
 }

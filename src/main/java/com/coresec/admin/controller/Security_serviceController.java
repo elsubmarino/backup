@@ -24,6 +24,9 @@ public class Security_serviceController {
 	
 	@RequestMapping(value="/list")
 	public void list(SearchCriteria cri,Model model){
+		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
+			cri.setKeyword(null);
+		}
 		int count=service_securityDo.countsSecurity_service(cri);
 		PageMaker pageMaker=new PageMaker();
 		pageMaker.setCri(cri);

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coresec.admin.domain.Education_qna;
@@ -22,6 +23,9 @@ public class Education_qnaController {
 	
 	@RequestMapping(value="/list")
 	public void list(Model model,SearchCriteria cri){
+		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
+			cri.setKeyword(null);
+		}
 		PageMaker pageMaker=new PageMaker();
 		int count=education_qnaDo.countsEducation_qna(cri);
 		pageMaker.setCri(cri);

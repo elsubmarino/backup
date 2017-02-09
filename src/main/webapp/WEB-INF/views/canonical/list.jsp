@@ -51,33 +51,28 @@
 						<table class="table table-bordered table-hover">
 							<colgroup>
 								<col width="50px;">
-								<col>
-								<col width="100px">
-								<col width="130px">
-								<col width="80px">
-								<col width="150px">
-								<col width="150px">
+							
 							</colgroup>
 							<thead>
 								<tr>
-									<th>번호</th>
-									<th>연혁 제목</th>
-									<th>연혁 년도</th>
+									<th>년도</th>
+									<th>한글</th>
+									<th>영어</th>
 									<th>수정/삭제</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
 									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${ite.f_id }">
-										<td class="text-center">${item.f_id }</td>
-										<td style="text-indent: 5px;">${item.f_title }</td>
-										<td class="text-center">${item.f_date }</td>
+										<td style="text-indent: 5px;">${item.f_year }/${item.f_month }</td>
+										<td class="text-center">${item.f_ko }</td>
+										<td class="text-center">${item.f_en }</td>
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"
 											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
 											<a class="btn btn-info" id="popupDelete"
-											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
+											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id_s }">삭제</a>
 											</div>
 											</td>
 											

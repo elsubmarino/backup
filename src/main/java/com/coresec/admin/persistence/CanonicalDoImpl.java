@@ -95,4 +95,10 @@ public class CanonicalDoImpl implements CanonicalDo {
 		sqlSession.delete(namespace+".deleteCanonical_s",f_hid);
 	}
 
+	@Override
+	public void insertToHistory_s(Canonical item) {
+		sqlSession.insert(namespace+".insertToHistory_s",item);
+
+	}
+
 }

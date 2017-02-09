@@ -24,13 +24,14 @@ public class CanonicalController {
 
 	@RequestMapping(value = "/list")
 	public String list(Model model, SearchCriteria cri) {
+		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
+			cri.setKeyword(null);
+		}
 		PageMaker pageMaker = new PageMaker();
 		int count = canonicalDo.getCount(cri);
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(count);
-		if (cri.getKeyword() != null && cri.getKeyword().equals("")) {
-			cri.setKeyword(null);
-		}
+
 		List<Canonical> list = canonicalDo.selectList(cri);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", list);
@@ -43,15 +44,15 @@ public class CanonicalController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(Canonical item, @RequestParam(value = "f_comment") String[] f_items) {
+	public String create(Canonical item) {
+		List<Canonical> list=item.getList();
+		for(Canonical temp:list){
+			String year = temp.getF_year();
+			temp.setF_year(year.substring(0, 4));
+			temp.setF_month(year.substring(5));
+			canonicalDo.insert(temp);
 
-		canonicalDo.insert(item);
-		int num = canonicalDo.getF_id();
-		for (String temp : f_items) {
-			Canonical_s ite = new Canonical_s();
-			ite.setF_uid(num);
-			ite.setF_comment(temp);
-			canonicalDo.insertItem(ite);
+			canonicalDo.insertToHistory_s(temp);
 		}
 
 		return "redirect:/canonical/list";
@@ -86,7 +87,7 @@ public class CanonicalController {
 		;
 		canonicalDo.update(item);
 		canonicalDo.deleteCanonical_s(item.getF_id());
-		
+
 		for (String temp : f_comment) {
 			Canonical_s ite = new Canonical_s();
 			ite.setF_uid(item.getF_id());

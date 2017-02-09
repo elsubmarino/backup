@@ -4,8 +4,12 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@include file="../include/header.jsp"%>
-<link rel="stylesheet" href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet"
+	href="/admin/resources/dist/css/bootstrap-datepicker3.min.css">
 <script src="/admin/resources/plugins/ckeditor/ckeditor.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -35,18 +39,16 @@
 									<tr>
 										<th>연혁 제목</th>
 										<td colspan="3"><input type="text" class="form-control"
-											name="f_title"></td>
-									</tr>
-									<tr>
-									<th>연혁 년도</th>
-									<td colspan="3"><input type="number" name="f_date" min="2011" step="1"></td>
+											name="list[0].f_title"></td>
 									</tr>
 									<tr>
 										<th>내용</th>
-										<td colspan="3">
-											<a href="" class="btn btn-primary" id="addInputText">추가</a>
-											<input type="text" name="f_comment" class="form-control" placeholder="항목 이름">
-										</td>
+										<td colspan="3"><a href="" class="btn btn-primary"
+											id="addInputText">추가</a> <input type="text" placeholder="날짜" class="form-control" name="list[0].f_year">
+
+											<input type="text" name="list[0].f_ko" class="form-control"
+											placeholder="한글"> <input type="text" name="list[0].f_en"
+											class="form-control" placeholder="영어"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -68,22 +70,34 @@
 <!-- CK Editor -->
 
 <%@include file="../include/footer.jsp"%>
+<script src="//code.jquery.com/ui/jquery-ui-git.js"></script>
 
 <script>
 	$(function() {
-		$("#addInputText").click(function(event) {
-			event.preventDefault();
-							var text = "<input type='text' name='f_comment' class='form-control' placeholder='항목 이름'>";
+		i=1;
+		$("[name*=f_year]").datepicker({
+			dateFormat : 'yy-mm'
+		});
+		$("#addInputText")
+				.click(
+						function(event) {
+							event.preventDefault();
+							var text = "<hr> <input type=\"text\" class=\"form-control\" name=\"list["+i+"].f_year\" placeholder=\"날짜\"><input name=\"list["+i+"].f_ko\" class='form-control' placeholder='한글'><input type='text' name='list["+i+"].f_en' class='form-control' placeholder='영어'>";
+							alert(text);
+							i++;
+							$("[name*=f_year]").datepicker({
+								dateFormat : 'yy-mm'
+							});
 							$(this).parent().append(text);
 						});
 		$("#create").click(function() {
-			
-			var f_title = $("[name=f_title]");
+
+			/* var f_title = $("[name=f_title]");
 			if (!f_title.val()) {
 				alert("연혁 제목을 입력하세요!");
 				f_title.focus();
 				return;
-			}
+			} */
 			$("#createForm").submit();
 		});
 

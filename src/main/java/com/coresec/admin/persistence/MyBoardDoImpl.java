@@ -28,7 +28,7 @@ public class MyBoardDoImpl implements MyBoardDo {
 
 	@Override
 	public void update(MyBoard MyBoard) {
-		sqlSession.update(namespace + ".updateMyBoard", MyBoard);
+		sqlSession.update(namespace + ".update", MyBoard);
 	}
 
 	@Override
@@ -55,6 +55,11 @@ public class MyBoardDoImpl implements MyBoardDo {
 	@Override
 	public int getNumOfPosts(int f_bid) {
 		return sqlSession.selectOne(namespace+".getNumOfPosts",f_bid);
+	}
+
+	@Override
+	public void updateHit(int f_id) {
+		sqlSession.update(namespace+".updateHit",f_id);
 	}
 
 }
