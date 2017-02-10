@@ -46,7 +46,7 @@ select cast(max(f_ca_id)+10 as integer) from tbl_category where length(f_ca_id) 
 		values(#{f_ca_id},#{f_ca_name},#{f_comment},#{f_upfile_name})
 	</insert>
 
-	<update id="updateCategory">
+	<update id="update">
 		update tbl_category set
 		f_ca_id=#{f_ca_id},f_ca_name=#{f_ca_name},f_comment=#{f_comment} where
 		f_id=#{f_id}

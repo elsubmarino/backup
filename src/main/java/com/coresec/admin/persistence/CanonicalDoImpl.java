@@ -18,8 +18,8 @@ public class CanonicalDoImpl implements CanonicalDo {
 	private final String namespace = "com.coresec.admin.mapper.canonicalMapper";
 
 	@Override
-	public Canonical selectOne(int f_id) {
-		return sqlSession.selectOne(namespace + ".selectOne", f_id);
+	public Canonical selectOne(int f_id_s) {
+		return sqlSession.selectOne(namespace + ".selectOne",f_id_s);
 	}
 
 	@Override

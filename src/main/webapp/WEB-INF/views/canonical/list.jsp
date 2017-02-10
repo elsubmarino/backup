@@ -44,7 +44,7 @@
 				</div>
 				<div class="box-body">
 					<div class="col-md-2">
-						<a href="create?${pageMaker.makeSearch(pageMaker.cri.getPage()) }" class="btn btn-warning"
+						<a href="list?${pageMaker.makeSearch(pageMaker.cri.getPage()) }&mode=create" class="btn btn-warning"
 							style="margin-bottom: 20px;" id="register">등록하기</a>
 					</div>
 					<div class="col-md-12">
@@ -63,7 +63,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${ite.f_id }">
+									<tr style="cursor:pointer" data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id_s=${item.f_id_s }&mode=modify">
 										<td style="text-indent: 5px;">${item.f_year }/${item.f_month }</td>
 										<td class="text-center">${item.f_ko }</td>
 										<td class="text-center">${item.f_en }</td>

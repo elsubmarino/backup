@@ -22,35 +22,33 @@
 	<section class="content">
 		<!-- Info boxes -->
 		<div class="row">
+							<form method="GET" id="form">
 
 			<div class="box">
 				<div class="box-header">
 					<button type="button" class="btn btn-warning">접속 경로</button>
-					<buttno type="button" class="btn btn-warning">이동 경로</buttno>
+					<button type="button" class="btn btn-warning">이동 경로</button>
 				</div>
 				<div class="box-body">
 					<div class="col-md-5">
-						날짜조건 : <input type="radio" name="dateCategory">일별<input type="radio" name="dateCategory">월별<input
-							type="radio" name="dateCategory">년도별
+						날짜조건 : <input type="radio" name="specific">특정기간<input type="radio" name="time">시간별<input type="radio" name="month">월별<input
+							type="radio" name="year">년도별
 					</div>
 
 					<div class="col-md-12">
 						<table class="table table-bordered table-hover">
 							<thead>
-								<tr>
-									<th>해당</th>
-								</tr>
+							<tr id="time" hidden><td>시작일<input type="text" name="startDate"><button type="button" id="submit">전송</button></td></tr>
+							<tr id="specific" hidden><td>시작일<input type="text" name="startDate">종료일<input type="text" name="endDate"><button type="button" id="submit">전송</button></td></tr>
 							</thead>
-							<tr>
-							<form method="GET" id="form">
-							시작일<input type="text" name="startDate">종료일<input type="text" name="endDate"><button type="button" id="submit">전송</button>
-							</form>
-							</tr>
+							
 						</table>
 					</div>
 
 				</div>
 			</div>
+										</form>
+			
 		</div>
 		<div class="row" id="test"></div>
 	</section>
@@ -106,6 +104,13 @@ $(function(){
 	$("[name='startDate'],[name='endDate']").datepicker({
 		dateFormat:'yy-mm-dd'
 	});
+	$("[name=specific]").click(function(){
+		$("#specific").show();
+	});
+	$("[name=time]").click(function(){
+		$("#time").show();
+	})
+
 	
 	$("#submit").click(function(){
 		$.ajax({

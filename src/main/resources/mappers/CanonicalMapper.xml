@@ -16,16 +16,8 @@
 	</select>
 
 	<select id="selectOne" resultType="Canonical">
-		select *
-		from tbl_history where
-		f_id=#{f_id} order by
-		f_id desc
-	</select>
-	
-	<select id="selectOneHistory_s" resultType="Canonical_s">
-		select * from tbl_history_s where f_hid=#{f_hid} order by f_id asc
-	</select>
-
+select f_year,f_ko,f_en,f_month from tbl_history left outer join tbl_history_s on tbl_history.f_id = tbl_history_s.f_hid where tbl_history_s.f_id=#{f_id_s}	
+</select>
 	<insert id="insert">
 		insert ignore into
 		tbl_history(f_year) values(#{f_year})
@@ -43,7 +35,7 @@
 	</insert>
 
 	<update id="update">
-		update tbl_history set f_title=#{f_title},f_date=#{f_date} where f_id=#{f_id}
+		update tbl_history_s set f_ko=#{f_ko},f_en=#{f_en},f_month=#{f_month} where f_id=#{f_id_s}
 	</update>
 	
 	

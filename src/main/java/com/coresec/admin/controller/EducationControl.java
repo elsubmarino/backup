@@ -2,11 +2,9 @@ package com.coresec.admin.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,7 +76,15 @@ public class EducationControl {
 	}
 
 	@RequestMapping(value = "/create")
-	public String create() {
+	public String create(Model model) {
+		List<CategoryNames> names=categoryDo.getCategoryNames();
+		for(CategoryNames temp:names){
+			if(temp.getF_ca_id().length()>2){
+				temp.setF_ca_name("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+temp.getF_ca_name());
+			}
+		}
+		model.addAttribute("categoryNames",names);
+		
 		return "/education/create";
 	}
 

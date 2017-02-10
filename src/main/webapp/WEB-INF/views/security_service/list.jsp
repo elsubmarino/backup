@@ -56,16 +56,14 @@
 								<col width="150px">
 								<col width="150px">
 								<col width="8%">
-								<col width="140px">
 
 							</colgroup>
 
 							<thead>
 								<tr>
 									<th>번호</th>
+									<th>구분</th>
 									<th>이름</th>
-									<th>회사명</th>
-									<th>직통번호</th>
 									<th>휴대번호</th>
 									<th>이메일</th>
 									<th>등록일</th>
@@ -75,21 +73,19 @@
 							<tbody>
 								<c:forEach items="${list }" var="item">
 									<tr
-										data-href="/admin/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}"
+										data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}&mode=read"
 										style="cursor: pointer">
 										<td class="text-center">${item.f_id }</td>
-										<td style="text-indent: 5px;">${item.f_name }</td>
-										<td>${item.f_company }</td>
-										<td>${item.f_tel }</td>
+										<td style="text-indent: 5px;">${item.f_type2 }</td>
+										<td>${item.f_name }</td>
 										<td>${item.f_hp }</td>
-										<td>${item.f_email}</td>
-										<td class="text-center"><fmt:formatDate
-												value="${item.f_wdate  }" pattern="yyyy-MM-dd hh:mm:ss" /></td>
+										<td>${item.f_email }</td>
+										<td><fmt:formatDate value="${item.f_wdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
 										<td class="text-center">
 											<div class="btn-group">
 												<a
-													href="/admin/setBoard/modify${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}"
-													class="btn btn-info" id="setBoardModify">수정</a> <a
+													href="list${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id}&mode=read"
+													class="btn btn-info" id="setBoardModify">보기</a> <a
 													type="button" class="btn btn-info" id="setBoardDelete"
 													href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">삭제</a>
 											</div>

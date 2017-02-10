@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coresec.admin.domain.Canonical;
 import com.coresec.admin.domain.Education_qna;
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
@@ -42,5 +43,14 @@ public class Education_qnaController {
 		pageMaker.setCri(cri);
 		education_qnaDo.deleteEducation_qna(f_id);
 		return "redirect:/education_qna/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
+	}
+	
+	@RequestMapping(value = "/list",params="mode=read")
+	public String modify(Model model, @RequestParam(value="f_id") int f_id, SearchCriteria cri) {
+		Education_qna item=education_qnaDo.selectOneEducation_qna(f_id);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		model.addAttribute("item",item);
+		return "education_qna/read";
 	}
 }

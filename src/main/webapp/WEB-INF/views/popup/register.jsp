@@ -43,7 +43,16 @@ var coords="";
 
 			<div class="box">
 				<div class="box-header">
-					<div class="well text-center">팝업 등록하기</div>
+					<div class="well text-center">
+					<c:choose>
+					<c:when test="${param.mode eq 'modify' }">
+					팝업 수정하기
+					</c:when>
+					<c:otherwise>
+					팝업 등록하기
+					</c:otherwise>
+					</c:choose>
+					</div>
 				</div>
 				<div class="box-body">
 					<form id="form" method="POST">
@@ -181,6 +190,7 @@ var coords="";
 										<button type="button" class="btn btn-default" id="popupCreate">등록</button>
 									</c:when>
 									<c:otherwise>
+										<input type="hidden" name="f_id" value="${param.f_id }">
 										<button type="button" class="btn btn-default" id="popupModify">수정</button>
 
 									</c:otherwise>

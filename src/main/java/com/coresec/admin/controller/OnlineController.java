@@ -7,9 +7,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.coresec.admin.domain.CategoryNames;
+import com.coresec.admin.domain.Education;
 import com.coresec.admin.domain.Online;
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
@@ -73,6 +75,33 @@ public class OnlineController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("categoryNames", names);
 		model.addAttribute("list", list);
+	}
+	
+
+	@RequestMapping(value = "/list",params="mode=modify")
+	public String modify(Model model, @RequestParam(value="f_id") int f_id, SearchCriteria cri) {
+		List<CategoryNames> names=categoryDo.getCategoryNames();
+		for(CategoryNames temp:names){
+			if(temp.getF_ca_id().length()>2){
+				temp.setF_ca_name("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+temp.getF_ca_name());
+			}
+		}
+		Online item=onlineDo.selectOne(f_id);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		model.addAttribute("item",item);
+		model.addAttribute("pageMaker",pageMaker);
+		model.addAttribute("categoryNames",names);
+		return "online/modify";
+	}
+	
+
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public String modifyPOST(Online item, SearchCriteria cri) {
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		onlineDo.update(item);
+		return "redirect:/online/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 	
 	@RequestMapping(value = "/delete")

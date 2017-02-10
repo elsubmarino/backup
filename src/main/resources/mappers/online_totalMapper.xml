@@ -10,7 +10,7 @@
 		</if>
 	</sql>
 	<select id="selectList" resultType="Online_total">
-		select * from tbl_online_total where f_type2 not like '%접수신청%'
+		select * from tbl_online_total where f_type2 like '%접수신청%'
 		<include refid="search"></include>
 
 		order by
@@ -19,10 +19,9 @@
 
 	<select id="selectOne" resultType="Online_total">
 		select
-		f_id,f_board_name,f_skin,f_category,f_comment_img_width,f_one_page_num,f_ip_view,f_upload_num,f_comment_use,f_file_use,f_hidden_use,f_write,f_read,f_edit,f_delete,f_reply,f_comment,f_comment_del,f_link,f_top_comment,f_bottom_comment
+		*
 		from tbl_online_total where
-		f_id=#{f_id} order by
-		f_id desc
+		f_id=#{f_id}
 	</select>
 
 	<insert id="insert">
@@ -42,7 +41,7 @@
 	</delete>
 
 	<select id="getCount" resultType="Integer">
-		select count(*) from tbl_online_total where f_type2 not like '%접수신청%'
+		select count(*) from tbl_online_total where f_type2 like '%접수신청%'
 		<include refid="search"></include>
 	</select>
 
