@@ -149,12 +149,8 @@
 							class="fa fa-question-circle"></i> <span>상담 신청 관리</span> </span>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
-						href="/admin/education_qna/list"> <i class="fa fa-bell-o"></i>
+						href="/admin/online_total/list"> <i class="fa fa-bell-o"></i>
 							<span>접수 신청 관리</span> </span>
-					</a></li>
-					<li class="treeview"><a class="contentTitle"
-						href="/admin/survey/list"> <i class="fa fa-th"></i> <span>설문
-								조사</span> </span>
 					</a></li>
 					<li class="treeview"><a class="contentTitle"
 						href="/admin/meta/list"> <i class="fa fa-tags"></i> <span>메타

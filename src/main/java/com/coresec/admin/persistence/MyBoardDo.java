@@ -30,4 +30,6 @@ public interface MyBoardDo {
 	
 	//get a number of posts
 	public int getNumOfPosts(int f_bid);
+	
+	public void updateHit(int f_id);
 }

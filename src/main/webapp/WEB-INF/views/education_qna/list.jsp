@@ -74,8 +74,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">
-										<td class="text-center">${item.f_id }</td>
+									<tr style="cursor:pointer" data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }&mode=read">										<td class="text-center">${item.f_id }</td>
 										<td style="text-indent: 5px;">${item.f_name }</td>
 										<td class="text-center">${item.f_company }</td>
 										<td class="text-center">${item.f_hp }</td>
@@ -87,7 +86,7 @@
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
+											href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }&mode=read">보기</a>
 											<a class="btn btn-info" id="popupDelete"
 											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
 											</div>

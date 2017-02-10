@@ -81,7 +81,7 @@
 							<tbody>
 								<c:forEach items="${list }" var="item">
 									<tr style="cursor: pointer"
-										data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">
+										data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }&mode=modify">
 										<td class="text-center">${item.f_ca_name }</td>
 										<td style="text-indent: 5px;">${item.f_subject }</td>
 										<td class="text-center"></td>
@@ -93,8 +93,9 @@
 										</td>
 										<td class="text-center">
 											<div class="btn-group">
+												<a class="btn btn-info">인쇄</a>
 												<a class="btn btn-info"
-													href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">수정</a>
+													href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }&mode=modify">수정</a>
 												<a class="btn btn-info" id="popupDelete"
 													href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
 											</div>

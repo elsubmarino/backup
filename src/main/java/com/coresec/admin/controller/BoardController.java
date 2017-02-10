@@ -75,10 +75,11 @@ public class BoardController {
 
 		// 추후 디렉토리명 변경
 		String rootPath=request.getSession().getServletContext().getRealPath("/");
-		String path = rootPath+"\\views\\sub\\" + link + "\\"
+		String path = rootPath+"\\WEB-INF\\views\\sub\\" + link + "\\"
 				+ max;
 		
 		createFile(path,rootPath);
+		setBoard.setF_bid(max);
 		setBoard.setF_comment_img_width("0");
 		setBoard.setF_ip_view("0");
 		setBoard.setF_comment_use("0");
@@ -144,10 +145,6 @@ public class BoardController {
 					new FileInputStream(
 							rootPath+"\\resources\\template\\board\\create.jsp"),
 					new FileOutputStream(path + "\\create.jsp"));
-			FileCopyUtils.copy(
-					new FileInputStream(
-							rootPath+"\\resources\\template\\board\\modify.jsp"),
-					new FileOutputStream(path + "\\modify.jsp"));
 			FileCopyUtils.copy(
 					new FileInputStream(
 							rootPath+"\\resources\\template\\board\\read.jsp"),

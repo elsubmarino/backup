@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.coresec.admin.domain.Education_qna;
 import com.coresec.admin.domain.Online_total;
 import com.coresec.admin.domain.PageMaker;
 import com.coresec.admin.domain.SearchCriteria;
@@ -35,6 +36,16 @@ public class Online_totalController {
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", list);
 		return "/online_total/list";
+	}
+	
+	@RequestMapping(value = "/list",params="mode=read")
+	public String modify(Model model, @RequestParam(value="f_id") int f_id, SearchCriteria cri) {
+		Online_total item=online_totalDo.selectOne(f_id);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		model.addAttribute("item",item);
+		model.addAttribute("pageMaker",pageMaker);
+		return "education_qna/read";
 	}
 	
 	@RequestMapping(value = "/delete")

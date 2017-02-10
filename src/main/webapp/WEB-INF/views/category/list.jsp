@@ -43,7 +43,7 @@
 				<div class="box-body">
 					<div class="col-md-2">
 						<a class="btn btn-warning" style="margin-bottom: 20px;"
-							href="create${pageMaker.makeSearch(pageMaker.cri.getPage()) }">1단계
+							href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&mode=create">1단계
 							분류 추가</a>
 					</div>
 					<div class="col-md-12">
@@ -64,19 +64,22 @@
 								<c:forEach items="${list }" var="item">
 
 									<tr
-										data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}"
+										data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}&mode=modify"
 										style="cursor: pointer">
 										<td class="text-center">${item.f_ca_id }</td>
 										<td style="text-indent: 5px;"><c:if
 												test="${fn:length(item.f_ca_id)>3}">
+												<c:forEach begin="1" end="${fn:length(item.f_ca_id) }">
+												&nbsp;
+												</c:forEach>
 												<img src="/admin/resources/dist/img/icon_catlevel.gif">
 											</c:if>${item.f_ca_name }</td>
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"
-											href="create${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_ca_id=${item.f_ca_id}">
+											href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_ca_id=${item.f_ca_id}&mode=create">
 												추가</a> <a type="button" class="btn btn-info" id="categoryModify"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}">수정</a>
+											href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id}&mode=modify">수정</a>
 											<a class="btn btn-info" id="categoryDelete"
 											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">삭제</a>
 											</div>

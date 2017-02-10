@@ -62,4 +62,9 @@ public class SetBoardDoImpl implements SetBoardDo {
 		sqlSession.update(namespace+".updateAdministration");
 	}
 
+	@Override
+	public String getBoardName(int f_id) {
+		return sqlSession.selectOne(namespace+".getBoardName",f_id);
+	}
+
 }

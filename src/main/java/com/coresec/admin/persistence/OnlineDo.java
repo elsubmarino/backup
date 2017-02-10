@@ -13,7 +13,7 @@ public interface OnlineDo {
 	public List<Online> selectList(SearchCriteria cri);
 	
 	//modify
-	public void update(Online onloine);
+	public void update(Online online);
 	
 	//delete
 	public void delete(int f_id);

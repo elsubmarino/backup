@@ -31,8 +31,8 @@ public class CategoryDoImpl implements CategoryDo {
 		
 	}
 	@Override
-	public void updateCaetgory(Category category) {
-		sqlSession.update(namespace+".updateCategory",category);
+	public void update(Category category) {
+		sqlSession.update(namespace+".update",category);
 		
 	}
 	@Override

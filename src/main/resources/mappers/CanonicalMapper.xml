@@ -10,33 +10,32 @@
 		</if>
 	</sql>
 	<select id="selectList" resultType="Canonical">
-		select * from tbl_history 
+		select a.f_id,a.f_year,b.f_id as f_id_s,b.f_hid,b.f_ko,b.f_en,b.f_month from tbl_history a right outer join tbl_history_s b on a.f_id=b.f_hid
 		<include refid="search"></include>
-		order by f_id desc limit #{pageStart}, #{perPageNum}
+		order by f_year desc limit #{pageStart}, #{perPageNum}
 	</select>
 
 	<select id="selectOne" resultType="Canonical">
-		select *
-		from tbl_history where
-		f_id=#{f_id} order by
-		f_id desc
-	</select>
-	
-	<select id="selectOneHistory_s" resultType="Canonical_s">
-		select * from tbl_history_s where f_hid=#{f_hid} order by f_id asc
-	</select>
-
+select f_year,f_ko,f_en,f_month from tbl_history left outer join tbl_history_s on tbl_history.f_id = tbl_history_s.f_hid where tbl_history_s.f_id=#{f_id_s}	
+</select>
 	<insert id="insert">
-		insert into
-		tbl_history(f_title,f_date) values(#{f_title},#{f_date})
+		insert ignore into
+		tbl_history(f_year) values(#{f_year})
 	</insert>
+	
+	
+	<insert id="insertToHistory_s">
+		insert into
+		tbl_history_s(f_hid,f_ko,f_en,f_month) values((select f_id from tbl_history where f_year=#{f_year}),#{f_ko},#{f_en},#{f_month})
+	</insert>
+	
 	
 	<insert id="insertItem">
 		insert into tbl_history_s(f_hid,f_comment) values(#{f_hid},#{f_comment})
 	</insert>
 
 	<update id="update">
-		update tbl_history set f_title=#{f_title},f_date=#{f_date} where f_id=#{f_id}
+		update tbl_history_s set f_ko=#{f_ko},f_en=#{f_en},f_month=#{f_month} where f_id=#{f_id_s}
 	</update>
 	
 	
@@ -46,7 +45,7 @@
 	</update>
 
 	<delete id="delete">
-		delete from tbl_history where f_id=#{f_id}
+		delete from tbl_history_s where f_id=#{f_id}
 	</delete>
 	
 	<delete id="deleteCanonical_s">

@@ -10,10 +10,10 @@
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-		<h1>온라인 문의</h1>
+		<h1>접수 신청 관리</h1>
 		<ol class="breadcrumb">
 			<li><a href="/admin"><i class="fa fa-home"></i> 홈</a></li>
-			<li class="active">온라인 문의</li>
+			<li class="active">접수 신청 관리</li>
 		</ol>
 	</section>
 
@@ -67,7 +67,7 @@
 							</thead>
 							<tbody>
 								<c:forEach items="${list }" var="item">
-									<tr style="cursor:pointer" data-href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${ite.f_id }">
+									<tr style="cursor:pointer" data-href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }&mode=read">
 										<td class="text-center">${item.f_id }</td>
 										<td style="text-indent: 5px;">${item.f_type2 }</td>
 										<td class="text-center">${item.f_name }</td>
@@ -78,7 +78,7 @@
 										<td class="text-center">
 										<div class="btn-group">
 										<a class="btn btn-info"
-											href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }">보기</a>
+											href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${item.f_id }&mode=read">보기</a>
 											<a class="btn btn-info" id="popupDelete"
 											href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${item.f_id }">삭제</a>
 											</div>

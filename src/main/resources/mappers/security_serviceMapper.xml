@@ -6,16 +6,16 @@
 	<sql id="search">
 		<if test="keyword != null">
 			<if test="searchType == 'f_company'">
-			where f_company
+			and f_company
 			</if>
 			<if test="searchType == 'f_name'">
-			where f_name
-			</if> like CONCAT('%',#{keyword},'%')
+			and f_name
+			</if> like CONCAT('%',#{keyword},'%') 
 		</if>
 	</sql>
 	<select id="selectListSecurity_service" resultType="Security_service">
 		select
-		f_id,f_name,f_company,f_tel,f_hp,f_email,f_wdate from tbl_security_service
+		* from tbl_online_total where f_type2 like '%상담신청%'
 		
 		<include refid="search"></include>
 		
@@ -24,20 +24,20 @@
 	</select>
 
 	<select id="selectOneSecurity_service" resultType="Security_service">
-		select f_name,f_company,f_buser,f_tel,f_hp,f_type,f_comment,f_wdate
-		from tbl_security_service where
+		select *
+		from tbl_online_total where
 		f_id=#{f_id} order by
 		f_id desc
 	</select>
 
 
 	<delete id="deleteSecurity_service">
-		delete from tbl_security_service where f_id=#{f_id}
+		delete from tbl_online_total where f_id=#{f_id}
 	</delete>
 
 	<select id="countsSecurity_service" resultType="Integer">
 		select count(*) from
-		tbl_security_service
+		tbl_online_total
 		
 		<include refid="search"></include>
 	</select>

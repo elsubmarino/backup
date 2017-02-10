@@ -66,7 +66,9 @@
 									<th>종료일시</th>
 									<th>사용여부</th>
 									<th>등록일</th>
-									<th>수정/삭제</th>
+									<th>
+
+/삭제</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -83,7 +85,7 @@
 										<td class="text-center">
 											<div class="btn-group">
 												<a class="btn btn-info"
-													href="modify${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }">수정</a>
+													href="list${pageMaker.makeSearch(pageMaker.cri.getPage()) }&f_id=${popup.f_id }&f_id=${popup.f_id}&mode=modify">수정</a>
 												<a class="btn btn-info" id="popupDelete"
 													href="delete${pageMaker.makeSearch(pageMaker.cri.getPage())}&f_id=${popup.f_id }">삭제</a>
 											</div>

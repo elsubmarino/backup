@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.request.WebRequest;
 
 import com.coresec.admin.domain.Category;
 import com.coresec.admin.domain.PageMaker;
@@ -41,7 +42,7 @@ public class CategoryControl {
 		return "/category/list";
 	}
 
-	@RequestMapping(value = "/create")
+	@RequestMapping(value = "/list",params="mode=create")
 	public String create(Model model, HttpServletRequest request) {
 		String f_ca_id = request.getParameter("f_ca_id");
 		if (f_ca_id != null) {
@@ -60,7 +61,11 @@ public class CategoryControl {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String createPOST(SearchCriteria cri, Category category) {
+	public String createPOST(SearchCriteria cri, Category category,WebRequest req) {
+		String[]test=req.getParameterValues("f_ca_id");
+		if(test.length>1){
+			category.setF_ca_id(test[test.length-1]);
+		}
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		category.setF_upfile_name("");
@@ -75,7 +80,7 @@ public class CategoryControl {
 		return "/category/subCreate";
 	}
 
-	@RequestMapping(value = "/modify")
+	@RequestMapping(value = "/list",params="mode=modify")
 	public String modify(@RequestParam(value = "f_id") int f_id, Model model, SearchCriteria cri) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -83,14 +88,14 @@ public class CategoryControl {
 		model.addAttribute("item", item);
 		model.addAttribute("pageMaker", pageMaker);
 
-		return "/category/modify";
+		return "/category/create";
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modifyPOST(SearchCriteria cri, Category category) {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		categoryDo.updateCaetgory(category);
+		categoryDo.update(category);
 		return "redirect:/category/list" + pageMaker.makeSearch(pageMaker.getCri().getPage());
 	}
 

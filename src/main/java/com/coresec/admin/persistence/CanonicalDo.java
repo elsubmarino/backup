@@ -44,4 +44,6 @@ public interface CanonicalDo {
 	
 	public void deleteCanonical_s(int f_hid);
 
+	public void insertToHistory_s(Canonical item);
+
 }

@@ -18,8 +18,6 @@ public interface CategoryDo {
 	//insert
 	public void insertCategory(Category category);
 	
-	//modify
-	public void updateCaetgory(Category category);
 	
 	//delete
 	public void deleteCategory(int f_id);
@@ -37,6 +35,8 @@ public interface CategoryDo {
 	public List<CategoryNames> getCategoryNames();
 	
 	public String getCategoryName(String f_ca_id);
+
+	public void update(Category category);
 	
 	
 }
